@@ -21,3 +21,46 @@ nav a { margin-right: 12px; }
 @media (max-width: 768px) {
   .product { grid-template-columns:1fr; }
 }
+
+/* Gradient theme overrides */
+body {
+    background-color: #f4f6fb;
+    font-family: 'Inter', sans-serif;
+}
+.site-header, .site-footer {
+    background: linear-gradient(90deg, #3a4ed5, #7a3ad5);
+}
+.site-header a, .site-footer a {
+    color: #fff !important;
+}
+.nav-link, .logo {
+    color: #fff !important;
+}
+.btn-gradient {
+    background: linear-gradient(90deg, #3a4ed5, #7a3ad5);
+    color: #fff;
+    border: none;
+    transition: opacity 0.2s ease-in-out;
+}
+.btn-gradient:hover {
+    opacity: 0.85;
+    color: #fff;
+}
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+.card:hover {
+    transform: translateY(-4px);
+}
+.card img {
+    border-bottom: 1px solid #eee;
+}
+.price {
+    font-size: 1.1rem;
+    color: #3a4ed5;
+    font-weight: 600;
+}
