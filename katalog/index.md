@@ -19,4 +19,13 @@ description: "Каталог: коробки, пакеты, скотч, плен
 {% assign items = site.data.products %}
 {% for p in items %}
   <div class="card">
-    <a href="{{ site.baseu
+    <a href="{{ site.baseurl }}/katalog/{{ p.category }}/{{ p.slug }}/">
+      <img src="{{ site.baseurl }}{{ p.images | first }}" alt="{{ p.name }}">
+      <h3>{{ p.name }}</h3>
+    </a>
+    <p class="price">{{ p.price }} {{ p.unit }}</p>
+    <p class="short">{{ p.short }}</p>
+    <button class="btn btn-gradient mt-2 add-to-cart" data-sku="{{ p.sku }}" data-name="{{ p.name }}" data-price="{{ p.price }}">В корзину</button>
+  </div>
+{% endfor %}
+</div>
