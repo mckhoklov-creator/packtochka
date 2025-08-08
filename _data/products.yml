@@ -1,6 +1,3 @@
-
-# Добавляйте товары сюда. Каждая запись = товар.
-# category варианты: korobki, pakety, skotch, plenka, prochie
 - name: Коробка гофрокартон 10×10×10 см, бурый, Т-23Б
   sku: K-10x10x10-T23B
   price: 9
@@ -31,3 +28,18 @@
     - Клапан самоклеящийся
   images:
     - /assets/img/paket-250x350.jpg
+
+- name: Скотч упаковочный 48 мм × 66 м, прозрачный
+  sku: SK-48x66-PR
+  price: 69
+  unit: "руб/шт при партии 6 шт"
+  min_qty: 6
+  category: skotch
+  slug: skotch-48-66-prozrachny
+  short: Универсальная клейкая лента для упаковки коробок и посылок.
+  specs:
+    - Ширина: 48 мм
+    - Длина: 66 м
+    - Цвет: прозрачный
+  images:
+    - /assets/img/skotch-48-66.jpg

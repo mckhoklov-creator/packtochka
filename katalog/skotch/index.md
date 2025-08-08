@@ -1,13 +1,9 @@
-
 ---
 layout: default
 title: "Скотч — каталог"
 description: "Скотч — цены и наличие."
-permalink: /katalog/skotch/
 ---
-
 <h1>Скотч</h1>
-
 <div class="grid">
 {% assign items = site.data.products | where: "category", "skotch" %}
 {% for p in items %}
@@ -18,7 +14,7 @@ permalink: /katalog/skotch/
     </a>
     <p class="price">{{ p.price }} {{ p.unit }}</p>
     <p class="short">{{ p.short }}</p>
-    <button class="add-to-cart" data-sku="{{ p.sku }}" data-name="{{ p.name }}" data-price="{{ p.price }}">В корзину</button>
+    <button class="btn btn-gradient mt-2 add-to-cart" data-sku="{{ p.sku }}" data-name="{{ p.name }}" data-price="{{ p.price }}">В корзину</button>
   </div>
 {% endfor %}
 </div>
