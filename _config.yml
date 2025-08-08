@@ -1,8 +1,8 @@
 
 title: "ПакТочка — упаковочные материалы"
 description: "Оптовая продажа упаковочных материалов: коробки, пакеты, пленка, скотч. Екатеринбург."
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # set your custom domain like https://paktocka.ru
+baseurl: "/packtochka"
+url: "https://mckhoklov-creator.github.io"
 theme: minima
 
 collections:
