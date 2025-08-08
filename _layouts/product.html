@@ -1,0 +1,65 @@
+
+---
+---
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title | default: page.name }} — {{ site.title }}</title>
+    <meta name="description" content="{{ page.short | default: site.description }}">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script defer src="/assets/js/cart.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "{{ page.name | escape }}",
+      "sku": "{{ page.sku }}",
+      "description": "{{ page.short | escape }}",
+      "image": [{% if page.images %}"{{ page.images[0] }}"{% endif %}],
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "RUB",
+        "price": "{{ page.price }}",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="/" class="logo">ПакТочка</a>
+      <nav>
+        <a href="/katalog/">Каталог</a>
+        <a href="/oplata/">Оплата</a>
+        <a href="/dostavka/">Доставка</a>
+        <a href="/cart/" class="cart-link">Корзина (<span id="cart-count">0</span>)</a>
+      </nav>
+    </header>
+    <main class="container">
+      <article class="product">
+        <div class="product-media">
+          {% if page.images %}
+            <img src="{{ page.images[0] }}" alt="{{ page.name }}">
+          {% endif %}
+        </div>
+        <div class="product-info">
+          <h1>{{ page.name }}</h1>
+          <p class="sku">Артикул: {{ page.sku }}</p>
+          <p class="price">{{ page.price }} {{ page.unit }}</p>
+          <p class="short">{{ page.short }}</p>
+          {% if page.specs %}
+          <ul class="specs">
+            {% for s in page.specs %}<li>{{ s }}</li>{% endfor %}
+          </ul>
+          {% endif %}
+          <button class="add-to-cart" data-sku="{{ page.sku }}" data-name="{{ page.name }}" data-price="{{ page.price }}">Добавить в корзину</button>
+        </div>
+      </article>
+    </main>
+    <footer class="site-footer">
+      <p>© {{ "now" | date: "%Y" }} ПакТочка.</p>
+    </footer>
+  </body>
+</html>

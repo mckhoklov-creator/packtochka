@@ -1,0 +1,28 @@
+
+title: "ПакТочка — упаковочные материалы"
+description: "Оптовая продажа упаковочных материалов: коробки, пакеты, пленка, скотч. Екатеринбург."
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # set your custom domain like https://paktocka.ru
+theme: minima
+
+collections:
+  products:
+    output: true
+    permalink: /katalog/:categories/:slug/
+
+defaults:
+  - scope:
+      path: ""
+      type: "products"
+    values:
+      layout: product
+      sitemap: true
+
+plugins:
+  - jekyll-sitemap
+
+sass:
+  style: compressed
+
+# Build settings
+markdown: kramdown
