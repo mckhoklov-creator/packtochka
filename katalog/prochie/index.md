@@ -2,7 +2,7 @@
 ---
 layout: default
 title: "Прочее — каталог"
-description: "Прочее — цены и наличие."
+description: "Прочие упаковочные материалы — цены и наличие."
 permalink: /katalog/prochie/
 ---
 
@@ -12,8 +12,8 @@ permalink: /katalog/prochie/
 {% assign items = site.data.products | where: "category", "prochie" %}
 {% for p in items %}
   <div class="card">
-    <a href="/katalog/{{ p.category }}/{{ p.slug }}/">
-      <img src="{{ p.images | first }}" alt="{{ p.name }}">
+    <a href="{{ site.baseurl }}/katalog/{{ p.category }}/{{ p.slug }}/">
+      <img src="{{ site.baseurl }}{{ p.images | first }}" alt="{{ p.name }}">
       <h3>{{ p.name }}</h3>
     </a>
     <p class="price">{{ p.price }} {{ p.unit }}</p>
