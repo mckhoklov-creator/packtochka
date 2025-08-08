@@ -1,7 +1,8 @@
+
 title: "ПакТочка — упаковочные материалы"
 description: "Оптовая продажа упаковочных материалов: коробки, пакеты, пленка, скотч. Екатеринбург."
-url: "https://mckhoklov-creator.github.io"   # основной адрес без хвоста репозитория
-baseurl: "/packtochka"                        # имя репозитория в GitHub Pages
+url: "https://mckhoklov-creator.github.io" 
+baseurl: "/packtochka"  
 
 theme: minima
 
@@ -24,5 +25,5 @@ plugins:
 sass:
   style: compressed
 
-# Build settings
+
 markdown: kramdown
