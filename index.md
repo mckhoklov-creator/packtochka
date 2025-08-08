@@ -9,7 +9,7 @@ permalink: /
 <section class="hero">
   <h1>Упаковочные материалы для вашего бизнеса</h1>
   <p>Коробки, пакеты, пленка, скотч — в наличии и под заказ. Екатеринбург и доставка по РФ.</p>
-  <p><a class="btn" href="/katalog/">Перейти в каталог</a></p>
+  <p><a class="btn btn-gradient" href="{{ site.baseurl }}/katalog/">Перейти в каталог</a></p>
 </section>
 
 <section>
