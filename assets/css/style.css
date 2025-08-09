@@ -11,3 +11,6 @@ body { background:#f4f6fb; font-family: system-ui, -apple-system, Segoe UI, Robo
 .price { color:#3a4ed5; font-weight:700; }
 #cart-table table { width:100%; border-collapse: collapse; }
 #cart-table th, #cart-table td { border-bottom:1px solid #eee; padding:8px; text-align:left; }
+
+.main-contact img { max-width:100%; border-radius:10px; }
+.main-contact form { background:#fff; padding:15px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,.08); }
