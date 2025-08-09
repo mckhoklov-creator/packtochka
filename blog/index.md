@@ -1,8 +1,16 @@
 ---
 layout: default
-title: Блог
+title: "Блог"
+description: "Статьи об упаковке, логистике и оптимизации затрат."
 permalink: /blog/
 ---
 
 <h1>Блог</h1>
-<p>Новости, советы, кейсы.</p>
+<ul>
+{% for post in site.posts %}
+  <li>
+    <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+    <small>— {{ post.date | date: "%d.%m.%Y" }}</small>
+  </li>
+{% endfor %}
+</ul>
