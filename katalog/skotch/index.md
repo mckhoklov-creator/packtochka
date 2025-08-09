@@ -5,6 +5,7 @@ permalink: /katalog/skotch/
 ---
 
 <h1>Скотч</h1>
+<p><a href="{{ site.baseurl }}/katalog/">← Вернуться в каталог</a></p>
 
 <div class="grid">
 {% assign items = site.data.products | where: "category", "skotch" %}

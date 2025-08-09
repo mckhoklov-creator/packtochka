@@ -1,48 +1,27 @@
-<!doctype html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ page.title | default: page.name }} — {{ site.title }}</title>
-  <meta name="description" content="{{ page.short | default: site.description }}">
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
-</head>
-<body>
-  <header style="background: linear-gradient(90deg, #1a237e, #4a148c); padding: 12px 0; color:#fff;">
-    <div style="max-width:1200px; margin:0 auto; padding:0 15px; display:flex; justify-content:space-between; align-items:center;">
-      <a href="{{ site.baseurl }}/" style="color:#fff;text-decoration:none;font-weight:700">ПакТочка</a>
-      <nav>
-        <a href="{{ site.baseurl }}/katalog/" style="color:#fff; margin-left:12px; text-decoration:none;">Каталог</a>
-        <a href="{{ site.baseurl }}/contacts/" style="color:#fff; margin-left:12px; text-decoration:none;">Контакты</a>
-      </nav>
+---
+layout: default
+---
+
+<article class="product" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+  <div>
+    {% if page.images %}
+      <img src="{{ site.baseurl }}{{ page.images[0] }}" alt="{{ page.name }}" style="width:100%;border-radius:10px;">
+    {% endif %}
+  </div>
+  <div>
+    <h1>{{ page.name }}</h1>
+    <p style="color:#666">Артикул: {{ page.sku }}</p>
+    <p style="font-size:1.2rem;color:#1a237e;font-weight:700">{{ page.price }} {{ page.unit }}</p>
+    {% if page.min_qty %}<p>Минимальный заказ: {{ page.min_qty }}</p>{% endif %}
+    <p>{{ page.short }}</p>
+    <button class="btn btn-gradient add-to-cart"
+            data-sku="{{ page.sku }}"
+            data-name="{{ page.name }}"
+            data-price="{{ page.price }}">Добавить в корзину</button>
+
+    <div style="margin-top:20px;">
+      <a href="{{ site.baseurl }}/katalog/{{ page.category }}/" style="margin-right:12px;">← Вернуться в категорию</a>
+      <a href="{{ site.baseurl }}/katalog/">Каталог</a>
     </div>
-  </header>
-
-  <main style="max-width:1200px; margin:20px auto; padding:0 15px;">
-    <article class="product" style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
-      <div>
-        {% if page.images %}
-          <img src="{{ site.baseurl }}{{ page.images[0] }}" alt="{{ page.name }}" style="width:100%; border-radius:10px;">
-        {% endif %}
-      </div>
-      <div>
-        <h1>{{ page.name }}</h1>
-        <p class="sku" style="color:#666">Артикул: {{ page.sku }}</p>
-        <p class="price" style="font-size:1.4rem; color:#1a237e; font-weight:700">{{ page.price }} {{ page.unit }}</p>
-        {% if page.min_qty %}<p>Минимальный заказ: {{ page.min_qty }}</p>{% endif %}
-        <p>{{ page.short }}</p>
-        <button class="btn btn-gradient add-to-cart" 
-                data-sku="{{ page.sku }}" 
-                data-name="{{ page.name }}" 
-                data-price="{{ page.price }}">Добавить в корзину</button>
-      </div>
-    </article>
-  </main>
-
-  <footer style="background: linear-gradient(90deg, #1a237e, #4a148c); color:#fff; text-align:center; padding:12px; margin-top:40px;">
-    © {{ "now" | date: "%Y" }} ПакТочка
-  </footer>
-
-  <script defer src="{{ site.baseurl }}/assets/js/cart.js"></script>
-</body>
-</html>
+  </div>
+</article>
