@@ -1,20 +1,22 @@
 ---
 layout: default
-title: "Стрейч-плёнка оптом"
-description: "Паллетная стрейч-плёнка прозрачная и чёрная — для обмотки грузов. Опт от 6 рулонов."
+title: "Плёнка"
 permalink: /katalog/plenka/
 ---
 
-<h1>Стрейч-плёнка</h1>
-<p>Прочная <strong>стрейч-плёнка</strong> используется для фиксации и защиты грузов при перевозке. Мы поставляем плёнку стандартной намотки для ручного и машинного применения, в прозрачном и чёрном цвете.</p>
+<h1>Плёнка</h1>
 
-<h2>Наши преимущества</h2>
-<ul>
-  <li>Ширина 500 мм, толщина 17–23 мкм.</li>
-  <li>Отличная эластичность и прочность на разрыв.</li>
-  <li>Защита груза от влаги и грязи.</li>
-  <li>Опт от 6 рулонов.</li>
-  <li>Самовывоз в Екатеринбурге или доставка по России.</li>
-</ul>
-
-<p>Добавьте стрейч-плёнку в корзину или свяжитесь с менеджером для уточнения цены и наличия.</p>
+<div class="grid">
+{% assign items = site.data.products | where: "category", "plenka" %}
+{% for p in items %}
+  <div class="card">
+    <a href="{{ site.baseurl }}/katalog/{{ p.category }}/{{ p.slug }}/">
+      <img src="{{ site.baseurl }}{{ p.images | first }}" alt="{{ p.name }}">
+      <h3>{{ p.name }}</h3>
+    </a>
+    <p class="price">{{ p.price }} {{ p.unit }}</p>
+    <p class="short">{{ p.short }}</p>
+    <button class="btn btn-gradient mt-2 add-to-cart" data-sku="{{ p.sku }}" data-name="{{ p.name }}" data-price="{{ p.price }}">В корзину</button>
+  </div>
+{% endfor %}
+</div>

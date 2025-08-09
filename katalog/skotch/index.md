@@ -1,20 +1,22 @@
 ---
 layout: default
-title: "Скотч оптом для упаковки"
-description: "Клейкая лента (скотч) для упаковки — ширина 48 мм, прозрачный и коричневый. Опт от 36 рулонов."
+title: "Скотч"
 permalink: /katalog/skotch/
 ---
 
-<h1>Скотч упаковочный</h1>
-<p>Прочный <strong>упаковочный скотч</strong> — незаменимый материал для надёжного запечатывания коробок и пакетов. Мы предлагаем прозрачный, коричневый и цветной скотч с различной степенью липкости.</p>
+<h1>Скотч</h1>
 
-<h2>Преимущества нашего скотча</h2>
-<ul>
-  <li>Ширина 48 мм, длина от 50 до 66 м.</li>
-  <li>Равномерное нанесение клея — без разрывов и складок.</li>
-  <li>Подходит для автоматических упаковочных машин.</li>
-  <li>Опт от 36 рулонов по выгодной цене.</li>
-  <li>Склад в Екатеринбурге, доставка по РФ.</li>
-</ul>
-
-<p>Закажите скотч прямо сейчас — выберите нужное количество и оформите заявку через корзину.</p>
+<div class="grid">
+{% assign items = site.data.products | where: "category", "skotch" %}
+{% for p in items %}
+  <div class="card">
+    <a href="{{ site.baseurl }}/katalog/{{ p.category }}/{{ p.slug }}/">
+      <img src="{{ site.baseurl }}{{ p.images | first }}" alt="{{ p.name }}">
+      <h3>{{ p.name }}</h3>
+    </a>
+    <p class="price">{{ p.price }} {{ p.unit }}</p>
+    <p class="short">{{ p.short }}</p>
+    <button class="btn btn-gradient mt-2 add-to-cart" data-sku="{{ p.sku }}" data-name="{{ p.name }}" data-price="{{ p.price }}">В корзину</button>
+  </div>
+{% endfor %}
+</div>
