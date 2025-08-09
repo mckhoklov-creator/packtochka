@@ -1,45 +1,150 @@
-- name: Коробка гофрокартон 10×10×10 см, бурый, Т-23Б
-  sku: K-10x10x10-T23B
-  price: 9
-  unit: "руб/шт при партии 100 шт"
-  min_qty: 100
+- name: Коробка почтовая 200×150×100 мм
   category: korobki
-  slug: korobka-10x10x10-t23b
-  short: Прочная четырёхклапанная коробка для мелких товаров, сувениров и отправлений.
-  specs:
-    - 3-х слойный гофрокартон Т23Б
-    - Цвет: бурый
-    - Размеры: 10×10×10 см
-    - Тип: четырёхклапанная, FEFCO 0201
+  slug: korobka-200x150x100
+  sku: K200150100
+  price: '25'
+  unit: ₽/шт
+  short: Картонная коробка бурого цвета из гофрокартона Т23Б.
   images:
-    - /assets/img/korobka-10-10-10.jpg
-
-- name: Пакет курьерский 250×350 мм, с клеевым клапаном, 60 мкм
-  sku: PK-250x350-60
-  price: 4.5
-  unit: "руб/шт при партии 100 шт"
-  min_qty: 100
+  - /assets/images/demo/placeholder.jpg
+  min_order: 100 шт
+- name: Коробка почтовая 300×200×200 мм
+  category: korobki
+  slug: korobka-300x200x200
+  sku: K300200200
+  price: '35'
+  unit: ₽/шт
+  short: Прочная коробка для транспортировки товаров.
+  images:
+  - /assets/images/demo/placeholder.jpg
+  min_order: 100 шт
+- name: Коробка самосборная 250×250×100 мм
+  category: korobki
+  slug: korobka-250x250x100
+  sku: K250250100
+  price: '28'
+  unit: ₽/шт
+  short: Самосборная конструкция, удобная в хранении.
+  images:
+  - /assets/images/demo/placeholder.jpg
+  min_order: 100 шт
+- name: Пакет курьерский 250×350 мм
   category: pakety
-  slug: paket-kurierskiy-250x350-60
-  short: Надёжный пакет для отправки заказов, непрозрачный, с усиленным швом.
-  specs:
-    - Толщина: 60 мкм
-    - Цвет: серый/чёрный
-    - Клапан самоклеящийся
+  slug: paket-250x350
+  sku: P250350
+  price: '4'
+  unit: ₽/шт
+  short: Белый пакет с клеевым клапаном, толщина 60 мкм.
   images:
-    - /assets/img/paket-250x350.jpg
-
-- name: Скотч упаковочный 48 мм × 66 м, прозрачный
-  sku: SK-48x66-PR
-  price: 69
-  unit: "руб/шт при партии 6 шт"
-  min_qty: 6
+  - /assets/images/demo/placeholder.jpg
+  min_order: 100 шт
+- name: Пакет курьерский 350×450 мм
+  category: pakety
+  slug: paket-350x450
+  sku: P350450
+  price: '6'
+  unit: ₽/шт
+  short: Серый пакет, повышенная прочность.
+  images:
+  - /assets/images/demo/placeholder.jpg
+  min_order: 100 шт
+- name: Пакет курьерский 450×550 мм
+  category: pakety
+  slug: paket-450x550
+  sku: P450550
+  price: '8'
+  unit: ₽/шт
+  short: Большой пакет для крупногабаритных товаров.
+  images:
+  - /assets/images/demo/placeholder.jpg
+  min_order: 100 шт
+- name: Скотч прозрачный 48 мм × 66 м
   category: skotch
-  slug: skotch-48-66-prozrachny
-  short: Универсальная клейкая лента для упаковки коробок и посылок.
-  specs:
-    - Ширина: 48 мм
-    - Длина: 66 м
-    - Цвет: прозрачный
+  slug: skotch-proz-48x66
+  sku: S4866P
+  price: '45'
+  unit: ₽/рулон
+  short: Универсальная прозрачная клейкая лента.
   images:
-    - /assets/img/skotch-48-66.jpg
+  - /assets/images/demo/placeholder.jpg
+  min_order: 36 рулонов
+- name: Скотч коричневый 48 мм × 66 м
+  category: skotch
+  slug: skotch-kor-48x66
+  sku: S4866K
+  price: '45'
+  unit: ₽/рулон
+  short: Клейкая лента для коробок бурого цвета.
+  images:
+  - /assets/images/demo/placeholder.jpg
+  min_order: 36 рулонов
+- name: Скотч с логотипом на заказ
+  category: skotch
+  slug: skotch-logo
+  sku: SLOGO
+  price: от 70
+  unit: ₽/рулон
+  short: Лента с печатью логотипа клиента.
+  images:
+  - /assets/images/demo/placeholder.jpg
+  min_order: 36 рулонов
+- name: Стрейч-плёнка прозрачная 17 мкм
+  category: plenka
+  slug: streych-proz-17
+  sku: SP17
+  price: '450'
+  unit: ₽/рулон
+  short: Для ручной упаковки грузов.
+  images:
+  - /assets/images/demo/placeholder.jpg
+  min_order: 6 рулонов
+- name: Стрейч-плёнка чёрная 20 мкм
+  category: plenka
+  slug: streych-chern-20
+  sku: SP20C
+  price: '480'
+  unit: ₽/рулон
+  short: Скрывает содержимое груза, повышенная прочность.
+  images:
+  - /assets/images/demo/placeholder.jpg
+  min_order: 6 рулонов
+- name: Стрейч-плёнка машинная 23 мкм
+  category: plenka
+  slug: streych-mash-23
+  sku: SP23M
+  price: '500'
+  unit: ₽/рулон
+  short: Для автоматической обмотки паллет.
+  images:
+  - /assets/images/demo/placeholder.jpg
+  min_order: 6 рулонов
+- name: Воздушно-пузырчатая плёнка 1,2×100 м
+  category: prochie
+  slug: puzyrka-1.2x100
+  sku: BP120100
+  price: '1800'
+  unit: ₽/рулон
+  short: Двухслойная, диаметр пузырька 10 мм.
+  images:
+  - /assets/images/demo/placeholder.jpg
+  min_order: 1 рулон
+- name: Гофрорулон 1,05×20 м
+  category: prochie
+  slug: gofrorulon-1.05x20
+  sku: GR10520
+  price: '600'
+  unit: ₽/рулон
+  short: Гофрокартон в рулоне для упаковки.
+  images:
+  - /assets/images/demo/placeholder.jpg
+  min_order: 1 рулон
+- name: БОПП пакет 200×300 мм
+  category: prochie
+  slug: bopp-200x300
+  sku: B200300
+  price: '2.5'
+  unit: ₽/шт
+  short: Прозрачный пакет для мелких товаров.
+  images:
+  - /assets/images/demo/placeholder.jpg
+  min_order: 100 шт
