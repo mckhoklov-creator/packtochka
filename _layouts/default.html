@@ -1,31 +1,32 @@
 <!doctype html>
 <html lang="ru">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ page.title | default: site.title }}</title>
-    <meta name="description" content="{{ page.description | default: site.description }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
-    <script defer src="{{ site.baseurl }}/assets/js/cart.js"></script>
-  </head>
-  <body>
-    <header class="site-header py-3 mb-4">
-      <div class="container d-flex flex-wrap justify-content-between align-items-center">
-        <a href="{{ site.baseurl }}/" class="logo h4 text-white m-0">ПакТочка</a>
-        <nav>
-          <a href="{{ site.baseurl }}/katalog/" class="nav-link d-inline-block px-2 text-white">Каталог</a>
-          <a href="{{ site.baseurl }}/oplata/" class="nav-link d-inline-block px-2 text-white">Оплата</a>
-          <a href="{{ site.baseurl }}/dostavka/" class="nav-link d-inline-block px-2 text-white">Доставка</a>
-          <a href="{{ site.baseurl }}/contacts/" class="nav-link d-inline-block px-2 text-white">Контакты</a>
-          <a href="{{ site.baseurl }}/cart/" class="nav-link d-inline-block px-2 text-white">Корзина (<span id="cart-count">0</span>)</a>
-        </nav>
-      </div>
-    </header>
-    <main class="container">{{ content }}</main>
-    <footer class="site-footer text-center py-4 mt-4">
-      <p class="mb-0 text-white">© {{ "now" | date: "%Y" }} ПакТочка.</p>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title | default: site.title }}</title>
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
+</head>
+<body>
+<header>
+  <nav>
+    <a href="{{ site.baseurl }}/">Главная</a>
+    <a href="{{ site.baseurl }}/katalog/">Каталог</a>
+    <a href="{{ site.baseurl }}/uslugi/">Услуги</a>
+    <a href="{{ site.baseurl }}/opt/">Опт</a>
+    <a href="{{ site.baseurl }}/dostavka/">Доставка</a>
+    <a href="{{ site.baseurl }}/oplata/">Оплата</a>
+    <a href="{{ site.baseurl }}/about/">О компании</a>
+    <a href="{{ site.baseurl }}/blog/">Блог</a>
+    <a href="{{ site.baseurl }}/privacy/">Политика</a>
+    <a href="{{ site.baseurl }}/contacts/">Контакты</a>
+  </nav>
+</header>
+<main>
+{{ content }}
+</main>
+<footer>
+  <p>© {{ "now" | date: "%Y" }} ПакТочка</p>
+</footer>
+</body>
 </html>
