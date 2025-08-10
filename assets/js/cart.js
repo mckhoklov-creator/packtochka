@@ -15,9 +15,7 @@
     if(link){
       if(n>0) link.classList.add('has-items'); else link.classList.remove('has-items');
       if(withBump){
-        link.classList.remove('bump'); // restart animation
-        void link.offsetWidth; // reflow
-        link.classList.add('bump');
+        link.classList.remove('bump'); void link.offsetWidth; link.classList.add('bump');
         link.addEventListener('animationend', ()=> link.classList.remove('bump'), {once:true});
       }
     }

@@ -1,5 +1,4 @@
-/* Reset to remove default margins and ensure consistent box sizing */
 html { box-sizing: border-box; }
-*, *::before, *::after { box-sizing: inherit; }
+*,*::before,*::after { box-sizing: inherit; }
 html, body { height: 100%; }
-body { margin: 0 !important; }
+body { margin: 0; }
