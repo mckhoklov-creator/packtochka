@@ -1,0 +1,132 @@
+(function(){
+  const $ = (s,c=document)=>c.querySelector(s);
+  const $$ = (s,c=document)=>Array.from(c.querySelectorAll(s));
+  const KEY = 'cart';
+
+  function load(){ try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return []} }
+  function save(v){ localStorage.setItem(KEY, JSON.stringify(v)); updateCount(true); renderModal(); }
+
+  function updateCount(withBump=false){
+    const items = load();
+    const n = items.reduce((s,i)=>s+(i.qty||1),0);
+    const countEl = $('#cart-count');
+    const link = document.getElementById('open-cart')?.closest('.cart-link') || $('.cart-link');
+    if(countEl){ countEl.textContent = n; }
+    if(link){
+      if(n>0) link.classList.add('has-items'); else link.classList.remove('has-items');
+      if(withBump){
+        link.classList.remove('bump'); // restart animation
+        void link.offsetWidth; // reflow
+        link.classList.add('bump');
+        link.addEventListener('animationend', ()=> link.classList.remove('bump'), {once:true});
+      }
+    }
+  }
+
+  function add(it, qty=1){
+    const a = load();
+    const i = a.findIndex(x=>x.sku===it.sku);
+    if(i>=0){ a[i].qty = (a[i].qty||1) + qty; }
+    else { a.push({...it, qty: qty}); }
+    save(a);
+  }
+
+  function rm(sku){ save(load().filter(x=>x.sku!==sku)); }
+  function qtyDelta(sku, d){ const a=load(); const it=a.find(x=>x.sku===sku); if(!it)return; it.qty=Math.max(1,(it.qty||1)+d); save(a); }
+
+  function renderModal(){
+    const w = $('#cart-body'); if(!w) return;
+    const a = load(); if(!a.length){ w.innerHTML = '<p>Корзина пуста.</p>'; return; }
+    const rows = a.map(i=>`<div class="cart-item">
+        <div class="cart-item__name">${i.name}<br><small>${i.sku}</small></div>
+        <div class="cart-qty">
+          <button class="qty" data-sku="${i.sku}" data-d="-1">−</button>
+          <span>${i.qty||1}</span>
+          <button class="qty" data-sku="${i.sku}" data-d="1">+</button>
+        </div>
+        <div class="cart-item__price">${(Number(i.price)*(i.qty||1)).toFixed(2)}</div>
+        <button class="rm" data-sku="${i.sku}">×</button>
+      </div>`).join('');
+    w.innerHTML = rows;
+    $$('.qty',w).forEach(b=>b.addEventListener('click',e=>qtyDelta(e.currentTarget.dataset.sku, Number(e.currentTarget.dataset.d))));
+    $$('.rm',w).forEach(b=>b.addEventListener('click',e=>rm(e.currentTarget.dataset.sku)));
+  }
+
+  function initButton(btn){
+    if(btn.dataset.cartified) return;
+    btn.dataset.cartified = '1';
+
+    const wrap = document.createElement('span');
+    wrap.className = 'cart-control';
+    const spacer = document.createElement('span');
+    spacer.className = 'cart-control__spacer';
+    // Fix size to current button
+    const w = btn.offsetWidth || 180;
+    const h = btn.offsetHeight || 44;
+    spacer.style.width = w + 'px';
+    spacer.style.height = h + 'px';
+
+    const control = document.createElement('span');
+    control.className = 'qty-inline';
+    control.innerHTML = `
+      <input type="number" class="qty-input" value="1" min="0">
+      <button class="to-cart">В корзину</button>
+    `;
+
+    const parent = btn.parentElement;
+    parent.insertBefore(wrap, btn);
+    wrap.appendChild(spacer);
+    wrap.appendChild(btn);
+    wrap.appendChild(control);
+
+    // Show control over button
+    btn.addEventListener('click', (e)=>{
+      e.preventDefault();
+      wrap.classList.add('active');
+      control.querySelector('.qty-input').focus();
+    });
+
+    const input = control.querySelector('.qty-input');
+    const toCart = control.querySelector('.to-cart');
+    const hide = ()=>{ wrap.classList.remove('active'); input.value = '1'; };
+
+    // Press effect fallback via JS (in addition to :active)
+    function flashPress(el){ el.classList.add('pressed'); setTimeout(()=>el.classList.remove('pressed'), 120); }
+
+    toCart.addEventListener('click', ()=>{
+      const q = Math.max(1, parseInt(input.value)||0);
+      if(q>0){ add({ sku: btn.dataset.sku, name: btn.dataset.name, price: Number(btn.dataset.price) }, q); }
+      flashPress(toCart);
+      hide();
+    });
+    input.addEventListener('keydown', (e)=>{
+      if(e.key==='Enter'){ const q = Math.max(1, parseInt(input.value)||0); if(q>0){ add({ sku: btn.dataset.sku, name: btn.dataset.name, price: Number(btn.dataset.price) }, q); } hide(); }
+      if(e.key==='Escape'){ hide(); }
+    });
+    input.addEventListener('blur', ()=>{ const v = parseInt(input.value)||0; if(v<=0) hide(); });
+
+    // Outside click hides
+    document.addEventListener('click', (e)=>{
+      if(!wrap.contains(e.target) && wrap.classList.contains('active')){
+        const v = parseInt(input.value)||0; if(v<=0) hide();
+      }
+    });
+  }
+
+  function hydrate(){ $$('.add-to-cart').forEach(initButton); }
+
+  // Modal open/close
+  function openModal(){ const m=$('#cart-modal'); if(!m) return; m.classList.add('open'); m.setAttribute('aria-hidden','false'); renderModal(); }
+  function closeModal(){ const m=$('#cart-modal'); if(!m) return; m.classList.remove('open'); m.setAttribute('aria-hidden','true'); }
+
+  document.addEventListener('click', e=>{
+    if(e.target.closest('#open-cart')){ e.preventDefault(); openModal(); }
+    if(e.target.closest('#close-cart') || e.target.closest('#cart-backdrop')){ closeModal(); }
+  });
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    updateCount(false);
+    renderModal();
+    hydrate();
+  });
+})();
