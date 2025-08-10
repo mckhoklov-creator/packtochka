@@ -46,7 +46,7 @@
     const spacer = document.createElement('span');
     spacer.className = 'cart-control__spacer';
     // Fix size to current button
-    const w = btn.offsetWidth || 160;
+    const w = btn.offsetWidth || 180;
     const h = btn.offsetHeight || 44;
     spacer.style.width = w + 'px';
     spacer.style.height = h + 'px';
@@ -54,9 +54,7 @@
     const control = document.createElement('span');
     control.className = 'qty-inline';
     control.innerHTML = `
-      <button class="minus" aria-label="Меньше">−</button>
       <input type="number" class="qty-input" value="1" min="0">
-      <button class="plus" aria-label="Больше">+</button>
       <button class="to-cart">В корзину</button>
     `;
 
@@ -74,13 +72,10 @@
     });
 
     const input = control.querySelector('.qty-input');
+    const toCart = control.querySelector('.to-cart');
     const hide = ()=>{ wrap.classList.remove('active'); input.value = '1'; };
 
-    control.querySelector('.minus').addEventListener('click', ()=>{
-      const v = Math.max(0, (parseInt(input.value)||0) - 1); input.value = v; if(v===0) hide();
-    });
-    control.querySelector('.plus').addEventListener('click', ()=>{ input.value = (parseInt(input.value)||0) + 1; });
-    control.querySelector('.to-cart').addEventListener('click', ()=>{
+    toCart.addEventListener('click', ()=>{
       const q = Math.max(1, parseInt(input.value)||0);
       if(q>0){ add({ sku: btn.dataset.sku, name: btn.dataset.name, price: Number(btn.dataset.price) }, q); }
       hide();

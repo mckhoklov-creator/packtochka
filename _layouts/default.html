@@ -9,15 +9,17 @@
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/cart.css">
   <style>
-    /* sticky footer only */
+    /* Sticky footer and header/footer gradient per request */
     html, body { height: 100%; }
     body { min-height: 100vh; display: flex; flex-direction: column; }
     main.site-main { flex: 1; }
+    .site-header, .site-footer { background: linear-gradient(90deg,#6f83ff,#c19aff); color:#fff; }
     .inner { max-width: 1200px; margin: 0 auto; padding: 12px 15px; }
     .site-header .bar { display:flex; align-items:center; gap:16px; }
-    .logo a { text-decoration:none; font-weight:700; font-size:18px; }
+    .logo a { color:#fff; text-decoration:none; font-weight:700; font-size:18px; }
     .nav { display:flex; align-items:center; gap:10px; margin-left:auto; }
-    .nav a { text-decoration:none; padding:6px 8px; border-radius:8px; }
+    .nav a { color:#fff; text-decoration:none; padding:6px 8px; border-radius:8px; }
+    .nav a:hover { background: rgba(255,255,255,.12); }
     .nav .sep { opacity:.3; user-select:none; }
   </style>
 </head>
