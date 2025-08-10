@@ -37,32 +37,20 @@
     $$('.rm',w).forEach(b=>b.addEventListener('click',e=>rm(e.currentTarget.dataset.sku)));
   }
 
-  // Inline controls
-  function ensureWrapper(btn){
-    // Wrap button if not wrapped
-    if(!btn.parentElement.classList.contains('cart-control')){
-      const wrap = document.createElement('span');
-      wrap.className = 'cart-control';
-      // Reserve size to prevent shift
-      const ph = document.createElement('span');
-      ph.className = 'placeholder';
-      btn.parentElement.insertBefore(wrap, btn);
-      wrap.appendChild(ph);
-      wrap.appendChild(btn);
-    }
-    return btn.parentElement;
-  }
+  function initButton(btn){
+    if(btn.dataset.cartified) return;
+    btn.dataset.cartified = '1';
 
-  function showInline(btn){
-    const wrap = ensureWrapper(btn);
-    const ph = wrap.querySelector('.placeholder');
-    // Measure current button size and set placeholder to same
-    ph.style.minWidth = btn.offsetWidth + 'px';
-    ph.style.minHeight = btn.offsetHeight + 'px';
+    const wrap = document.createElement('span');
+    wrap.className = 'cart-control';
+    const spacer = document.createElement('span');
+    spacer.className = 'cart-control__spacer';
+    // Fix size to current button
+    const w = btn.offsetWidth || 160;
+    const h = btn.offsetHeight || 44;
+    spacer.style.width = w + 'px';
+    spacer.style.height = h + 'px';
 
-    if(wrap.querySelector('.qty-inline')) { wrap.querySelector('.qty-inline input').focus(); return; }
-
-    const sku = btn.dataset.sku, name = btn.dataset.name, price = Number(btn.dataset.price);
     const control = document.createElement('span');
     control.className = 'qty-inline';
     control.innerHTML = `
@@ -71,11 +59,22 @@
       <button class="plus" aria-label="Больше">+</button>
       <button class="to-cart">В корзину</button>
     `;
+
+    const parent = btn.parentElement;
+    parent.insertBefore(wrap, btn);
+    wrap.appendChild(spacer);
+    wrap.appendChild(btn);
     wrap.appendChild(control);
-    btn.style.display = 'none';
+
+    // Show control over button
+    btn.addEventListener('click', (e)=>{
+      e.preventDefault();
+      wrap.classList.add('active');
+      control.querySelector('.qty-input').focus();
+    });
 
     const input = control.querySelector('.qty-input');
-    const hide = ()=>{ control.remove(); btn.style.display='inline-flex'; };
+    const hide = ()=>{ wrap.classList.remove('active'); input.value = '1'; };
 
     control.querySelector('.minus').addEventListener('click', ()=>{
       const v = Math.max(0, (parseInt(input.value)||0) - 1); input.value = v; if(v===0) hide();
@@ -83,35 +82,24 @@
     control.querySelector('.plus').addEventListener('click', ()=>{ input.value = (parseInt(input.value)||0) + 1; });
     control.querySelector('.to-cart').addEventListener('click', ()=>{
       const q = Math.max(1, parseInt(input.value)||0);
-      if(q>0){ add({sku, name, price}, q); }
+      if(q>0){ add({ sku: btn.dataset.sku, name: btn.dataset.name, price: Number(btn.dataset.price) }, q); }
       hide();
     });
     input.addEventListener('keydown', (e)=>{
-      if(e.key==='Enter'){ const q = Math.max(1, parseInt(input.value)||0); if(q>0){ add({sku,name,price}, q);} hide(); }
+      if(e.key==='Enter'){ const q = Math.max(1, parseInt(input.value)||0); if(q>0){ add({ sku: btn.dataset.sku, name: btn.dataset.name, price: Number(btn.dataset.price) }, q);} hide(); }
       if(e.key==='Escape'){ hide(); }
     });
-    input.addEventListener('blur', ()=>{
-      const v = parseInt(input.value)||0;
-      if(v<=0) hide();
-    });
+    input.addEventListener('blur', ()=>{ const v = parseInt(input.value)||0; if(v<=0) hide(); });
 
     // Outside click hides
-    const onDocClick = (e)=>{
-      if(!control.contains(e.target) && e.target!==btn){
-        const v = parseInt(input.value)||0;
-        if(v<=0) hide();
-        document.removeEventListener('click', onDocClick);
+    document.addEventListener('click', (e)=>{
+      if(!wrap.contains(e.target) && wrap.classList.contains('active')){
+        const v = parseInt(input.value)||0; if(v<=0) hide();
       }
-    };
-    setTimeout(()=>document.addEventListener('click', onDocClick), 0);
-  }
-
-  function hydrate(){
-    $$('.add-to-cart').forEach(btn=>{
-      btn.addEventListener('click', (e)=>{ e.preventDefault(); showInline(btn); }, {once:false});
-      btn.classList.add('btn','btn-gradient');
     });
   }
+
+  function hydrate(){ $$('.add-to-cart').forEach(initButton); }
 
   // Modal open/close
   function openModal(){ const m=$('#cart-modal'); if(!m) return; m.classList.add('open'); m.setAttribute('aria-hidden','false'); renderModal(); }
