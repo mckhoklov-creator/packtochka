@@ -1,10 +1,8 @@
-/* Base (keep minimal, main style remains in your style.css) */
-body{margin:0;font-family:Arial, sans-serif;background:#f5f5f5;color:#333}
+/* Lighter gradients remain */
 .site-header,.site-footer{background:linear-gradient(90deg,#5a6dee,#a874f7);color:#fff}
-.site-header .container,.site-footer .container{max-width:1200px;margin:0 auto;padding:12px 15px}
 .site-header a,.site-footer a{color:#fff;text-decoration:none}
 
-/* Modal cart */
+/* Modal cart (same as before) */
 .cart-modal{position:fixed;inset:0;display:none}
 .cart-modal.open{display:block}
 .cart-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.4)}
@@ -17,10 +15,14 @@ body{margin:0;font-family:Arial, sans-serif;background:#f5f5f5;color:#333}
 .cart-item__name{font-weight:600}
 .cart-item__price{color:#3a4ed5}
 .cart-qty button{width:28px;height:28px;border:1px solid #ddd;background:#fafafa;cursor:pointer}
+
 .btn{display:inline-block;padding:10px 16px;border-radius:10px;border:none;cursor:pointer}
 .btn-gradient{background:linear-gradient(90deg,#5a6dee,#a874f7);color:#fff}
-/* Inline qty control on cards */
+
+/* Inline quantity control */
+.cart-control{display:inline-block;min-height:44px}
+.add-to-cart{display:inline-flex;align-items:center;justify-content:center;min-height:44px}
 .qty-inline{display:inline-flex;align-items:center;gap:6px}
-.qty-inline input{width:52px;text-align:center;padding:6px 8px;border:1px solid #ddd;border-radius:8px}
-.qty-inline button{width:32px;height:32px;border:1px solid #ddd;background:#fafafa;border-radius:8px;cursor:pointer}
-.qty-inline .to-cart{border:none;background:linear-gradient(90deg,#5a6dee,#a874f7);color:#fff;padding:8px 10px;border-radius:10px}
+.qty-inline input{width:56px;text-align:center;padding:8px 10px;border:1px solid #ddd;border-radius:8px}
+.qty-inline button{width:34px;height:34px;border:1px solid #ddd;background:#fafafa;border-radius:8px;cursor:pointer}
+.qty-inline .to-cart{border:none;background:linear-gradient(90deg,#5a6dee,#a874f7);color:#fff;padding:8px 12px;border-radius:10px}

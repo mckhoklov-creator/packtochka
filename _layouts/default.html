@@ -8,10 +8,14 @@
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/cart.css">
   <style>
-    /* Header layout fix */
+    /* Sticky footer layout */
+    html, body { height: 100%; }
+    body { min-height: 100vh; display: flex; flex-direction: column; }
+    main.container { flex: 1; }
+    /* Header look + phone */
     .site-header { background: linear-gradient(90deg,#5a6dee,#a874f7); color:#fff; }
     .site-footer { background: linear-gradient(90deg,#5a6dee,#a874f7); color:#fff; }
-    .site-header .container {
+    .site-header .container, .site-footer .container {
       max-width: 1200px; margin: 0 auto; padding: 12px 15px;
       display: flex; align-items: center; justify-content: space-between; gap: 16px;
     }
@@ -19,12 +23,18 @@
     .nav { display:flex; align-items:center; gap: 10px; margin-left:auto; }
     .nav a { color:#fff; text-decoration:none; padding: 6px 8px; border-radius:8px; }
     .nav a:hover { background: rgba(255,255,255,.12); }
+    .phone { color:#fff; font-weight:700; text-decoration:none; margin-right:8px; white-space: nowrap; }
+    @media (max-width: 720px){
+      .nav { flex-wrap: wrap; gap:6px; }
+      .phone { display:none; } /* можно убрать если нужна всегда */
+    }
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="container">
       <div class="logo"><a href="{{ site.baseurl }}/">ПакТочка</a></div>
+      <a class="phone" href="tel:+79090047809">+7 909 004‑78‑09</a>
       <nav class="nav">
         <a href="{{ site.baseurl }}/katalog/">Каталог</a>
         <a href="{{ site.baseurl }}/uslugi/">Услуги</a>
@@ -40,12 +50,12 @@
     </div>
   </header>
 
-  <main class="container">
+  <main class="container" role="main">
     {{ content }}
   </main>
 
   <footer class="site-footer">
-    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+    <div class="container" style="justify-content:space-between;">
       <p style="margin:0;">
         <a href="{{ site.baseurl }}/katalog/">Каталог</a> ·
         <a href="{{ site.baseurl }}/uslugi/">Услуги</a> ·
@@ -59,7 +69,7 @@
     </div>
   </footer>
 
-  <!-- Модальное окно корзины -->
+  <!-- Корзина (модалка) -->
   <div id="cart-modal" class="cart-modal" aria-hidden="true">
     <div class="cart-backdrop" id="cart-backdrop"></div>
     <div class="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">
@@ -67,7 +77,9 @@
         <h3 id="cart-title">Корзина</h3>
         <button class="cart-close" id="close-cart" aria-label="Закрыть">×</button>
       </header>
-      <div class="cart-panel__body" id="cart-body"><p>Корзина пуста.</p></div>
+      <div class="cart-panel__body" id="cart-body">
+        <p>Корзина пуста.</p>
+      </div>
       <footer class="cart-panel__footer">
         <a class="btn btn-gradient" href="{{ site.baseurl }}/order/">Оформить заказ</a>
       </footer>
