@@ -4,9 +4,24 @@
   const KEY = 'cart';
 
   function load(){ try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return []} }
-  function save(v){ localStorage.setItem(KEY, JSON.stringify(v)); updateCount(); renderModal(); }
+  function save(v){ localStorage.setItem(KEY, JSON.stringify(v)); updateCount(true); renderModal(); }
 
-  function updateCount(){ const n = load().reduce((s,i)=>s+(i.qty||1),0); const el=$('#cart-count'); if(el) el.textContent=n; }
+  function updateCount(withBump=false){
+    const items = load();
+    const n = items.reduce((s,i)=>s+(i.qty||1),0);
+    const countEl = $('#cart-count');
+    const link = document.getElementById('open-cart')?.closest('.cart-link') || $('.cart-link');
+    if(countEl){ countEl.textContent = n; }
+    if(link){
+      if(n>0) link.classList.add('has-items'); else link.classList.remove('has-items');
+      if(withBump){
+        link.classList.remove('bump'); // restart animation
+        void link.offsetWidth; // reflow
+        link.classList.add('bump');
+        link.addEventListener('animationend', ()=> link.classList.remove('bump'), {once:true});
+      }
+    }
+  }
 
   function add(it, qty=1){
     const a = load();
@@ -106,7 +121,7 @@
   });
 
   document.addEventListener('DOMContentLoaded', ()=>{
-    updateCount();
+    updateCount(false);
     renderModal();
     hydrate();
   });
