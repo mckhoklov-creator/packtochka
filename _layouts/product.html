@@ -18,20 +18,6 @@ layout: default
   <span aria-current="page">{{ page.name }}</span>
 </nav>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Главная", "item": "{{ site.url }}{{ site.baseurl }}/" },
-    { "@type": "ListItem", "position": 2, "name": "Каталог", "item": "{{ site.url }}{{ site.baseurl }}/katalog/" },
-    { "@type": "ListItem", "position": 3, "name": "{% case page.category %}{% when 'korobki' %}Коробки{% when 'pakety' %}Пакеты{% when 'skotch' %}Скотч{% when 'plenka' %}Плёнка{% when 'prochie' %}Прочее{% else %}Категория{% endcase %}",
-      "item": "{{ site.url }}{{ site.baseurl }}/katalog/{{ page.category }}/" },
-    { "@type": "ListItem", "position": 4, "name": "{{ page.name }}", "item": "{{ site.url }}{{ site.baseurl }}{{ page.url }}" }
-  ]
-}
-</script>
-
 <article class="product" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
   <div>
     {% if page.images %}
@@ -55,3 +41,21 @@ layout: default
     </div>
   </div>
 </article>
+
+<section class="mt-5">
+  <h2>С этим покупают</h2>
+  <div class="grid">
+    {% assign related = site.data.products | where_exp: "item", "item.category != page.category" %}
+    {% assign related = related | sample: 4 %}
+    {% for p in related %}
+      <div class="card">
+        <a href="{{ site.baseurl }}/katalog/{{ p.category }}/{{ p.slug }}/">
+          <img src="{{ site.baseurl }}{{ p.images | first }}" alt="{{ p.name }}">
+          <h3>{{ p.name }}</h3>
+        </a>
+        <p class="price">{{ p.price }} {{ p.unit }}</p>
+        <button class="btn btn-gradient mt-2 add-to-cart" data-sku="{{ p.sku }}" data-name="{{ p.name }}" data-price="{{ p.price }}">В корзину</button>
+      </div>
+    {% endfor %}
+  </div>
+</section>

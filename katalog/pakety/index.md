@@ -10,18 +10,6 @@ permalink: /katalog/pakety/
   <span aria-current="page">Пакеты</span>
 </nav>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type":"ListItem","position":1,"name":"Главная","item":"{{ site.url }}{{ site.baseurl }}/"},
-    {"@type":"ListItem","position":2,"name":"Каталог","item":"{{ site.url }}{{ site.baseurl }}/katalog/"}, 
-    {"@type":"ListItem","position":3,"name":"Пакеты","item":"{{ site.url }}{{ site.baseurl }}/katalog/pakety/"}
-  ]
-}
-</script>
-
 <h1>Пакеты</h1>
 <p><a href="{{ site.baseurl }}/katalog/">← Вернуться в каталог</a></p>
 
@@ -34,8 +22,16 @@ permalink: /katalog/pakety/
       <h3>{{ p.name }}</h3>
     </a>
     <p class="price">{{ p.price }} {{ p.unit }}</p>
-    <p class="short">{{ p.short }}</p>
     <button class="btn btn-gradient mt-2 add-to-cart" data-sku="{{ p.sku }}" data-name="{{ p.name }}" data-price="{{ p.price }}">В корзину</button>
   </div>
 {% endfor %}
 </div>
+
+<section class="mt-5">
+  <h2>Частые вопросы</h2>
+  <details><summary>Какая минимальная партия?</summary><p>Для большинства позиций — от 100 шт, для плёнки — от 6 рулонов, для скотча — от 36 рулонов. Уточняйте по конкретной модели.</p></details>
+  <details><summary>Делаете коробки под размер?</summary><p>Да, производим по размерам клиента. Отправьте параметры через форму на странице «Услуги».</p></details>
+  <details><summary>Какие варианты доставки?</summary><p>Самовывоз в Екатеринбурге, доставка по городу и отправка ТК по РФ.</p></details>
+  <details><summary>Можно оплатить по счёту?</summary><p>Да, работаем с ИП/ООО, выставляем счёт и предоставляем документы.</p></details>
+</section>
+
