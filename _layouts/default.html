@@ -1,52 +1,43 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" data-baseurl="{{ site.baseurl }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ page.title | default: site.title }}</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
-
-  <!-- styles -->
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/reset.css">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/cart.css?v=6">
-
-  <style>
-    /* Layout + light gradient override */
-    html, body { height: 100%; }
-    body { min-height: 100vh; display: flex; flex-direction: column; }
-    main.site-main { flex: 1; }
-
-    .site-header, .site-footer { background: linear-gradient(90deg,#6f83ff,#c19aff); color:#fff; }
-    .inner { max-width: 1200px; margin: 0 auto; padding: 12px 15px; }
-    .site-header .bar { display:flex; align-items:center; gap:16px; }
-    .logo a { color:#fff; text-decoration:none; font-weight:700; font-size:18px; }
-    .nav { display:flex; align-items:center; gap:10px; margin-left:auto; }
-    .nav a { color:#fff; text-decoration:none; padding:6px 8px; border-radius:8px; }
-    .nav a:hover { background: rgba(255,255,255,.12); }
-    .nav .sep { opacity:.3; user-select:none; }
-    @media (max-width: 760px){ .nav { flex-wrap: wrap; gap:6px; } }
-  </style>
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/header.css?v=1">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/cart.css">
 </head>
 <body>
   <header class="site-header">
-    <div class="inner bar">
+    <div class="header-row">
       <div class="logo"><a href="{{ site.baseurl }}/">ПакТочка</a></div>
-      <nav class="nav">
+      <form id="site-search" class="search" role="search">
+        <input id="q" type="search" placeholder="Найти товар (например, «коробка 300×200×200»)" aria-label="Поиск по товарам">
+        <button type="submit">Искать</button>
+      </form>
+      <div class="header-right">
+        <a class="phone" href="tel:+79090047809">+7 909 004‑78‑09</a>
+        <a href="{{ site.baseurl }}/cart/" class="cart-link" id="open-cart" aria-label="Открыть корзину">🛒 <span id="cart-count">0</span></a>
+      </div>
+    </div>
+    <nav class="top-nav">
+      <div class="nav-row">
         <a href="{{ site.baseurl }}/katalog/">Каталог</a>
+        <a href="{{ site.baseurl }}/katalog/korobki/">Коробки</a>
+        <a href="{{ site.baseurl }}/katalog/pakety/">Пакеты</a>
+        <a href="{{ site.baseurl }}/katalog/skotch/">Скотч</a>
+        <a href="{{ site.baseurl }}/katalog/plenka/">Стрейч‑пленка</a>
+        <a href="{{ site.baseurl }}/katalog/prochie/">Прочее</a>
         <a href="{{ site.baseurl }}/uslugi/">Услуги</a>
         <a href="{{ site.baseurl }}/opt/">Опт</a>
-        <a href="{{ site.baseurl }}/about/">О компании</a>
-        <a href="{{ site.baseurl }}/blog/">Блог</a>
-        <a href="{{ site.baseurl }}/privacy/">Политика</a>
+        <a href="{{ site.baseurl }}/dostavka/">Доставка</a>
+        <a href="{{ site.baseurl }}/oplata/">Оплата</a>
         <a href="{{ site.baseurl }}/contacts/">Контакты</a>
-        <span class="sep">|</span>
-        <a class="phone" href="tel:+79090047809">+7 909 004‑78‑09</a>
-        <a href="{{ site.baseurl }}/cart/" class="cart-link" id="open-cart" aria-label="Открыть корзину">
-          🛒 <span id="cart-count">0</span>
-        </a>
-      </nav>
-    </div>
+      </div>
+    </nav>
   </header>
 
   <main class="site-main">
@@ -55,37 +46,31 @@
     </div>
   </main>
 
-  <footer class="site-footer">
-    <div class="inner" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
-      <p style="margin:0;">
-        <a href="{{ site.baseurl }}/katalog/">Каталог</a> ·
-        <a href="{{ site.baseurl }}/uslugi/">Услуги</a> ·
-        <a href="{{ site.baseurl }}/opt/">Опт</a> ·
-        <a href="{{ site.baseurl }}/about/">О компании</a> ·
-        <a href="{{ site.baseurl }}/blog/">Блог</a> ·
-        <a href="{{ site.baseurl }}/privacy/">Политика</a> ·
-        <a href="{{ site.baseurl }}/contacts/">Контакты</a>
-      </p>
+  <footer class="site-footer" style="border-top:1px solid #ebedf3; background:#fff;">
+    <div class="inner" style="max-width:1200px;margin:0 auto;padding:16px 15px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#444;">
       <p style="margin:0;">© {{ "now" | date: "%Y" }} ПакТочка</p>
+      <p style="margin:0;"><a href="{{ site.baseurl }}/privacy/">Политика конфиденциальности</a></p>
     </div>
   </footer>
 
   <!-- Cart modal -->
   <div id="cart-modal" class="cart-modal" aria-hidden="true">
-    <div id="cart-backdrop" class="cart-backdrop"></div>
+    <div class="cart-backdrop" id="cart-backdrop"></div>
     <div class="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">
-      <div class="cart-panel__header">
+      <header class="cart-panel__header">
         <h3 id="cart-title">Корзина</h3>
         <button class="cart-close" id="close-cart" aria-label="Закрыть">×</button>
+      </header>
+      <div class="cart-panel__body" id="cart-body">
+        <p>Корзина пуста.</p>
       </div>
-      <div id="cart-body" class="cart-panel__body"><p>Корзина пуста.</p></div>
-      <div class="cart-panel__footer">
+      <footer class="cart-panel__footer">
         <a class="btn btn-gradient" href="{{ site.baseurl }}/order/">Оформить заказ</a>
-      </div>
+      </footer>
     </div>
   </div>
 
-  <!-- scripts -->
-  <script defer src="{{ site.baseurl }}/assets/js/cart.js?v=6"></script>
+  <script defer src="{{ site.baseurl }}/assets/js/search.js?v=1"></script>
+  <script defer src="{{ site.baseurl }}/assets/js/cart.js"></script>
 </body>
 </html>
