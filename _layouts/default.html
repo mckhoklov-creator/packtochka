@@ -7,6 +7,19 @@
   <meta name="description" content="{{ page.description | default: site.description }}">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/cart.css">
+  <style>
+    /* Header layout fix */
+    .site-header { background: linear-gradient(90deg,#5a6dee,#a874f7); color:#fff; }
+    .site-footer { background: linear-gradient(90deg,#5a6dee,#a874f7); color:#fff; }
+    .site-header .container {
+      max-width: 1200px; margin: 0 auto; padding: 12px 15px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .logo a { color:#fff; text-decoration:none; font-weight:700; font-size: 18px; }
+    .nav { display:flex; align-items:center; gap: 10px; margin-left:auto; }
+    .nav a { color:#fff; text-decoration:none; padding: 6px 8px; border-radius:8px; }
+    .nav a:hover { background: rgba(255,255,255,.12); }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -32,19 +45,21 @@
   </main>
 
   <footer class="site-footer">
-    <p>
-      <a href="{{ site.baseurl }}/katalog/">Каталог</a> ·
-      <a href="{{ site.baseurl }}/uslugi/">Услуги</a> ·
-      <a href="{{ site.baseurl }}/opt/">Опт</a> ·
-      <a href="{{ site.baseurl }}/about/">О компании</a> ·
-      <a href="{{ site.baseurl }}/blog/">Блог</a> ·
-      <a href="{{ site.baseurl }}/privacy/">Политика</a> ·
-      <a href="{{ site.baseurl }}/contacts/">Контакты</a>
-    </p>
-    <p>© {{ "now" | date: "%Y" }} ПакТочка</p>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+      <p style="margin:0;">
+        <a href="{{ site.baseurl }}/katalog/">Каталог</a> ·
+        <a href="{{ site.baseurl }}/uslugi/">Услуги</a> ·
+        <a href="{{ site.baseurl }}/opt/">Опт</a> ·
+        <a href="{{ site.baseurl }}/about/">О компании</a> ·
+        <a href="{{ site.baseurl }}/blog/">Блог</a> ·
+        <a href="{{ site.baseurl }}/privacy/">Политика</a> ·
+        <a href="{{ site.baseurl }}/contacts/">Контакты</a>
+      </p>
+      <p style="margin:0;">© {{ "now" | date: "%Y" }} ПакТочка</p>
+    </div>
   </footer>
 
-  <!-- Корзина (модалка) -->
+  <!-- Модальное окно корзины -->
   <div id="cart-modal" class="cart-modal" aria-hidden="true">
     <div class="cart-backdrop" id="cart-backdrop"></div>
     <div class="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">
@@ -52,9 +67,7 @@
         <h3 id="cart-title">Корзина</h3>
         <button class="cart-close" id="close-cart" aria-label="Закрыть">×</button>
       </header>
-      <div class="cart-panel__body" id="cart-body">
-        <p>Корзина пуста.</p>
-      </div>
+      <div class="cart-panel__body" id="cart-body"><p>Корзина пуста.</p></div>
       <footer class="cart-panel__footer">
         <a class="btn btn-gradient" href="{{ site.baseurl }}/order/">Оформить заказ</a>
       </footer>

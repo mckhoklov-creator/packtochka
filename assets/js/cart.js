@@ -1,49 +1,37 @@
 (function(){
-  const sel = (s,c=document)=>c.querySelector(s);
-  const selAll = (s,c=document)=>Array.from(c.querySelectorAll(s));
+  const $ = (s,c=document)=>c.querySelector(s);
+  const $$ = (s,c=document)=>Array.from(c.querySelectorAll(s));
+  const KEY = 'cart';
 
-  const CART_KEY = 'cart';
+  function load(){ try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return []} }
+  function save(v){ localStorage.setItem(KEY, JSON.stringify(v)); updateCount(); renderModal(); }
 
-  function load(){ try{return JSON.parse(localStorage.getItem(CART_KEY)||'[]')}catch(e){return []} }
-  function save(items){ localStorage.setItem(CART_KEY, JSON.stringify(items)); updateCount(); renderModal(); }
+  function updateCount(){ const n = load().reduce((s,i)=>s+(i.qty||1),0); const el=$('#cart-count'); if(el) el.textContent=n; }
 
-  function updateCount(){
-    const items = load();
-    const n = items.reduce((sum,i)=>sum+(i.qty||1),0);
-    const el = sel('#cart-count'); if(el) el.textContent = n;
+  function add(it, qty=1){
+    const a = load();
+    const i = a.findIndex(x=>x.sku===it.sku);
+    if(i>=0){ a[i].qty = (a[i].qty||1) + qty; }
+    else { a.push({...it, qty: qty}); }
+    save(a);
   }
 
-  function add(item){
-    const items = load();
-    const i = items.findIndex(x=>x.sku===item.sku);
-    if(i>=0){ items[i].qty = (items[i].qty||1)+1; }
-    else { items.push({...item, qty: 1}); }
-    save(items);
-  }
-
-  function remove(sku){
-    const items = load().filter(x=>x.sku!==sku);
-    save(items);
-  }
-
-  function qty(sku, delta){
-    const items = load();
-    const it = items.find(x=>x.sku===sku);
+  function setQty(sku, qty){
+    const a = load();
+    const it = a.find(x=>x.sku===sku);
     if(!it) return;
-    it.qty = Math.max(1, (it.qty||1) + delta);
-    save(items);
+    it.qty = Math.max(1, qty|0);
+    save(a);
   }
+
+  function rm(sku){ save(load().filter(x=>x.sku!==sku)); }
+
+  function qtyDelta(sku, d){ const a=load(); const it=a.find(x=>x.sku===sku); if(!it)return; it.qty=Math.max(1,(it.qty||1)+d); save(a); }
 
   function renderModal(){
-    const body = sel('#cart-body');
-    if(!body) return;
-    const items = load();
-    if(!items.length){
-      body.innerHTML = '<p>Корзина пуста.</p>';
-      return;
-    }
-    const rows = items.map(i=>`
-      <div class="cart-item">
+    const w = $('#cart-body'); if(!w) return;
+    const a = load(); if(!a.length){ w.innerHTML = '<p>Корзина пуста.</p>'; return; }
+    const rows = a.map(i=>`<div class="cart-item">
         <div class="cart-item__name">${i.name}<br><small>${i.sku}</small></div>
         <div class="cart-qty">
           <button class="qty" data-sku="${i.sku}" data-d="-1">−</button>
@@ -51,35 +39,46 @@
           <button class="qty" data-sku="${i.sku}" data-d="1">+</button>
         </div>
         <div class="cart-item__price">${(Number(i.price)*(i.qty||1)).toFixed(2)}</div>
-        <button class="rm" data-sku="${i.sku}" title="Удалить">×</button>
-      </div>
-    `).join('');
-    body.innerHTML = rows;
-    selAll('.qty', body).forEach(b=>b.addEventListener('click', e=>{
-      qty(e.currentTarget.dataset.sku, Number(e.currentTarget.dataset.d));
-    }));
-    selAll('.rm', body).forEach(b=>b.addEventListener('click', e=>remove(e.currentTarget.dataset.sku)));
+        <button class="rm" data-sku="${i.sku}">×</button>
+      </div>`).join('');
+    w.innerHTML = rows;
+    $$('.qty',w).forEach(b=>b.addEventListener('click',e=>qtyDelta(e.currentTarget.dataset.sku, Number(e.currentTarget.dataset.d))));
+    $$('.rm',w).forEach(b=>b.addEventListener('click',e=>rm(e.currentTarget.dataset.sku)));
   }
 
-  function openModal(){
-    const modal = sel('#cart-modal'); if(!modal) return;
-    modal.classList.add('open');
-    modal.setAttribute('aria-hidden','false');
-    renderModal();
+  // Inline controls on cards
+  function renderInlineControls(btn){
+    const sku = btn.dataset.sku, name = btn.dataset.name, price = Number(btn.dataset.price);
+    const wrap = document.createElement('div'); wrap.className='qty-inline';
+    wrap.innerHTML = `
+      <button class="minus" aria-label="Меньше">−</button>
+      <input type="number" class="qty-input" value="1" min="1">
+      <button class="plus" aria-label="Больше">+</button>
+      <button class="to-cart">В корзину</button>
+    `;
+    btn.replaceWith(wrap);
+    const input = $('.qty-input', wrap);
+    $('.minus', wrap).addEventListener('click', ()=>{ input.value = Math.max(1, (parseInt(input.value)||1)-1); });
+    $('.plus', wrap).addEventListener('click', ()=>{ input.value = (parseInt(input.value)||1)+1; });
+    $('.to-cart', wrap).addEventListener('click', ()=>{
+      add({sku, name, price}, parseInt(input.value)||1);
+    });
   }
-  function closeModal(){
-    const modal = sel('#cart-modal'); if(!modal) return;
-    modal.classList.remove('open');
-    modal.setAttribute('aria-hidden','true');
+
+  function hydrateExistingButtons(){
+    $$('.add-to-cart').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        e.preventDefault();
+        renderInlineControls(btn);
+      }, {once:true});
+    });
   }
+
+  // Open/close modal
+  function openModal(){ const m=$('#cart-modal'); if(!m) return; m.classList.add('open'); m.setAttribute('aria-hidden','false'); renderModal(); }
+  function closeModal(){ const m=$('#cart-modal'); if(!m) return; m.classList.remove('open'); m.setAttribute('aria-hidden','true'); }
 
   document.addEventListener('click', e=>{
-    const btn = e.target.closest('.add-to-cart');
-    if(btn){
-      add({ sku: btn.dataset.sku, name: btn.dataset.name, price: Number(btn.dataset.price) });
-      // опционально уведомление
-      return;
-    }
     if(e.target.closest('#open-cart')){ e.preventDefault(); openModal(); }
     if(e.target.closest('#close-cart') || e.target.closest('#cart-backdrop')){ closeModal(); }
   });
@@ -87,5 +86,6 @@
   document.addEventListener('DOMContentLoaded', ()=>{
     updateCount();
     renderModal();
+    hydrateExistingButtons();
   });
-})(); 
+})();
