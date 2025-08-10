@@ -1,28 +1,71 @@
 ---
 layout: default
 title: "ПакТочка — упаковочные материалы оптом"
-description: "Коробки, курьерские пакеты, стрейч-пленка, скотч. Екатеринбург. Самовывоз и доставка. Оплата по счёту для ИП и ООО."
+description: "Коробки, пакеты, пленка, скотч — в наличии и под заказ. Екатеринбург и доставка по РФ."
 permalink: /
 ---
 
-<section class="hero" style="background: url('{{ site.baseurl }}/assets/img/banner.jpg') center/cover no-repeat; padding: 60px 20px; color: white; text-align: center;">
-  <h1 style="font-size: 2.5rem; font-weight: bold;">Упаковочные материалы для вашего бизнеса</h1>
-  <p style="font-size: 1.2rem;">Коробки, пакеты, пленка, скотч — в наличии и под заказ. Екатеринбург и доставка по РФ.</p>
+<style>
+.hero-slim{display:grid;grid-template-columns:1.3fr 1fr;gap:24px;align-items:center}
+.hero-slim .img-wrap{border-radius:16px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.08)}
+.hero-slim img{width:100%;height:360px;object-fit:cover;object-position:left center;display:block}
+.hero-slim h1{margin:0 0 8px}
+.hero-slim p{margin:0 0 12px;color:#555}
+.lead-form{background:#fff;border:1px solid #e9ecf4;border-radius:16px;padding:16px;box-shadow:0 8px 28px rgba(0,0,0,.06)}
+.lead-form input,.lead-form textarea{width:100%;margin:6px 0;padding:10px 12px;border:1px solid #dfe3ec;border-radius:10px}
+.lead-form button{width:100%;margin-top:8px;padding:12px 14px;border:none;border-radius:12px;background:linear-gradient(90deg,#6f83ff,#c19aff);color:#fff;font-weight:700;cursor:pointer}
 
-  <form action="https://formspree.io/f/mzzvybwq" method="POST" style="max-width: 500px; margin: 30px auto; background: rgba(0,0,0,0.6); padding: 20px; border-radius: 10px;">
-    <input type="text" name="name" placeholder="Ваше имя" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
-    <input type="tel" name="phone" placeholder="Телефон" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
-    <textarea name="message" placeholder="Сообщение" rows="4" style="width: 100%; padding: 10px; margin-bottom: 10px;"></textarea>
-    <button type="submit" style="width: 100%; padding: 10px; background: #3a4ed5; color: white; border: none; font-size: 1.2rem; cursor: pointer;">Отправить</button>
-  </form>
+@media (max-width: 900px){ .hero-slim{grid-template-columns:1fr} .hero-slim img{height:240px} }
+
+.home-section{margin:28px 0}
+.section-title{font-size:22px;margin:0 0 12px}
+.cats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+@media (max-width: 1100px){ .cats{grid-template-columns:repeat(4,1fr)} }
+@media (max-width: 800px){ .cats{grid-template-columns:repeat(2,1fr)} }
+.cat{display:block;border-radius:14px;overflow:hidden;border:1px solid #e9ecf4;background:#fff;text-decoration:none;color:#222;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.cat img{width:100%;height:120px;object-fit:cover;display:block}
+.cat .cap{padding:10px 12px;font-weight:700}
+</style>
+
+<section class="hero-slim">
+  <div class="img-wrap">
+    <img src="{{ site.baseurl }}/assets/img/hero-packtochka.png" alt="Упаковочные материалы">
+  </div>
+  <div>
+    <h1>Упаковочные материалы для вашего бизнеса</h1>
+    <p>Коробки, пакеты, пленка, скотч — в наличии и под заказ. Екатеринбург и доставка по РФ.</p>
+    <form class="lead-form" action="https://formspree.io/f/your-form-id" method="POST">
+      <input type="text" name="name" placeholder="Ваше имя" required>
+      <input type="tel" name="phone" placeholder="Телефон" required>
+      <textarea name="message" rows="3" placeholder="Сообщение"></textarea>
+      <button type="submit">Отправить</button>
+      <small>Нажимая «Отправить», вы соглашаетесь с <a href="{{ site.baseurl }}/privacy/">политикой конфиденциальности</a>.</small>
+    </form>
+  </div>
 </section>
 
-<section>
-  <h2>Почему мы</h2>
-  <ul class="benefits">
-    <li>Опт от 100 шт, производство под размеры</li>
-    <li>Счёт для ИП и ООО, документы</li>
-    <li>Самовывоз в Екатеринбурге и доставка</li>
-  </ul>
+<section class="home-section">
+  <h2 class="section-title">Категории</h2>
+  <div class="cats">
+    <a class="cat" href="{{ site.baseurl }}/katalog/korobki/">
+      <img src="{{ site.baseurl }}/assets/img/hero-packtochka.png" alt="Коробки">
+      <div class="cap">Коробки</div>
+    </a>
+    <a class="cat" href="{{ site.baseurl }}/katalog/pakety/">
+      <img src="{{ site.baseurl }}/assets/img/hero-packtochka.png" alt="Пакеты">
+      <div class="cap">Пакеты</div>
+    </a>
+    <a class="cat" href="{{ site.baseurl }}/katalog/skotch/">
+      <img src="{{ site.baseurl }}/assets/img/hero-packtochka.png" alt="Скотч">
+      <div class="cap">Скотч</div>
+    </a>
+    <a class="cat" href="{{ site.baseurl }}/katalog/plenka/">
+      <img src="{{ site.baseurl }}/assets/img/hero-packtochka.png" alt="Стрейч‑пленка">
+      <div class="cap">Стрейч‑пленка</div>
+    </a>
+    <a class="cat" href="{{ site.baseurl }}/katalog/prochie/">
+      <img src="{{ site.baseurl }}/assets/img/hero-packtochka.png" alt="Прочее">
+      <div class="cap">Прочее</div>
+    </a>
+  </div>
 </section>
-
