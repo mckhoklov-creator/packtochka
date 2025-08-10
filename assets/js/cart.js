@@ -37,23 +37,31 @@
     $$('.rm',w).forEach(b=>b.addEventListener('click',e=>rm(e.currentTarget.dataset.sku)));
   }
 
-  // Inline controls on cards without layout shift
-  function ensureControlWrapper(btn){
-    // if parent not wrapper, wrap
+  // Inline controls
+  function ensureWrapper(btn){
+    // Wrap button if not wrapped
     if(!btn.parentElement.classList.contains('cart-control')){
       const wrap = document.createElement('span');
       wrap.className = 'cart-control';
+      // Reserve size to prevent shift
+      const ph = document.createElement('span');
+      ph.className = 'placeholder';
       btn.parentElement.insertBefore(wrap, btn);
+      wrap.appendChild(ph);
       wrap.appendChild(btn);
     }
     return btn.parentElement;
   }
 
-  function showInlineControl(btn){
-    const wrap = ensureControlWrapper(btn);
-    // Already visible?
+  function showInline(btn){
+    const wrap = ensureWrapper(btn);
+    const ph = wrap.querySelector('.placeholder');
+    // Measure current button size and set placeholder to same
+    ph.style.minWidth = btn.offsetWidth + 'px';
+    ph.style.minHeight = btn.offsetHeight + 'px';
+
     if(wrap.querySelector('.qty-inline')) { wrap.querySelector('.qty-inline input').focus(); return; }
-    // Build control
+
     const sku = btn.dataset.sku, name = btn.dataset.name, price = Number(btn.dataset.price);
     const control = document.createElement('span');
     control.className = 'qty-inline';
@@ -67,52 +75,40 @@
     btn.style.display = 'none';
 
     const input = control.querySelector('.qty-input');
+    const hide = ()=>{ control.remove(); btn.style.display='inline-flex'; };
+
     control.querySelector('.minus').addEventListener('click', ()=>{
-      const v = Math.max(0, (parseInt(input.value)||0) - 1); input.value = v; if(v===0) hideInlineControl(wrap, btn);
+      const v = Math.max(0, (parseInt(input.value)||0) - 1); input.value = v; if(v===0) hide();
     });
     control.querySelector('.plus').addEventListener('click', ()=>{ input.value = (parseInt(input.value)||0) + 1; });
     control.querySelector('.to-cart').addEventListener('click', ()=>{
       const q = Math.max(1, parseInt(input.value)||0);
-      add({sku, name, price}, q);
-      hideInlineControl(wrap, btn);
-    });
-    input.addEventListener('input', ()=>{
-      const v = parseInt(input.value)||0;
-      if(v<=0) { /* keep visible but allow outside-click to hide */ }
+      if(q>0){ add({sku, name, price}, q); }
+      hide();
     });
     input.addEventListener('keydown', (e)=>{
-      if(e.key === 'Enter'){
-        const q = Math.max(1, parseInt(input.value)||0);
-        if(q>0){ add({sku, name, price}, q); hideInlineControl(wrap, btn); }
-        else { hideInlineControl(wrap, btn); }
-      }
-      if(e.key === 'Escape'){ hideInlineControl(wrap, btn); }
+      if(e.key==='Enter'){ const q = Math.max(1, parseInt(input.value)||0); if(q>0){ add({sku,name,price}, q);} hide(); }
+      if(e.key==='Escape'){ hide(); }
+    });
+    input.addEventListener('blur', ()=>{
+      const v = parseInt(input.value)||0;
+      if(v<=0) hide();
     });
 
-    // Outside click hides control
+    // Outside click hides
     const onDocClick = (e)=>{
       if(!control.contains(e.target) && e.target!==btn){
         const v = parseInt(input.value)||0;
-        if(v<=0) hideInlineControl(wrap, btn);
+        if(v<=0) hide();
         document.removeEventListener('click', onDocClick);
       }
     };
     setTimeout(()=>document.addEventListener('click', onDocClick), 0);
   }
 
-  function hideInlineControl(wrap, btn){
-    const control = wrap.querySelector('.qty-inline');
-    if(control) control.remove();
-    btn.style.display = 'inline-flex';
-  }
-
-  function hydrateButtons(){
+  function hydrate(){
     $$('.add-to-cart').forEach(btn=>{
-      btn.addEventListener('click', (e)=>{
-        e.preventDefault();
-        showInlineControl(btn);
-      });
-      // make sure base button has proper class for sizing
+      btn.addEventListener('click', (e)=>{ e.preventDefault(); showInline(btn); }, {once:false});
       btn.classList.add('btn','btn-gradient');
     });
   }
@@ -129,6 +125,6 @@
   document.addEventListener('DOMContentLoaded', ()=>{
     updateCount();
     renderModal();
-    hydrateButtons();
+    hydrate();
   });
 })();

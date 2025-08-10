@@ -1,8 +1,8 @@
-/* Lighter gradients remain */
-.site-header,.site-footer{background:linear-gradient(90deg,#5a6dee,#a874f7);color:#fff}
-.site-header a,.site-footer a{color:#fff;text-decoration:none}
+/* Full-width header/footer backgrounds are set in layout. Only component styles here. */
 
-/* Modal cart (same as before) */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:10px;border:none;cursor:pointer}
+.btn-gradient{background:linear-gradient(90deg,#6a7cf0,#b186fa);color:#fff}
+
 .cart-modal{position:fixed;inset:0;display:none}
 .cart-modal.open{display:block}
 .cart-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.4)}
@@ -16,13 +16,12 @@
 .cart-item__price{color:#3a4ed5}
 .cart-qty button{width:28px;height:28px;border:1px solid #ddd;background:#fafafa;cursor:pointer}
 
-.btn{display:inline-block;padding:10px 16px;border-radius:10px;border:none;cursor:pointer}
-.btn-gradient{background:linear-gradient(90deg,#5a6dee,#a874f7);color:#fff}
+/* Inline quantity: prevent layout shift */
+.cart-control{display:inline-block; vertical-align:middle;}
+.cart-control .placeholder{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:160px;}
+.add-to-cart{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:160px}
 
-/* Inline quantity control */
-.cart-control{display:inline-block;min-height:44px}
-.add-to-cart{display:inline-flex;align-items:center;justify-content:center;min-height:44px}
 .qty-inline{display:inline-flex;align-items:center;gap:6px}
 .qty-inline input{width:56px;text-align:center;padding:8px 10px;border:1px solid #ddd;border-radius:8px}
 .qty-inline button{width:34px;height:34px;border:1px solid #ddd;background:#fafafa;border-radius:8px;cursor:pointer}
-.qty-inline .to-cart{border:none;background:linear-gradient(90deg,#5a6dee,#a874f7);color:#fff;padding:8px 12px;border-radius:10px}
+.qty-inline .to-cart{border:none;background:linear-gradient(90deg,#6a7cf0,#b186fa);color:#fff;padding:8px 12px;border-radius:10px}

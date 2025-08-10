@@ -8,33 +8,31 @@
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/cart.css">
   <style>
-    /* Sticky footer layout */
+    /* Sticky footer */
     html, body { height: 100%; }
     body { min-height: 100vh; display: flex; flex-direction: column; }
-    main.container { flex: 1; }
-    /* Header look + phone */
-    .site-header { background: linear-gradient(90deg,#5a6dee,#a874f7); color:#fff; }
-    .site-footer { background: linear-gradient(90deg,#5a6dee,#a874f7); color:#fff; }
-    .site-header .container, .site-footer .container {
-      max-width: 1200px; margin: 0 auto; padding: 12px 15px;
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-    }
-    .logo a { color:#fff; text-decoration:none; font-weight:700; font-size: 18px; }
+    main.site-main { flex: 1; }
+
+    /* Full-width header/footer background, inner container centered */
+    .site-header, .site-footer { background: linear-gradient(90deg,#6a7cf0,#b186fa); color:#fff; }
+    .inner { max-width: 1200px; margin: 0 auto; padding: 12px 15px; }
+
+    /* Header layout */
+    .site-header .bar { display: flex; align-items: center; gap: 16px; }
+    .logo a { color:#fff; text-decoration:none; font-weight:700; font-size:18px; }
     .nav { display:flex; align-items:center; gap: 10px; margin-left:auto; }
     .nav a { color:#fff; text-decoration:none; padding: 6px 8px; border-radius:8px; }
     .nav a:hover { background: rgba(255,255,255,.12); }
-    .phone { color:#fff; font-weight:700; text-decoration:none; margin-right:8px; white-space: nowrap; }
-    @media (max-width: 720px){
-      .nav { flex-wrap: wrap; gap:6px; }
-      .phone { display:none; } /* можно убрать если нужна всегда */
-    }
+    .nav .sep { opacity:.3; user-select:none; }
+
+    /* Footer */
+    .site-footer .bar { display:flex; align-items:center; justify-content:space-between; gap:12px; }
   </style>
 </head>
 <body>
   <header class="site-header">
-    <div class="container">
+    <div class="inner bar">
       <div class="logo"><a href="{{ site.baseurl }}/">ПакТочка</a></div>
-      <a class="phone" href="tel:+79090047809">+7 909 004‑78‑09</a>
       <nav class="nav">
         <a href="{{ site.baseurl }}/katalog/">Каталог</a>
         <a href="{{ site.baseurl }}/uslugi/">Услуги</a>
@@ -43,6 +41,8 @@
         <a href="{{ site.baseurl }}/blog/">Блог</a>
         <a href="{{ site.baseurl }}/privacy/">Политика</a>
         <a href="{{ site.baseurl }}/contacts/">Контакты</a>
+        <span class="sep">|</span>
+        <a class="phone" href="tel:+79090047809">+7 909 004‑78‑09</a>
         <a href="{{ site.baseurl }}/cart/" class="cart-link" id="open-cart" aria-label="Открыть корзину">
           🛒 <span id="cart-count">0</span>
         </a>
@@ -50,12 +50,14 @@
     </div>
   </header>
 
-  <main class="container" role="main">
-    {{ content }}
+  <main class="site-main">
+    <div class="inner">
+      {{ content }}
+    </div>
   </main>
 
   <footer class="site-footer">
-    <div class="container" style="justify-content:space-between;">
+    <div class="inner bar">
       <p style="margin:0;">
         <a href="{{ site.baseurl }}/katalog/">Каталог</a> ·
         <a href="{{ site.baseurl }}/uslugi/">Услуги</a> ·
