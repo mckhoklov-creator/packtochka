@@ -1,0 +1,17 @@
+/* White header with border and site search */
+.site-header{background:#ffffff;border-bottom:1px solid #ebedf3; position:relative; z-index:50;}
+.header-row{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:10px 15px;}
+.logo a{font-weight:800;font-size:20px;color:#222;text-decoration:none}
+.search{flex:1;display:flex;gap:8px}
+.search input[type="search"]{flex:1;padding:10px 12px;border:1px solid #dfe3ec;border-radius:10px}
+.search button{padding:10px 14px;border:none;border-radius:10px;background:linear-gradient(90deg,#6f83ff,#c19aff);color:#fff;cursor:pointer}
+.header-right{display:flex;align-items:center;gap:12px;white-space:nowrap}
+.header-right a{color:#222;text-decoration:none}
+.top-nav{background:#fff}
+.top-nav .nav-row{max-width:1200px;margin:0 auto;padding:8px 15px;display:flex;align-items:center;gap:18px;overflow:auto}
+.top-nav a{color:#4a4f67;text-decoration:none;font-weight:600}
+.top-nav a:hover{color:#2a34d1}
+.cart-link{position:relative;display:inline-flex;align-items:center;gap:6px}
+#cart-count{display:inline-block;min-width:18px;padding:2px 6px;border-radius:999px;line-height:1;text-align:center}
+.cart-link.has-items #cart-count{background:#e53935;color:#fff}
+.site-main > .inner{max-width:1200px;margin:0 auto;padding:16px 15px}
