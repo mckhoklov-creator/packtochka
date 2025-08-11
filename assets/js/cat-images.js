@@ -1,28 +1,27 @@
-
-// Автоматически подставляет картинки в плитки категорий.
-// Достаточно загрузить файлы в assets/img/ и подключить этот скрипт.
+// cat-images.js — вставляет картинки в плитки категорий на главной
 (function(){
   const base = document.documentElement.getAttribute('data-baseurl') || '';
-  // Сопоставление href категории -> имя файла (PNG/WebP)
+  // соответствие: ссылка категории -> файл картинки в assets/img/
   const MAP = {
-    '/katalog/korobki/': 'cat-korobki.png',
-    // '/katalog/pakety/': 'cat-pakety.png',
-    // '/katalog/skotch/': 'cat-skotch.png',
-    // '/katalog/plenka/': 'cat-plenka.png',
-    // '/katalog/prochie/': 'cat-prochie.png',
+    '/katalog/korobki/': 'cat-korobki.png'
   };
 
   function inject(){
     Object.keys(MAP).forEach(href => {
+      // ищем плитку категории по ссылке
       const link = document.querySelector(`.cats a[href$="${href}"]`);
       if(!link) return;
       const holder = link.querySelector('.cat__img') || link;
-      // Не дублируем, если уже есть <img>
-      if(holder.querySelector('img')) return;
+      if(holder.querySelector('img')) return; // уже вставлено
+
       const img = new Image();
-      img.alt = link.textContent.trim();
+      img.alt = (link.querySelector('.cat__cap')?.textContent || 'Категория').trim();
       img.loading = 'lazy';
+      img.decoding = 'async';
       img.src = `${base}/assets/img/${MAP[href]}`;
+      img.style.maxWidth = '92%';
+      img.style.maxHeight = '92%';
+      img.style.objectFit = 'contain';
       holder.prepend(img);
     });
   }
