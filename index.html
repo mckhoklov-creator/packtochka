@@ -6,8 +6,9 @@ permalink: /
 ---
 
 
+
 <style>
-/* === HERO: image left + form right === */
+/* === HERO: image left + form right (only on main) === */
 .hero-slim{display:grid;grid-template-columns:1.3fr 1fr;gap:24px;align-items:center;margin-bottom:28px}
 .hero-slim .img-wrap{border-radius:16px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.08)}
 .hero-slim img{width:100%;height:360px;object-fit:cover;object-position:left center;display:block}
@@ -33,20 +34,6 @@ permalink: /
       <small>Нажимая «Отправить», вы соглашаетесь с <a href="{{ site.baseurl }}/privacy/">политикой конфиденциальности</a>.</small>
     </form>
   </div>
-</section>
-
-
-
-<!-- Герой (оставляем как у тебя сейчас) -->
-<section class="hero">
-  <h1>Упаковочные материалы для вашего бизнеса</h1>
-  <p>Коробки, пакеты, пленка, скотч — в наличии и под заказ. Екатеринбург и доставка по РФ.</p>
-  <form action="https://formspree.io/f/example" method="POST">
-    <input type="text" name="name" placeholder="Ваше имя" required>
-    <input type="tel" name="phone" placeholder="Телефон" required>
-    <textarea name="message" placeholder="Комментарий"></textarea>
-    <button type="submit">Отправить</button>
-  </form>
 </section>
 
 <style>
