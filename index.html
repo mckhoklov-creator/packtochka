@@ -5,6 +5,38 @@ description: "Коробки, пакеты, пленка, скотч — в на
 permalink: /
 ---
 
+
+<style>
+/* === HERO: image left + form right === */
+.hero-slim{display:grid;grid-template-columns:1.3fr 1fr;gap:24px;align-items:center;margin-bottom:28px}
+.hero-slim .img-wrap{border-radius:16px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.08)}
+.hero-slim img{width:100%;height:360px;object-fit:cover;object-position:left center;display:block}
+@media (max-width: 900px){ .hero-slim{grid-template-columns:1fr} .hero-slim img{height:240px} }
+
+.lead-form{background:#fff;border:1px solid #e9ecf4;border-radius:16px;padding:16px;box-shadow:0 8px 28px rgba(0,0,0,.06)}
+.lead-form input,.lead-form textarea{width:100%;margin:6px 0;padding:10px 12px;border:1px solid #dfe3ec;border-radius:10px}
+.lead-form button{width:100%;margin-top:8px;padding:12px 14px;border:none;border-radius:12px;background:linear-gradient(90deg,#6f83ff,#c19aff);color:#fff;font-weight:700;cursor:pointer}
+</style>
+
+<section class="hero-slim">
+  <div class="img-wrap">
+    <img src="{{ site.baseurl }}/assets/img/hero-packtochka.webp" alt="Упаковочные материалы">
+  </div>
+  <div>
+    <h1>Упаковочные материалы для вашего бизнеса</h1>
+    <p>Коробки, пакеты, пленка, скотч — в наличии и под заказ. Екатеринбург и доставка по РФ.</p>
+    <form class="lead-form" action="https://formspree.io/f/example" method="POST">
+      <input type="text" name="name" placeholder="Ваше имя" required>
+      <input type="tel" name="phone" placeholder="Телефон" required>
+      <textarea name="message" rows="3" placeholder="Сообщение"></textarea>
+      <button type="submit">Отправить</button>
+      <small>Нажимая «Отправить», вы соглашаетесь с <a href="{{ site.baseurl }}/privacy/">политикой конфиденциальности</a>.</small>
+    </form>
+  </div>
+</section>
+
+
+
 <!-- Герой (оставляем как у тебя сейчас) -->
 <section class="hero">
   <h1>Упаковочные материалы для вашего бизнеса</h1>
