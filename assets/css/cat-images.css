@@ -1,0 +1,16 @@
+
+/* Стили для картинок внутри плиток категорий */
+.cat__img{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px;
+}
+
+.cat__img img{
+  max-width:92%;
+  max-height:92%;
+  object-fit:contain;
+  display:block;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,.25));
+}
