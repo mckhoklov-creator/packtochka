@@ -1,39 +1,34 @@
-// cat-images.js — вставляет картинки в плитки категорий ТОЛЬКО на главной
+// cat-images.js — главная страница: подставляем иконки категорий
 (function(){
   const base = document.documentElement.getAttribute('data-baseurl') || '';
-
-  // Помощник: нормализуем путь (с baseurl)
   function withBase(p){ return (base + p).replace(/\/+/g,'/'); }
 
-  // Работать только на главной странице (/, /index.html)
   const path = location.pathname;
   const isHome = (path === withBase('/') || path === withBase('/index.html'));
   const isCatalog = path.startsWith(withBase('/katalog/'));
-
-  // Если мы в каталоге — на всякий случай удалим ранее вставленные картинки (если кэш подменял файл)
-  if(isCatalog){
+  if (isCatalog) {
     document.addEventListener('DOMContentLoaded', function(){
       document.querySelectorAll('.cats .cat .cat__img img').forEach(el => el.remove());
     });
-    return; // и ничего не вставляем
+    return;
   }
+  if (!isHome) return;
 
-  if(!isHome) return; // ни на каких других страницах не работаем
-
-  // соответствие: ссылка категории -> файл картинки в assets/img/
   const MAP = {
-    '/katalog/korobki/': 'cat-korobki.png',
-    '/katalog/pakety/': 'paket.png'
-    // сюда позже добавим скотч, плёнку и прочее
+    '/katalog/korobki/': 'cat-korobki.png', // ваша коробка
+    '/katalog/pakety/':  'paket.png',       // ваш пакет
+    '/katalog/skotch/':  'cat-skotch.png',
+    '/katalog/plenka/':  'cat-plenka.png',
+    '/katalog/prochie/': 'cat-prochie.png'
   };
 
   function inject(){
     Object.keys(MAP).forEach(href => {
       const selector = `.cats a[href$="${href}"], .cats a[href$="${withBase(href)}"]`;
       const link = document.querySelector(selector);
-      if(!link) return;
+      if (!link) return;
       const holder = link.querySelector('.cat__img') || link;
-      if(holder.querySelector('img')) return; // уже вставлено
+      if (holder.querySelector('img')) return;
 
       const img = new Image();
       img.alt = (link.querySelector('.cat__cap')?.textContent || 'Категория').trim();
