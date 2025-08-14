@@ -1,5 +1,5 @@
 
-/* Popular section (главная) */
+/* home-popular.css — v2 grid tiles */
 .popular .popular__head{
   display:flex; align-items:center; justify-content:space-between;
   gap:12px; margin: 6px 0 12px;
@@ -10,4 +10,25 @@
   padding:10px 14px; border-radius:12px; font-weight:700;
 }
 .btn.btn--ghost:hover{ filter:brightness(0.95); }
-.popular-grid .card{ border-radius:16px; box-shadow:0 6px 24px rgba(0,0,0,.06); border:1px solid #eceff6; }
+
+/* Make popular items a responsive grid of tiles */
+.popular-grid{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap:16px;
+}
+@media (max-width: 1180px){
+  .popular-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 820px){
+  .popular-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 520px){
+  .popular-grid{ grid-template-columns: 1fr; }
+}
+
+.popular-grid .card{
+  border-radius:16px;
+  box-shadow:0 6px 24px rgba(0,0,0,.06);
+  border:1px solid #eceff6;
+}
