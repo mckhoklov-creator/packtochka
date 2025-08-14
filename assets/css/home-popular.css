@@ -1,14 +1,6 @@
 /* === Popular block (tiles) — v5 === */
-.popular .popular__head{
-  display:flex; align-items:center; justify-content:space-between;
-  gap:12px; margin: 6px 0 12px;
-}
-.popular .popular__cta{ display:flex; gap:10px; flex-wrap:wrap; }
-.btn.btn--ghost{
-  background:transparent; color:#6f83ff; border:1px solid #cfd6ff;
-  padding:10px 14px; border-radius:12px; font-weight:700;
-}
-.btn.btn--ghost:hover{ filter:brightness(0.95); }
+.home-section.popular{ margin-top:60px; }
+.popular .section-title{ text-align:center; margin:6px 0 12px; }
 
 /* Сетка без зависимостей от .grid */
 .popular-grid{
