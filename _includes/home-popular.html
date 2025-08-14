@@ -1,0 +1,43 @@
+<section class="home-section popular">
+  <div class="popular__head">
+    <h2 class="section-title">Популярные позиции</h2>
+    <div class="popular__cta">
+      <a class="btn btn--ghost" href="{{ site.baseurl }}/katalog/">Перейти в каталог</a>
+      <a class="btn" href="{{ site.baseurl }}/#lead-form">Запросить прайс</a>
+    </div>
+  </div>
+
+  <div class="grid popular-grid">
+    {% assign _items = site.data.products | sort: "sku" %}
+    {% for p in _items limit:24 %}
+      <div class="card popular-card">
+        <a href="{{ site.baseurl }}/katalog/{{ p.category }}/{{ p.slug }}/">
+          <img src="{{ site.baseurl }}{{ p.images | first }}" alt="{{ p.name }}">
+          <h3>{{ p.name }}</h3>
+        </a>
+        <p class="price">{{ p.price }} {{ p.unit }}</p>
+        <p class="short">{{ p.short }}</p>
+        <button class="add-to-cart"
+                data-sku="{{ p.sku }}"
+                data-name="{{ p.name }}"
+                data-price="{{ p.price }}">В корзину</button>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+  // Перемешать и оставить 8 карточек
+  document.addEventListener('DOMContentLoaded', function () {
+    const grid = document.querySelector('.popular-grid');
+    if (!grid) return;
+    const cards = Array.from(grid.children);
+    if (cards.length <= 8) return;
+    for (let i = cards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [cards[i], cards[j]] = [cards[j], cards[i]];
+    }
+    grid.innerHTML = '';
+    cards.slice(0, 8).forEach(el => grid.appendChild(el));
+  });
+</script>
