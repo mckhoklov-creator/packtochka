@@ -1,0 +1,13 @@
+
+/* Popular section (главная) */
+.popular .popular__head{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px; margin: 6px 0 12px;
+}
+.popular .popular__cta{ display:flex; gap:10px; flex-wrap:wrap; }
+.btn.btn--ghost{
+  background:transparent; color:#6f83ff; border:1px solid #cfd6ff;
+  padding:10px 14px; border-radius:12px; font-weight:700;
+}
+.btn.btn--ghost:hover{ filter:brightness(0.95); }
+.popular-grid .card{ border-radius:16px; box-shadow:0 6px 24px rgba(0,0,0,.06); border:1px solid #eceff6; }
