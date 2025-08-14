@@ -7,7 +7,8 @@
     </div>
   </div>
 
-  <div class="grid popular-grid">
+  <!-- ВАЖНО: убрали класс 'grid', чтобы глобальные стили не ломали плитку -->
+  <div class="popular-grid">
     {% assign _items = site.data.products | sort: "sku" %}
     {% for p in _items limit:24 %}
       <div class="card popular-card">
