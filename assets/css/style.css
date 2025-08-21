@@ -13,3 +13,37 @@
 
 .main-contact img { max-width:100%; border-radius:10px; }
 .main-contact form { background:#fff; padding:15px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,.08); }
+
+.advantages {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.advantages h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.advantage-item {
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* твой сине-фиолетовый градиент */
+  color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.advantage-item:hover {
+  transform: translateY(-5px);
+}
+
+.advantage-item .icon {
+  font-size: 36px;
+  margin-bottom: 15px;
+}
