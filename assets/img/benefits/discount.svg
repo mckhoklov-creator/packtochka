@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <symbol id="icon" viewBox="0 0 32 32">
+    <defs>
+      <linearGradient id="benefit-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#6f83ff"/>
+        <stop offset="100%" stop-color="#c19aff"/>
+      </linearGradient>
+    </defs>
+    <g stroke="url(#benefit-gradient)" stroke-width="3" fill="none" stroke-linecap="round">
+      <circle cx="10" cy="10" r="4"/>
+      <circle cx="22" cy="22" r="4"/>
+      <line x1="22" y1="10" x2="10" y2="22"/>
+    </g>
+  </symbol>
+</svg>

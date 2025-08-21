@@ -1,0 +1,8 @@
+.benefits-list{list-style:none;padding:0;margin:0 0 20px;}
+.benefit-item{display:flex;align-items:flex-start;margin-bottom:12px;}
+.benefit-icon{width:32px;height:32px;margin-right:10px;}
+.benefit-icon use{fill:url(#benefit-gradient);}
+@media (max-width:600px){
+  .benefit-icon{width:28px;height:28px;margin-right:8px;}
+  .benefit-item{margin-bottom:10px;}
+}
