@@ -1,3 +1,28 @@
+
+/* === Home: Advantages section (matches index.html structure) === */
+.advantages{ padding:40px 0 16px; }
+.advantages h2{ font-size:28px; margin:0 0 18px; }
+
+.advantages-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap:16px;
+}
+
+.advantage-item{
+  background: linear-gradient(135deg,#6f83ff 0%,#c19aff 100%);
+  color:#fff;
+  padding:18px;
+  border-radius:16px;
+  box-shadow:0 8px 24px rgba(0,0,0,.08);
+  text-align:left;
+  display:flex; flex-direction:column; gap:8px;
+}
+.advantage-item .icon{ font-size:28px; line-height:1; }
+.advantage-item h3{ margin:0; font-size:18px; font-weight:800; }
+.advantage-item p{ margin:0; opacity:.95; }
+
+/* (legacy) Keep previous selectors in case они используются где-то ещё */
 .benefits-list{list-style:none;padding:0;margin:0 0 20px;}
 .benefit-item{display:flex;align-items:flex-start;margin-bottom:12px;}
 .benefit-icon{width:32px;height:32px;margin-right:10px;}
