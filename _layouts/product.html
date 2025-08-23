@@ -4,20 +4,21 @@ layout: default
 
 {% comment %}
 Фото: сначала из front matter (page.images),
-если нет — поиск по slug в _data/products.yml.
+если нет — из _data/products.yml по slug.
 {% endcomment %}
 {% assign product_record = site.data.products | where: "slug", page.slug | first %}
 {% assign photo_src = nil %}
-{% if page.images and page.images.size > 0 %}
-  {% assign photo_src = page.images[0] %}
-{% elsif product_record and product_record.images and product_record.images.size > 0 %}
-  {% assign photo_src = product_record.images[0] %}
-{% endif %}
+{% assign photo_src = page.images | first %}
+{% unless photo_src %}
+  {% if product_record and product_record.images %}
+    {% assign photo_src = product_record.images | first %}
+  {% endif %}
+{% endunless %}
 
 <nav aria-label="breadcrumb" style="margin:10px 0; font-size:.95rem;">
-  <a href="{{ site.baseurl }}/">Главная</a> ›
-  <a href="{{ site.baseurl }}/katalog/">Каталог</a> ›
-  <a href="{{ site.baseurl }}/katalog/{{ page.category }}/">
+  <a href="{{ '/' | relative_url }}">Главная</a> ›
+  <a href="{{ '/katalog/' | relative_url }}">Каталог</a> ›
+  <a href="{{ ('/katalog/' | append: page.category | append: '/') | relative_url }}">
     {% case page.category %}
       {% when "korobki" %}Коробки
       {% when "pakety" %}Пакеты
@@ -33,7 +34,7 @@ layout: default
 <article class="product" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
   <div>
     {% if photo_src %}
-      <img src="{{ site.baseurl }}{{ photo_src }}" alt="{{ page.name }}" style="width:100%;border-radius:10px;">
+      <img src="{{ photo_src | relative_url }}" alt="{{ page.name }}" style="width:100%;border-radius:10px;">
     {% endif %}
   </div>
 
@@ -52,8 +53,8 @@ layout: default
     </button>
 
     <div style="margin-top:20px;">
-      <a href="{{ site.baseurl }}/katalog/{{ page.category }}/" style="margin-right:12px;">← Вернуться в категорию</a>
-      <a href="{{ site.baseurl }}/katalog/">Каталог</a>
+      <a href="{{ ('/katalog/' | append: page.category | append: '/') | relative_url }}" style="margin-right:12px;">← Вернуться в категорию</a>
+      <a href="{{ '/katalog/' | relative_url }}">Каталог</a>
     </div>
   </div>
 </article>
@@ -64,8 +65,8 @@ layout: default
     {% assign related = site.data.products | where_exp: "item", "item.category != page.category" | sample: 4 %}
     {% for p in related %}
       <div class="card">
-        <a href="{{ site.baseurl }}/katalog/{{ p.category }}/{{ p.slug }}/">
-          <img src="{{ site.baseurl }}{{ p.images | first }}" alt="{{ p.name }}">
+        <a href="{{ ('/katalog/' | append: p.category | append: '/' | append: p.slug | append: '/') | relative_url }}">
+          <img src="{{ (p.images | first) | relative_url }}" alt="{{ p.name }}">
           <h3>{{ p.name }}</h3>
         </a>
         <p class="price">{{ p.price }} {{ p.unit }}</p>
