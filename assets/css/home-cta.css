@@ -3,11 +3,11 @@
 .home-cta {
   margin: 60px 0;
   padding: 40px;
-  border-radius: 12px;
-  background: #f9f9ff;
+  border-radius: 16px;
+  background: #fafaff;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 40px;
 }
 
@@ -17,7 +17,8 @@
 
 .home-cta__text h2 {
   font-size: 24px;
-  margin-bottom: 10px;
+  font-weight: 700;
+  margin-bottom: 12px;
 }
 
 .home-cta__text p {
@@ -30,20 +31,22 @@
   gap: 15px;
 }
 
+/* Кнопки */
 .home-cta .btn {
   padding: 12px 24px;
-  border-radius: 8px;
+  border-radius: 10px;
   font-weight: 600;
-  transition: all .2s ease;
-  cursor: pointer;
-  display: inline-block;
   text-align: center;
+  cursor: pointer;
+  transition: all .2s ease;
+  display: inline-block;
 }
 
 .home-cta .btn--primary {
   background: linear-gradient(90deg, #6f42ff 0%, #4dabff 100%);
   color: #fff;
-  box-shadow: 0 6px 18px rgba(123,92,255,.25);
+  border: none;
+  box-shadow: 0 6px 18px rgba(111,66,255,.25);
 }
 
 .home-cta .btn--primary:hover {
@@ -57,6 +60,11 @@
   background: transparent;
 }
 
+.home-cta .btn--ghost:hover {
+  background: rgba(111,66,255,0.08);
+}
+
+/* Форма */
 .home-cta__form {
   flex: 1;
   background: #fff;
