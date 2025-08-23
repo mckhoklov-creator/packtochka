@@ -7,6 +7,13 @@
 .card { border:none; border-radius:15px; box-shadow:0 4px 12px rgba(0,0,0,.08); overflow:hidden; transition:transform .2s ease; padding:12px; background:#fff; }
 .card:hover { transform: translateY(-4px); }
 .card img { width:100%; height:180px; object-fit:cover; border-radius:10px; }
+.card a,
+.card a:visited,
+.card a:hover {
+  color:#000;
+  text-decoration:none;
+  display:block;
+}
 .price { color:#3a4ed5; font-weight:700; }
 #cart-table table { width:100%; border-collapse: collapse; }
 #cart-table th, #cart-table td { border-bottom:1px solid #eee; padding:8px; text-align:left; }
