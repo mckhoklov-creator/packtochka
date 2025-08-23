@@ -1,105 +1,143 @@
-/* assets/css/home-cta.css */
+/* assets/css/home-cta.css — совместим с обоими наборами классов */
 
-.home-cta {
-  margin: 60px 0;
-  padding: 40px;
-  border-radius: 16px;
-  background: #fafaff;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 40px;
+/* Контейнер блока */
+.home-cta{
+  margin:60px 0;
+  padding:40px;
+  border-radius:16px;
+  background:#fafaff;
 }
 
-.home-cta__text {
-  flex: 1;
+/* Лэйаут: поддержка .cta-container и .home-cta__container */
+.home-cta .cta-container,
+.home-cta .home-cta__container{
+  display:flex;
+  flex-wrap:wrap;
+  gap:40px;
+  align-items:flex-start;
+  justify-content:space-between;
 }
 
-.home-cta__text h2 {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 12px;
+/* Левая колонка: поддержка .cta-text и .home-cta__text */
+.home-cta .cta-text,
+.home-cta .home-cta__text{
+  flex:1 1 320px;
 }
 
-.home-cta__text p {
-  margin-bottom: 20px;
-  color: #555;
+.home-cta .cta-text h2,
+.home-cta .home-cta__text h2{
+  font-size:24px;
+  font-weight:700;
+  margin:0 0 12px;
 }
 
-.home-cta__actions {
-  display: flex;
-  gap: 15px;
+.home-cta .cta-text p,
+.home-cta .home-cta__text p{
+  margin:0 0 20px;
+  color:#555;
 }
 
-/* Кнопки */
-.home-cta .btn {
-  padding: 12px 24px;
-  border-radius: 10px;
-  font-weight: 600;
-  text-align: center;
-  cursor: pointer;
-  transition: all .2s ease;
-  display: inline-block;
+/* Ряд с кнопками слева */
+.home-cta .cta-buttons,
+.home-cta .home-cta__actions{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
 }
 
-.home-cta .btn--primary {
-  background: linear-gradient(90deg, #6f42ff 0%, #4dabff 100%);
-  color: #fff;
-  border: none;
-  box-shadow: 0 6px 18px rgba(111,66,255,.25);
+/* Правая колонка: поддержка .cta-form и .home-cta__form */
+.home-cta .cta-form,
+.home-cta .home-cta__form{
+  flex:1 1 360px;
+  background:#fff;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 4px 16px rgba(0,0,0,.06);
 }
 
-.home-cta .btn--primary:hover {
-  filter: brightness(1.05);
-  transform: translateY(-1px);
+/* Внутренний лэйаут формы */
+.home-cta .cta-form form,
+.home-cta .home-cta__form form{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
 }
 
-.home-cta .btn--ghost {
-  border: 2px solid #6f42ff;
-  color: #6f42ff;
-  background: transparent;
+/* Поля формы */
+.home-cta .cta-form input,
+.home-cta .cta-form textarea,
+.home-cta .home-cta__form input,
+.home-cta .home-cta__form textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  font-size:14px;
 }
 
-.home-cta .btn--ghost:hover {
-  background: rgba(111,66,255,0.08);
+.home-cta .cta-form textarea,
+.home-cta .home-cta__form textarea{
+  resize:none;
+  min-height:100px;
 }
 
-/* Форма */
-.home-cta__form {
-  flex: 1;
-  background: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+/* БАЗОВЫЙ стиль кнопки (если где-то забыли класс .btn) */
+.home-cta a,
+.home-cta button{
+  text-decoration:none;
 }
 
-.home-cta__form form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+/* Кнопка как элемент */
+.home-cta .btn,
+.home-cta .cta-buttons a{
+  display:inline-block;
+  padding:12px 22px;
+  border-radius:10px;
+  font-weight:600;
+  text-align:center;
+  transition:all .2s ease;
+  cursor:pointer;
 }
 
-.home-cta__form input,
-.home-cta__form textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 14px;
+/* ПРАЙМАРИ: поддержка .btn-primary, .btn--primary, а также submit */
+.home-cta .btn-primary,
+.home-cta .btn--primary,
+.home-cta .cta-form button[type="submit"],
+.home-cta .home-cta__form button[type="submit"]{
+  background:linear-gradient(90deg,#6f42ff 0%, #4dabff 100%);
+  color:#fff;
+  border:none;
+  box-shadow:0 6px 18px rgba(111,66,255,.25);
 }
 
-.home-cta__form button {
-  padding: 12px;
-  border-radius: 8px;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-  background: linear-gradient(90deg, #6f42ff 0%, #4dabff 100%);
-  color: #fff;
-  transition: all .2s ease;
+.home-cta .btn-primary:hover,
+.home-cta .btn--primary:hover,
+.home-cta .cta-form button[type="submit"]:hover,
+.home-cta .home-cta__form button[type="submit"]:hover{
+  filter:brightness(1.05);
+  transform:translateY(-1px);
 }
 
-.home-cta__form button:hover {
-  filter: brightness(1.05);
-  transform: translateY(-1px);
+/* ОБВОДКА: поддержка .btn-outline и .btn--ghost */
+.home-cta .btn-outline,
+.home-cta .btn--ghost{
+  border:2px solid #6f42ff;
+  color:#6f42ff;
+  background:transparent;
+}
+
+.home-cta .btn-outline:hover,
+.home-cta .btn--ghost:hover{
+  background:rgba(111,66,255,.08);
+}
+
+/* Примечание под формой */
+.home-cta .privacy-note{
+  font-size:12px;
+  color:#555;
+}
+
+/* Мелкая адаптация */
+@media (max-width: 720px){
+  .home-cta{ padding:24px; }
 }
