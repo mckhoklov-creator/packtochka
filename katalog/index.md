@@ -25,7 +25,7 @@ permalink: /katalog/
     </a>
     <p class="price">{{ p.price }} {{ p.unit }}</p>
     <p class="short">{{ p.short }}</p>
-    <button class="add-to-cart" data-sku="{{ p.sku }}" data-name="{{ p.name }}" data-price="{{ p.price }}">В корзину</button>
+    <button class="btn btn-gradient mt-2 add-to-cart" data-sku="{{ p.sku }}" data-name="{{ p.name }}" data-price="{{ p.price }}">В корзину</button>
   </div>
 {% endfor %}
 </div>
