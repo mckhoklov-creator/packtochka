@@ -6,7 +6,7 @@
   unit: ₽/шт
   short: Картонная коробка бурого цвета из гофрокартона Т23Б.
   images:
-  - /assets/img/demo/korobka-150x120x100.png
+  - /assets/img/korobka-150x120x100.png
   min_order: 100 шт
 - name: Коробка почтовая 300×200×200 мм
   category: korobki
