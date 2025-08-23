@@ -47,3 +47,13 @@
   font-size: 36px;
   margin-bottom: 15px;
 }
+
+.cats .cat,
+.cats .cat:visited,
+.cats .cat:hover,
+.card a,
+.card a:visited,
+.card a:hover {
+    color:#000;
+    text-decoration:none;
+}
