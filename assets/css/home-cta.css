@@ -1,108 +1,71 @@
-/* CTA блок на главной */
+/* === Home CTA (изолированные стили) === */
+.home-cta { margin: 26px 0 10px; }
 
-.home-cta {
-  margin: 26px 0 10px;
-  padding: 0;              /* убрали фон и отступы у секции */
-  background: transparent;
-  border: none;
-}
-
-.home-cta__wrap {
-  display: grid;
+.home-cta__wrap{
+  max-width:1200px;
+  margin:0 auto;
+  display:grid;
   grid-template-columns: 1.1fr 1fr;
-  gap: 22px;
-  align-items: center;
+  gap:22px;
+  align-items:center;
 
+  /* фон и рамка только у карточки */
   background: linear-gradient(135deg, #f7f9ff 0%, #eef2ff 100%);
   border: 1px solid #e6ebff;
   border-radius: 16px;
   padding: 22px;
 }
 
-.home-cta__text h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
+@media (max-width: 900px){
+  .home-cta__wrap{ grid-template-columns: 1fr; }
 }
 
-.home-cta__text p {
-  font-size: 1rem;
-  color: #333;
-  margin-bottom: 16px;
+.home-cta__copy h2{
+  margin:0 0 10px;
+  font-size:26px;
+}
+.home-cta__copy p{
+  margin:0 0 16px;
+  color:#4a5670;
 }
 
-.home-cta__buttons {
-  display: flex;
-  gap: 12px;
-}
+/* кнопки: не меняем глобальные .btn, только расстояние внутри блока */
+.home-cta .cta-buttons{ display:flex; gap:10px; flex-wrap:wrap; }
 
-.home-cta__buttons a {
-  display: inline-block;
-  padding: 10px 18px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.2s ease;
+/* форма: только внутри CTA */
+.home-cta .cta-form{
+  background:#fff;
+  border:1px solid #e9ecf4;
+  border-radius:16px;
+  padding:14px;
+  box-shadow:0 10px 28px rgba(0,0,0,.06);
 }
-
-.home-cta__buttons .btn-primary {
-  background: linear-gradient(135deg, #7a5cff, #7ecbff);
-  color: #fff;
+.home-cta .cta-form .row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:10px;
 }
-
-.home-cta__buttons .btn-primary:hover {
-  opacity: 0.9;
+@media (max-width:520px){
+  .home-cta .cta-form .row{ grid-template-columns:1fr; }
 }
-
-.home-cta__buttons .btn-secondary {
-  border: 1px solid #7a5cff;
-  color: #7a5cff;
-  background: #fff;
+.home-cta .cta-form input,
+.home-cta .cta-form textarea{
+  width:100%;
+  padding:10px 12px;
+  border:1px solid #dfe3ec;
+  border-radius:10px;
+  font:inherit;
 }
-
-.home-cta__buttons .btn-secondary:hover {
-  background: #f7f7ff;
+.home-cta .cta-form button.btn{
+  width:100%;
+  margin-top:8px;
 }
-
-.home-cta__form {
-  background: #fff;
-  border: 1px solid #e6ebff;
-  border-radius: 12px;
-  padding: 16px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+.home-cta .cta-form .agree{
+  display:block;
+  margin-top:6px;
+  color:#6b7896;
 }
-
-.home-cta__form form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.home-cta__form input,
-.home-cta__form textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 0.95rem;
-}
-
-.home-cta__form button {
-  background: linear-gradient(135deg, #7a5cff, #7ecbff);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 12px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.home-cta__form button:hover {
-  opacity: 0.9;
-}
-
-@media (max-width: 900px) {
-  .home-cta__wrap {
-    grid-template-columns: 1fr;
-  }
+.home-cta .cta-form .agree a{
+  color:#6f83ff; font-weight:700; text-decoration:none;
 }
