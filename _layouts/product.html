@@ -3,8 +3,8 @@ layout: default
 ---
 
 {% comment %}
-Подтягиваем картинку: сначала из front matter (page.images),
-если нет — ищем запись товара в _data/products.yml по slug и берём её images[0].
+Фото: сначала из front matter (page.images),
+если нет — поиск по slug в _data/products.yml.
 {% endcomment %}
 {% assign product_record = site.data.products | where: "slug", page.slug | first %}
 {% assign photo_src = nil %}
@@ -36,16 +36,20 @@ layout: default
       <img src="{{ site.baseurl }}{{ photo_src }}" alt="{{ page.name }}" style="width:100%;border-radius:10px;">
     {% endif %}
   </div>
+
   <div>
     <h1>{{ page.name }}</h1>
     <p style="color:#666">Артикул: {{ page.sku }}</p>
     <p style="font-size:1.2rem;color:#1a237e;font-weight:700">{{ page.price }} {{ page.unit }}</p>
     {% if page.min_qty %}<p>Минимальный заказ: {{ page.min_qty }}</p>{% endif %}
     <p>{{ page.short }}</p>
+
     <button class="btn btn-gradient add-to-cart"
             data-sku="{{ page.sku }}"
             data-name="{{ page.name }}"
-            data-price="{{ page.price }}">Добавить в корзину</button>
+            data-price="{{ page.price }}">
+      Добавить в корзину
+    </button>
 
     <div style="margin-top:20px;">
       <a href="{{ site.baseurl }}/katalog/{{ page.category }}/" style="margin-right:12px;">← Вернуться в категорию</a>
@@ -57,8 +61,7 @@ layout: default
 <section class="mt-5">
   <h2>С этим покупают</h2>
   <div class="grid">
-    {% assign related = site.data.products | where_exp: "item", "item.category != page.category" %}
-    {% assign related = related | sample: 4 %}
+    {% assign related = site.data.products | where_exp: "item", "item.category != page.category" | sample: 4 %}
     {% for p in related %}
       <div class="card">
         <a href="{{ site.baseurl }}/katalog/{{ p.category }}/{{ p.slug }}/">
@@ -66,7 +69,12 @@ layout: default
           <h3>{{ p.name }}</h3>
         </a>
         <p class="price">{{ p.price }} {{ p.unit }}</p>
-        <button class="btn btn-gradient mt-2 add-to-cart" data-sku="{{ p.sku }}" data-name="{{ p.name }}" data-price="{{ p.price }}">В корзину</button>
+        <button class="btn btn-gradient mt-2 add-to-cart"
+                data-sku="{{ p.sku }}"
+                data-name="{{ p.name }}"
+                data-price="{{ p.price }}">
+          В корзину
+        </button>
       </div>
     {% endfor %}
   </div>
