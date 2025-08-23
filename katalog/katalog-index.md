@@ -18,7 +18,7 @@ permalink: /katalog/
 
 <style>
   .cat-links{ display:flex; gap:18px; flex-wrap:wrap; margin:12px 0 22px; }
-  .cat-links a{ color:#6f83ff; font-weight:800; text-decoration:underline; }
+  .cat-links a{ color:#000; text-decoration:none; }
   .cat-links a:hover{ filter:brightness(0.9); }
 </style>
 
