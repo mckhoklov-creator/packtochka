@@ -47,3 +47,7 @@
   font-size: 36px;
   margin-bottom: 15px;
 }
+
+.cat-links { display:flex; gap:18px; flex-wrap:wrap; margin:12px 0 22px; }
+.cat-links a { color:#000; font-weight:800; text-decoration:none; }
+.cat-links a:hover { filter:brightness(0.9); }
