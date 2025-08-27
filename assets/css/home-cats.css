@@ -24,6 +24,12 @@
 }
 .home-section .cat:hover{ transform:translateY(-2px); box-shadow:0 14px 36px rgba(0,0,0,.14); }
 
+.home-section .cat,
+.home-section .cat:visited,
+.home-section .cat:hover {
+  color: #fff;
+}
+
 .home-section .cat .cat__img{
   padding:16px 16px 0;
   display:flex;align-items:center;justify-content:center;
