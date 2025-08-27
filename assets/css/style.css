@@ -57,10 +57,7 @@
 
 .cats .cat,
 .cats .cat:visited,
-.cats .cat:hover,
-.card a,
-.card a:visited,
-.card a:hover {
-    color:#000;
+.cats .cat:hover {
+    color:#fff;
     text-decoration:none;
 }
