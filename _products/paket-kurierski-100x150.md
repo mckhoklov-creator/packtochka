@@ -9,6 +9,6 @@ category: "pakety"
 slug: "paket-kurierski-100x150"
 short: "Белый пакет с клеевым клапаном 40мм, толщина 50 мкм."
 images:
-  - "/assets/img/paket-kurierski-100x150"
+  - "/assets/img/paket-kurierski-100x150.png"
 permalink: /katalog/pakety/paket-kurierski-100x150/
 ---
