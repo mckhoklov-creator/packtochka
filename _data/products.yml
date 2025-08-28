@@ -16,7 +16,7 @@
   unit: ₽/шт
   short: Прочная коробка для транспортировки товаров.
   images:
-  - /assets/images/demo/placeholder.jpg
+  - /assets/images/demo/placeholder.jpg 
   min_order: 100 шт
 - name: Коробка самосборная 250×250×100 мм
   category: korobki
