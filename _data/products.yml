@@ -38,15 +38,14 @@
   images:
   - /assets/img/paket-kurierski-100x150.png
   min_order: 100 шт
-- name: Пакет курьерский 350×450 мм
+- name: Пакет курьерский 150×210 мм
   category: pakety
-  slug: paket-350x450
-  sku: P350450
-  price: '6'
+  slug: paket-kurierski-150x210
+  price: '2'
   unit: ₽/шт
-  short: Серый пакет, повышенная прочность.
+  short: Белый пакет с клеевым клапаном 40мм, толщина 50 мкм.
   images:
-  - /assets/images/demo/placeholder.jpg
+  - /assets/img/paket-kurierski-150x210.png
   min_order: 100 шт
 - name: Пакет курьерский 450×550 мм
   category: pakety
