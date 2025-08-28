@@ -47,15 +47,14 @@
   images:
   - /assets/img/paket-kurierski-150x210.png
   min_order: 100 шт
-- name: Пакет курьерский 450×550 мм
+- name: Пакет курьерский 170x240 мм
   category: pakety
-  slug: paket-450x550
-  sku: P450550
-  price: '8'
+  slug: paket-kurierski-170x240
+  price: '2.2'
   unit: ₽/шт
-  short: Большой пакет для крупногабаритных товаров.
+  short: Белый пакет с клеевым клапаном 40мм, толщина 50 мкм.
   images:
-  - /assets/images/demo/placeholder.jpg
+  - /assets/img/paket-kurierski-170x240.png
   min_order: 100 шт
 - name: Скотч прозрачный 48 мм × 66 м
   category: skotch
