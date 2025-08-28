@@ -36,7 +36,7 @@
     const w = $('#cart-body'); if(!w) return;
     const a = load(); if(!a.length){ w.innerHTML = '<p>Корзина пуста.</p>'; return; }
     const rows = a.map(i=>`<div class="cart-item">
-        <div class="cart-item__name">${i.name}<br><small>${i.sku}</small></div>
+        <div class="cart-item__name">${i.name}</div>
         <div class="cart-qty">
           <button class="qty" data-sku="${i.sku}" data-d="-1">−</button>
           <span>${i.qty||1}</span>
