@@ -19,8 +19,8 @@ layout: default
 <nav aria-label="breadcrumb" style="margin:10px 0; font-size:.95rem;">
   <a href="{{ '/' | relative_url }}">Главная</a> ›
   <a href="{{ '/katalog/' | relative_url }}">Каталог</a> ›
-  <a href="{{ ('/katalog/' | append: page.category | append: '/') | relative_url }}">
-    {% case page.category %}
+  <a href="{{ '/katalog/' | append: category | append: '/' | relative_url }}">
+    {% case category %}
       {% when "korobki" %}Коробки
       {% when "pakety" %}Пакеты
       {% when "skotch" %}Скотч
@@ -53,7 +53,7 @@ layout: default
     </button>
 
       <div style="margin-top:20px;">
-        <a href="{{ ('/katalog/' | append: category | append: '/') | relative_url }}">← Вернуться в категорию</a>
+        <a href="{{ '/katalog/' | append: category | append: '/' | relative_url }}">← Вернуться в категорию</a>
         <a href="{{ '/katalog/' | relative_url }}">Каталог</a>
       </div>
     </div>
@@ -65,8 +65,8 @@ layout: default
     {% assign related = site.data.products | where_exp: "item", "item.category != page.category" | sample: 4 %}
     {% for p in related %}
       <div class="card">
-        <a href="{{ ('/katalog/' | append: p.category | append: '/' | append: p.slug | append: '/') | relative_url }}">
-          <img src="{{ (p.images | first) | relative_url }}" alt="{{ p.name }}">
+        <a href="{{ '/katalog/' | append: p.category | append: '/' | append: p.slug | append: '/' | relative_url }}">
+          <img src="{{ p.images | first | relative_url }}" alt="{{ p.name }}">
           <h3>{{ p.name }}</h3>
         </a>
         <p class="price">{{ p.price }} {{ p.unit }}</p>
