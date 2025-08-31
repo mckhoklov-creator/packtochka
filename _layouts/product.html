@@ -7,6 +7,7 @@ layout: default
 если нет — из _data/products.yml по slug.
 {% endcomment %}
 {% assign product_record = site.data.products | where: "slug", page.slug | first %}
+{% assign category = page.category | default: product_record.category %}
 {% assign photo_src = nil %}
 {% assign photo_src = page.images | first %}
 {% unless photo_src %}
@@ -51,12 +52,12 @@ layout: default
       Добавить в корзину
     </button>
 
-    <div style="margin-top:20px;">
-      <a href="{{ ('/katalog/' | append: page.category | append: '/') | relative_url }}" style="margin-right:12px;">← Вернуться в категорию</a>
-      <a href="{{ '/katalog/' | relative_url }}">Каталог</a>
+      <div style="margin-top:20px;">
+        <a href="{{ ('/katalog/' | append: category | append: '/') | relative_url }}">← Вернуться в категорию</a>
+        <a href="{{ '/katalog/' | relative_url }}">Каталог</a>
+      </div>
     </div>
-  </div>
-</article>
+  </article>
 
 <section class="mt-5">
   <h2>С этим покупают</h2>
