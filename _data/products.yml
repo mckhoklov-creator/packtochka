@@ -18,15 +18,14 @@
   images:
   - /assets/images/demo/placeholder.jpg 
   min_order: 100 шт
-- name: Коробка самосборная 250×250×100 мм
+- name: Коробка картонная 100х100х100 мм
   category: korobki
-  slug: korobka-250x250x100
-  sku: K250250100
-  price: '28'
+  slug: korobka-100x100x100
+  price: '9'
   unit: ₽/шт
-  short: Самосборная конструкция, удобная в хранении.
+  short: Картонная коробка бурого цвета из гофрокартона Т23Б.
   images:
-  - /assets/images/demo/placeholder.jpg
+  - /assets/img/korobka-100x100x100.png
   min_order: 100 шт
 - name: Пакет курьерский 100×150 мм
   category: pakety
