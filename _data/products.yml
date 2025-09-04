@@ -152,7 +152,7 @@
   unit: ₽/рулон
   short: Скрывает содержимое груза, повышенная прочность, втулка 500мм, первичка.
   images:
-  - /assets/img/streych-plenka-prozrachnaya-1-7-kg.png
+  - /assets/img/streych-plenka-chernaya-1-8-kg.png
   min_order: 6 рулонов
 - name: Стрейч-плёнка прозрачная 23 мкм, 500мм, 1.7кг
   category: plenka
