@@ -5,9 +5,9 @@ price: 480
 unit: "₽/рулон"
 min_qty: "6 рулонов"
 category: "plenka"
-slug: "steych-plenka-prozrachnaya-1-7-kg"
+slug: "streych-plenka-prozrachnaya-1-7-kg"
 short: "Повышенная прочность, втулка 500мм, первичка."
 images:
-  - "/assets/img/steych-plenka-prozrachnaya-1-7-kg.png"
-permalink: /katalog/plenka/steych-plenka-prozrachnaya-1-7-kg/
+  - "/assets/img/streych-plenka-prozrachnaya-1-7-kg.png"
+permalink: /katalog/plenka/streych-plenka-prozrachnaya-1-7-kg/
 ---
