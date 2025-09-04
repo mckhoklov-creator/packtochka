@@ -106,16 +106,15 @@
   images:
   - /assets/img/paket-kurierski-300x400.png
   min_order: 100 шт
-- name: Скотч прозрачный 48 мм × 66 м
+- name: Скотч упаковочный 50мм x 150м, прозрачный
   category: skotch
-  slug: skotch-proz-48x66
-  sku: S4866P
-  price: '45'
+  slug: skotch-prozrachny-150m-52mkm
+  price: '150'
   unit: ₽/рулон
-  short: Универсальная прозрачная клейкая лента.
+  short: Универсальный прочный скотч для упаковки коробок и посылок.
   images:
-  - /assets/images/demo/placeholder.jpg
-  min_order: 36 рулонов
+  - /assets/img/skotch-prozrachny-150m-52mkm.png
+  min_order: 6 рулонов
 - name: Скотч коричневый 48 мм × 66 м
   category: skotch
   slug: skotch-kor-48x66
