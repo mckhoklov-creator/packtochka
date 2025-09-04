@@ -4,7 +4,7 @@ price: 150
 unit: "₽/шт"
 min_qty: 6
 category: "skotch"
-slug: "sskotch-prozrachny-150m-52mkm"
+slug: "skotch-prozrachny-150m-52mkm"
 short: "Универсальный прочный скотч для упаковки коробок и посылок."
 specs:
   - "Ширина: 50мм"
