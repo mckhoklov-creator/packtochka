@@ -147,12 +147,21 @@
   min_order: 6 рулонов
 - name: Стрейч-плёнка чёрная 23 мкм, 500мм, 1.8кг
   category: plenka
-  slug: steych-plenka-chernaya-1-8-kg
+  slug: streych-plenka-chernaya-1-8-kg
   price: '480'
   unit: ₽/рулон
-  short: Скрывает содержимое груза, повышенная прочность.
+  short: Скрывает содержимое груза, повышенная прочность, втулка 500мм, первичка.
   images:
-  - /assets/img/steych-plenka-chernaya-1-8-kg.png
+  - /assets/img/streych-plenka-prozrachnaya-1-7-kg.png
+  min_order: 6 рулонов
+- name: Стрейч-плёнка прозрачная 23 мкм, 500мм, 1.7кг
+  category: plenka
+  slug: streych-plenka-prozrachnaya-1-7-kg
+  price: '480'
+  unit: ₽/рулон
+  short: Скрывает содержимое груза, повышенная прочность, втулка 500мм, первичка.
+  images:
+  - /assets/img/streych-plenka-prozrachnaya-1-7-kg.png
   min_order: 6 рулонов
 - name: Стрейч-плёнка машинная 23 мкм
   category: plenka
