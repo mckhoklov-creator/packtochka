@@ -1,0 +1,13 @@
+---
+layout: product
+name: "Коробка картонная 190x150x180 мм"
+price: 15
+unit: "₽/шт"
+min_qty: "100 шт"
+category: "korobki"
+slug: "korobka-190x150x180"
+short: "Картонная коробка бурого цвета четырехклапанная."
+images:
+  - "/assets/img/korobka-190x150x180.png"
+permalink: /katalog/korobki/korobka-190x150x180/
+---
