@@ -1,29 +1,27 @@
 - name: Коробка картонная 150×120×100 мм
   category: korobki
   slug: korobka-150x120x100
-  sku: k150120100
   price: '9.5'
   unit: ₽/шт
   short: Картонная коробка бурого цвета из гофрокартона Т23Б.
   images:
   - /assets/img/korobka-150x120x100.png
   min_order: 100 шт
-- name: Коробка почтовая 300×200×200 мм
+- name: Коробка почтовая 150×150×150 мм
   category: korobki
   slug: korobka-300x200x200
-  sku: K300200200
-  price: '35'
+  price: '20'
   unit: ₽/шт
-  short: Прочная коробка для транспортировки товаров.
+  short: Картонная коробка бурого цвета четырехклапанная.
   images:
-  - /assets/images/demo/placeholder.jpg 
+  - /assets/img/korobka-150x150x150.png 
   min_order: 100 шт
 - name: Коробка картонная 100х100х100 мм
   category: korobki
   slug: korobka-100x100x100
   price: '9'
   unit: ₽/шт
-  short: Картонная коробка бурого цвета из гофрокартона Т23Б.
+  short: Картонная коробка бурого цвета четырехклапанная.
   images:
   - /assets/img/korobka-100x100x100.png
   min_order: 100 шт
