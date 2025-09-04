@@ -145,15 +145,14 @@
   images:
   - /assets/images/demo/placeholder.jpg
   min_order: 6 рулонов
-- name: Стрейч-плёнка чёрная 20 мкм
+- name: Стрейч-плёнка чёрная 23 мкм, 500мм, 1.8кг
   category: plenka
-  slug: streych-chern-20
-  sku: SP20C
+  slug: steych-plenka-chernaya-1-8-kg
   price: '480'
   unit: ₽/рулон
   short: Скрывает содержимое груза, повышенная прочность.
   images:
-  - /assets/images/demo/placeholder.jpg
+  - /assets/img/steych-plenka-chernaya-1-8-kg.png
   min_order: 6 рулонов
 - name: Стрейч-плёнка машинная 23 мкм
   category: plenka
