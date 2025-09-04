@@ -1,7 +1,7 @@
 ---
 name: "Скотч упаковочный 50мм x 150м, прозрачный"
 price: 150
-unit: "₽/шт"
+unit: "₽/рулон"
 min_qty: 6
 category: "skotch"
 slug: "skotch-prozrachny-150m-52mkm"
