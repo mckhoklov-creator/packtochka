@@ -1,7 +1,7 @@
 title: "ПакТочка — упаковочные материалы"
 description: "Оптовая продажа упаковочных материалов: коробки, пакеты, пленка, скотч. Екатеринбург."
-url: "https://mckhoklov-creator.github.io"
-baseurl: "/packtochka"
+url: "https://packtochka.ru"
+baseurl: ""
 theme: minima
 
 collections:
