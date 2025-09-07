@@ -50,7 +50,7 @@
   unit: ₽/шт
   short: Картонная коробка бурого цвета четырехклапанная.
   images:
-  - /assets/img/korobka-250x125x150.png
+  - /assets/img/korobka-250x150x150.png
   min_order: 100 шт
 - name: Пакет курьерский 100x150 мм
   category: pakety
