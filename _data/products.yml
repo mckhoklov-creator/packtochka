@@ -79,7 +79,7 @@
   images:
   - /assets/img/paket-kurierski-170x240.png
   min_order: 100 шт
-- name: Пакет курьерский 190×240 мм
+- name: Пакет курьерский 190x240 мм
   category: pakety
   slug: paket-kurierski-190x240
   price: '2.5'
