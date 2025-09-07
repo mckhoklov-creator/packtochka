@@ -151,13 +151,12 @@
   images:
   - /assets/img/streych-plenka-prozrachnaya-1-7-kg.png
   min_order: 6 рулонов
-- name: Гофрорулон 1,05×20 м
+- name: Гофрорулон 2х-слойный 1050мм, 20м
   category: prochie
-  slug: gofrorulon-1.05x20
-  sku: GR10520
-  price: '600'
+  slug: gofrorulon-dvuhsloiny-1050mm-20m
+  price: '650'
   unit: ₽/рулон
-  short: Гофрокартон в рулоне для упаковки.
+  short: Гофрокартон в рулоне для упаковки. Двухслойный, 1050мм*20м.
   images:
-  - /assets/images/demo/placeholder.jpg
+  - /assets/img/gofrorulon-dvuhsloiny-1050mm-20m.png
   min_order: 1 рулон
