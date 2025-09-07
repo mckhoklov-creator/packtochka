@@ -61,7 +61,7 @@
   images:
   - /assets/img/paket-kurierski-100x150.png
   min_order: 100 шт
-- name: Пакет курьерский 150×210 мм
+- name: Пакет курьерский 150x210 мм
   category: pakety
   slug: paket-kurierski-150x210
   price: '2'
@@ -88,7 +88,7 @@
   images:
   - /assets/img/paket-kurierski-190x240.png
   min_order: 100 шт
-- name: Пакет курьерский 240×320 мм
+- name: Пакет курьерский 240x320 мм
   category: pakety
   slug: paket-kurierski-240x320
   price: '3.5'
@@ -97,7 +97,7 @@
   images:
   - /assets/img/paket-kurierski-240x320.png
   min_order: 100 шт
-- name: Пакет курьерский 300×400 мм
+- name: Пакет курьерский 300x400 мм
   category: pakety
   slug: paket-kurierski-300x400
   price: '5'
@@ -115,7 +115,7 @@
   images:
   - /assets/img/paket-kurierski-400x500.png
   min_order: 100 шт
-- name: Пакет курьерский 400×600 мм
+- name: Пакет курьерский 400x600 мм
   category: pakety
   slug: paket-kurierski-400x600
   price: '8.5'
