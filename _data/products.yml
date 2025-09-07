@@ -133,36 +133,6 @@
   images:
   - /assets/img/skotch-prozrachny-150m-52mkm.png
   min_order: 6 рулонов
-- name: Скотч коричневый 48 мм × 66 м
-  category: skotch
-  slug: skotch-kor-48x66
-  sku: S4866K
-  price: '45'
-  unit: ₽/рулон
-  short: Клейкая лента для коробок бурого цвета.
-  images:
-  - /assets/images/demo/placeholder.jpg
-  min_order: 36 рулонов
-- name: Скотч с логотипом на заказ
-  category: skotch
-  slug: skotch-logo
-  sku: SLOGO
-  price: от 70
-  unit: ₽/рулон
-  short: Лента с печатью логотипа клиента.
-  images:
-  - /assets/images/demo/placeholder.jpg
-  min_order: 36 рулонов
-- name: Стрейч-плёнка прозрачная 17 мкм
-  category: plenka
-  slug: streych-proz-17
-  sku: SP17
-  price: '450'
-  unit: ₽/рулон
-  short: Для ручной упаковки грузов.
-  images:
-  - /assets/images/demo/placeholder.jpg
-  min_order: 6 рулонов
 - name: Стрейч-плёнка чёрная 23 мкм, 500мм, 1.8кг
   category: plenka
   slug: streych-plenka-chernaya-1-8-kg
@@ -181,26 +151,6 @@
   images:
   - /assets/img/streych-plenka-prozrachnaya-1-7-kg.png
   min_order: 6 рулонов
-- name: Стрейч-плёнка машинная 23 мкм
-  category: plenka
-  slug: streych-mash-23
-  sku: SP23M
-  price: '500'
-  unit: ₽/рулон
-  short: Для автоматической обмотки паллет.
-  images:
-  - /assets/images/demo/placeholder.jpg
-  min_order: 6 рулонов
-- name: Воздушно-пузырчатая плёнка 1,2×100 м
-  category: prochie
-  slug: puzyrka-1.2x100
-  sku: BP120100
-  price: '1800'
-  unit: ₽/рулон
-  short: Двухслойная, диаметр пузырька 10 мм.
-  images:
-  - /assets/images/demo/placeholder.jpg
-  min_order: 1 рулон
 - name: Гофрорулон 1,05×20 м
   category: prochie
   slug: gofrorulon-1.05x20
@@ -211,13 +161,3 @@
   images:
   - /assets/images/demo/placeholder.jpg
   min_order: 1 рулон
-- name: БОПП пакет 200×300 мм
-  category: prochie
-  slug: bopp-200x300
-  sku: B200300
-  price: '2.5'
-  unit: ₽/шт
-  short: Прозрачный пакет для мелких товаров.
-  images:
-  - /assets/images/demo/placeholder.jpg
-  min_order: 100 шт
