@@ -106,7 +106,7 @@
   images:
   - /assets/img/paket-kurierski-300x400.png
   min_order: 100 шт
-- name: Пакет курьерский 400×500 мм
+- name: Пакет курьерский 400x500 мм
   category: pakety
   slug: paket-kurierski-400x500
   price: '7.5'
