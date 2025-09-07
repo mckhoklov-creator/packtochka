@@ -9,5 +9,5 @@ slug: "paket-kurierski-240x320"
 short: "Белый пакет с клеевым клапаном 40мм, толщина 50 мкм."
 images:
   - "/assets/img/paket-kurierski-240x320.png"
-permalink: /katalog/pakety/paket-kurierski-240x320
+permalink: /katalog/pakety/paket-kurierski-240x320/
 ---
