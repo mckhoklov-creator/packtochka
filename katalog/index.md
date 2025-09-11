@@ -9,7 +9,7 @@ permalink: /katalog/
 
 <nav class="cats" style="grid-template-columns:repeat(5,1fr);gap:12px;margin:12px 0 20px 0">
   <a class="cat" href="{{ site.baseurl }}/katalog/korobki/"><div class="cat__img"></div><div class="cat__cap">Коробки</div></a>
-  <a class="cat" href="{{ site.baseurl }}/katalog/pakety/"><div class="cat__img"></div><div class="cat__cap">Пакеты</div></a>
+  <a class="cat" href="{{ site.baseurl }}/katalog/pakety/"><div class="cat__img"></div><div class="cat__cap">Пакеты курьерские</div></a>
   <a class="cat" href="{{ site.baseurl }}/katalog/skotch/"><div class="cat__img"></div><div class="cat__cap">Скотч</div></a>
   <a class="cat" href="{{ site.baseurl }}/katalog/plenka/"><div class="cat__img"></div><div class="cat__cap">Стрейч‑пленка</div></a>
   <a class="cat" href="{{ site.baseurl }}/katalog/prochie/"><div class="cat__img"></div><div class="cat__cap">Прочее</div></a>
