@@ -1,13 +1,13 @@
 ---
 layout: default
-title: "Плёнка"
+title: "Стрейч-пленка"
 permalink: /katalog/plenka/
 ---
 
 <nav aria-label="breadcrumb" style="margin:10px 0; font-size:.95rem;">
   <a href="{{ site.baseurl }}/">Главная</a> ›
   <a href="{{ site.baseurl }}/katalog/">Каталог</a> ›
-  <span aria-current="page">Плёнка</span>
+  <span aria-current="page">Стрейч-пленка</span>
 </nav>
 
 <h1>Плёнка</h1>
