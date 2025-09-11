@@ -1,13 +1,13 @@
 ---
 layout: default
-title: "Пакеты"
+title: "Пакеты курьерские"
 permalink: /katalog/pakety/
 ---
 
 <nav aria-label="breadcrumb" style="margin:10px 0; font-size:.95rem;">
   <a href="{{ site.baseurl }}/">Главная</a> ›
   <a href="{{ site.baseurl }}/katalog/">Каталог</a> ›
-  <span aria-current="page">Пакеты</span>
+  <span aria-current="page">Пакеты курьерские</span>
 </nav>
 
 <h1>Пакеты</h1>
