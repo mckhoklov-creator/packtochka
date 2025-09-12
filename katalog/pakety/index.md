@@ -10,7 +10,7 @@ permalink: /katalog/pakety/
   <span aria-current="page">Пакеты курьерские</span>
 </nav>
 
-<h1>Пакеты</h1>
+<h1>Пакеты курьерские</h1>
 <p><a href="{{ site.baseurl }}/katalog/">← Вернуться в каталог</a></p>
 
 <div class="grid">
