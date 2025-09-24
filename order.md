@@ -4,8 +4,10 @@ title: "Оформление заказа"
 description: "Отправьте заказ менеджеру. Мы свяжемся и выставим счёт."
 permalink: /order/
 ---
+
 <h1>Оформление заказа</h1>
-<form id="order-form" method="POST" action="https://formspree.io/f/{{ site.formspree_form_id }}">
+
+<form id="order-form" method="POST" action="https://formspree.io/f/{{ site.formspree_form_id | strip }}">
   <div class="mb-3">
     <label class="form-label">Ваше имя</label>
     <input class="form-control" type="text" name="name" required>
@@ -30,7 +32,10 @@ permalink: /order/
     </select>
   </div>
 
+  <!-- JSON корзины -->
   <input type="hidden" name="cart_json" id="cart_json">
+
+  <!-- редирект на страницу спасибо -->
   <input type="hidden" name="_redirect" value="{{ site.url }}{{ site.thankyou_url | default: '/spasibo/' }}">
 
   <div class="mb-3">
@@ -40,9 +45,32 @@ permalink: /order/
 
   <button type="submit" class="btn btn-gradient">Отправить заказ</button>
 </form>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+  // Проброс корзины
   const cart = JSON.parse(localStorage.getItem('cart') || '[]');
   document.getElementById('cart_json').value = JSON.stringify(cart);
+
+  // Надёжный редирект после успешной отправки
+  const form = document.getElementById('order-form');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const redirectTo = "{{ site.url }}{{ site.thankyou_url | default: '/spasibo/' }}";
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
+      if (res.ok) {
+        window.location.href = redirectTo;
+      } else {
+        window.location.href = 'https://formspree.io/thanks';
+      }
+    } catch(err) {
+      window.location.href = 'https://formspree.io/thanks';
+    }
+  });
 });
 </script>
