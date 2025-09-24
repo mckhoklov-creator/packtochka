@@ -160,3 +160,12 @@
   images:
   - /assets/img/gofrorulon-dvuhsloiny-1050mm-20m.png
   min_order: 1 рулон
+- name: Пленка пупырчатая 1,5х100м 2х-слойная
+  category: prochie
+  slug: pupirchataya-plenka-1-5x100m
+  price: '1700'
+  unit: ₽/рулон
+  short: Плёнка пузырчатая 1,5×100 м, 55 г/м², двухслойная. Выгодно для магазинов и маркетплейсов.
+  images:
+  - /assets/img/pupirchataya-plenka-1-5x100m.png
+  min_order: 1 рулон
