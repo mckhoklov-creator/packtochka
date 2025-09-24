@@ -5,7 +5,7 @@ description: "Отправьте заказ менеджеру. Мы свяже�
 permalink: /order/
 ---
 <h1>Оформление заказа</h1>
-<form id="order-form" method="POST" action="https://formspree.io/f/mzzvywbq">
+<form id="order-form" method="POST" action="https://formspree.io/f/{{ site.formspree_form_id }}">
   <div class="mb-3">
     <label class="form-label">Ваше имя</label>
     <input class="form-control" type="text" name="name" required>
@@ -30,16 +30,13 @@ permalink: /order/
     </select>
   </div>
 
-  <!-- тут твой JSON-корзины -->
   <input type="hidden" name="cart_json" id="cart_json">
+  <input type="hidden" name="_redirect" value="{{ site.url }}{{ site.thankyou_url }}">
 
   <div class="mb-3">
     <label class="form-label">Комментарий</label>
     <textarea class="form-control" name="comment" placeholder="Удобное время звонка, особенности доставки и т.д."></textarea>
   </div>
-
-  <!-- 🔥 вот сюда добавляем редирект -->
-  <input type="hidden" name="_redirect" value="https://packtochka.ru/spasibo/">
 
   <button type="submit" class="btn btn-gradient">Отправить заказ</button>
 </form>
