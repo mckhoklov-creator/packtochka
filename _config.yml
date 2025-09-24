@@ -23,3 +23,6 @@ plugins:
 sass:
   style: compressed
 markdown: kramdown
+
+formspree_form_id: mzzvybwq     # <-- замени на свой реальный ID из Formspree (после /f/)
+thankyou_url: /spasibo/ 
