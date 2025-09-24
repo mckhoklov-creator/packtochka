@@ -31,7 +31,7 @@ permalink: /order/
   </div>
 
   <input type="hidden" name="cart_json" id="cart_json">
-  <input type="hidden" name="_redirect" value="{{ site.url }}{{ site.thankyou_url }}">
+  <input type="hidden" name="_redirect" value="{{ site.url }}{{ site.thankyou_url | default: '/spasibo/' }}">
 
   <div class="mb-3">
     <label class="form-label">Комментарий</label>
