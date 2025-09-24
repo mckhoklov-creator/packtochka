@@ -5,7 +5,7 @@ description: "Отправьте заказ менеджеру. Мы свяже�
 permalink: /order/
 ---
 <h1>Оформление заказа</h1>
-<form id="order-form" method="POST" action="https://formspree.io/f/XXXXXXXX">
+<form id="order-form" method="POST" action="https://formspree.io/f/mzzvybwq">
   <div class="mb-3"><label class="form-label">Ваше имя</label><input class="form-control" type="text" name="name" required></div>
   <div class="mb-3"><label class="form-label">Телефон</label><input class="form-control" type="tel" name="phone" required></div>
   <div class="mb-3"><label class="form-label">Email</label><input class="form-control" type="email" name="email" required></div>
