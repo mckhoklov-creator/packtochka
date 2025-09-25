@@ -67,15 +67,10 @@ permalink: /order/
         method: 'POST',
         headers: { 'Accept': 'application/json' },
         body: new FormData(form)
-      }).then(function (res) {
-        if (res.ok) {
-          window.location.href = redirectTo;
-        } else {
-          // fallback на стандартную страницу Formspree
-          window.location.href = 'https://formspree.io/thanks';
-        }
+      }).then(function () {
+        window.location.href = redirectTo;
       }).catch(function () {
-        window.location.href = 'https://formspree.io/thanks';
+        window.location.href = redirectTo;
       });
     }, { once: true });
   }
