@@ -35,7 +35,7 @@ permalink: /order/
   <!-- JSON корзины -->
   <input type="hidden" name="cart_json" id="cart_json">
 
-  <!-- редирект на страницу спасибо -->
+  <!-- Нативный редирект (fallback). На Free-плане может игнорироваться, поэтому ниже ещё JS-редирект -->
   <input type="hidden" name="_redirect" value="{{ site.url }}{{ site.thankyou_url | default: '/spasibo/' }}">
 
   <div class="mb-3">
@@ -47,30 +47,44 @@ permalink: /order/
 </form>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  // Проброс корзины
-  const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-  document.getElementById('cart_json').value = JSON.stringify(cart);
+(function () {
+  function initOrderForm() {
+    var form = document.getElementById('order-form');
+    if (!form) return;
 
-  // Надёжный редирект после успешной отправки
-  const form = document.getElementById('order-form');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const redirectTo = "{{ site.url }}{{ site.thankyou_url | default: '/spasibo/' }}";
+    // Проброс корзины
     try {
-      const res = await fetch(form.action, {
+      var cartField = document.getElementById('cart_json');
+      var cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      if (cartField) cartField.value = JSON.stringify(cart);
+    } catch (e) { /* no-op */ }
+
+    // Гарантированный редирект через JS (работает на любом тарифе)
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var redirectTo = "{{ site.url }}{{ site.thankyou_url | default: '/spasibo/' }}";
+      fetch(form.action, {
         method: 'POST',
         headers: { 'Accept': 'application/json' },
         body: new FormData(form)
-      });
-      if (res.ok) {
-        window.location.href = redirectTo;
-      } else {
+      }).then(function (res) {
+        if (res.ok) {
+          window.location.href = redirectTo;
+        } else {
+          // fallback на стандартную страницу Formspree
+          window.location.href = 'https://formspree.io/thanks';
+        }
+      }).catch(function () {
         window.location.href = 'https://formspree.io/thanks';
-      }
-    } catch(err) {
-      window.location.href = 'https://formspree.io/thanks';
-    }
-  });
-});
+      });
+    }, { once: true });
+  }
+
+  // Инициализируем и до, и после загрузки DOM — чтобы не промахнуться по событию
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initOrderForm);
+  } else {
+    initOrderForm();
+  }
+})();
 </script>
