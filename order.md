@@ -60,6 +60,20 @@ permalink: /order/
     } catch (e) { /* no-op */ }
 
     // Гарантированный редирект через JS (работает на любом тарифе)
+    function clearCart() {
+      try {
+        localStorage.removeItem('cart');
+        var countEl = document.getElementById('cart-count');
+        if (countEl) countEl.textContent = '0';
+        var cartLink = document.getElementById('open-cart');
+        cartLink = cartLink ? cartLink.closest('.cart-link') : document.querySelector('.cart-link');
+        if (cartLink) {
+          cartLink.classList.remove('has-items');
+          cartLink.classList.remove('bump');
+        }
+      } catch (err) { /* no-op */ }
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var redirectTo = "{{ site.url }}{{ site.thankyou_url | default: '/spasibo/' }}";
@@ -68,8 +82,10 @@ permalink: /order/
         headers: { 'Accept': 'application/json' },
         body: new FormData(form)
       }).then(function () {
+        clearCart();
         window.location.href = redirectTo;
       }).catch(function () {
+        clearCart();
         window.location.href = redirectTo;
       });
     }, { once: true });
