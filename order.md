@@ -7,12 +7,12 @@ permalink: /order/
 
 <h1>Оформление заказа</h1>
 
-<p class="lead-muted">Оставьте контакты и список позиций — мы свяжемся, уточним детали и выставим счёт.</p>
+<p class="lead-muted">Отправьте заявку — мы свяжемся, уточним детали и выставим счёт.</p>
 
 <div class="form-card">
   <script src="https://forms.yandex.ru/_static/embed.js"></script>
   <iframe
-    src="https://forms.yandex.ru/cloud/68f3c6a10d4688752518f4a0/?iframe=1"
+    src="https://forms.yandex.ru/cloud/68f3c6a1d04688752518f4a0?iframe=1"
     name="ya-form-68f3c6a10d4688752518f4a0"
     frameborder="0"
     allow="clipboard-write; fullscreen"
