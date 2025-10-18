@@ -11,7 +11,7 @@ permalink: /order/
   <!-- Яндекс.Форма -->
   <script src="https://forms.yandex.ru/_static/embed.js"></script>
   <iframe
-    src="https://forms.yandex.ru/cloud/68f3c6a10d4688752518f4a0/?iframe=1"
+    src="https://forms.yandex.ru/cloud/68f3c6a1d04688752518f4a0?iframe=1"
     frameborder="0"
     name="ya-form-68f3c6a10d4688752518f4a0"
     width="100%"
