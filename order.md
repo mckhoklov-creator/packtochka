@@ -5,11 +5,13 @@ description: "Заполните форму для оформления зака
 permalink: /order/
 ---
 
-<h1>Оформление заказа</h1>
-
-<p class="lead-muted">Отправьте заявку — мы свяжемся, уточним детали и выставим счёт.</p>
+<div class="order-header">
+  <h1>Оформление заказа</h1>
+  <p class="lead-muted">Отправьте заявку — мы свяжемся, уточним детали и выставим счёт.</p>
+</div>
 
 <div class="form-card">
+  <!-- Яндекс.Форма -->
   <script src="https://forms.yandex.ru/_static/embed.js"></script>
   <iframe
     src="https://forms.yandex.ru/cloud/68f3c6a1d04688752518f4a0?iframe=1"
@@ -21,41 +23,53 @@ permalink: /order/
 </div>
 
 <style>
-  .lead-muted{
-    margin: 6px 0 18px;
-    color:#6b7280;
-    font-size:15px;
+  /* Центровка заголовка и подзаголовка */
+  .order-header {
+    text-align: center;
+    margin: 10px 0 30px;
   }
 
-  /* Карточка-обёртка под стиль сайта */
-  .form-card{
+  .order-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .lead-muted {
+    color: #6b7280;
+    font-size: 15px;
+    margin: 0;
+  }
+
+  /* Карточка под стиль сайта */
+  .form-card {
     max-width: 900px;
     margin: 0 auto 48px;
     padding: 18px;
     background: #fff;
     border: 1px solid #e8e8f0;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(20,20,43,.06);
+    box-shadow: 0 10px 30px rgba(20, 20, 43, 0.06);
   }
 
-  /* Сам iframe делаем адаптивным */
-  .form-card iframe{
-    display:block;
+  .form-card iframe {
+    display: block;
     width: 100%;
-    min-height: 900px;     /* достаточно для длинной формы */
-    height: 85vh;          /* адаптивно к экрану */
-    border: 0;             /* граница есть у карточки, не у iframe */
-    border-radius: 14px;   /* мягко скругляем углы содержимого */
+    min-height: 900px;
+    height: 85vh;
+    border: 0;
+    border-radius: 14px;
     background: #fff;
   }
 
-  @media (max-width: 640px){
-    .form-card{
+  @media (max-width: 640px) {
+    .form-card {
       padding: 12px;
       border-radius: 16px;
       margin-bottom: 36px;
     }
-    .form-card iframe{
+
+    .form-card iframe {
       min-height: 1000px;
       height: 92vh;
       border-radius: 12px;
