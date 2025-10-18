@@ -145,7 +145,7 @@
 - name: Стрейч-плёнка прозрачная 23 мкм, 500мм, 1.7кг
   category: plenka
   slug: streych-plenka-prozrachnaya-1-7-kg
-  price: '480'
+  price: '380'
   unit: ₽/рулон
   short: Скрывает содержимое груза, повышенная прочность, втулка 500мм, первичка.
   images:
