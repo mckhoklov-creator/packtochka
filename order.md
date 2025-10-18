@@ -1,101 +1,59 @@
 ---
 layout: default
-title: "Оформление заказа"
-description: "Отправьте заказ менеджеру. Мы свяжемся и выставим счёт."
+title: "Оформление заказа — упаковочные материалы | ПакТочка"
+description: "Заполните форму для оформления заказа. Свяжемся, уточним детали и выставим счёт. Самовывоз в Екатеринбурге, доставка по всей России."
 permalink: /order/
 ---
 
 <h1>Оформление заказа</h1>
 
-<form id="order-form" method="POST" action="https://formspree.io/f/{{ site.formspree_form_id | strip }}">
-  <div class="mb-3">
-    <label class="form-label">Ваше имя</label>
-    <input class="form-control" type="text" name="name" required>
-  </div>
+<div class="ya-form-wrap">
+  <!-- Яндекс.Форма -->
+  <script src="https://forms.yandex.ru/_static/embed.js"></script>
+  <iframe
+    src="https://forms.yandex.ru/cloud/68f3c6a10d4688752518f4a0/?iframe=1"
+    name="ya-form-68f3c6a10d4688752518f4a0"
+    frameborder="0"
+    allow="clipboard-write; fullscreen"
+    title="Форма оформления заказа"
+  ></iframe>
 
-  <div class="mb-3">
-    <label class="form-label">Телефон</label>
-    <input class="form-control" type="tel" name="phone" required>
-  </div>
+  <noscript>
+    <p>Чтобы отправить форму, включите JavaScript или перейдите по ссылке:
+      <a href="https://forms.yandex.ru/cloud/68f3c6a10d4688752518f4a0/" target="_blank" rel="noopener">Открыть форму в новом окне</a>
+    </p>
+  </noscript>
+</div>
 
-  <div class="mb-3">
-    <label class="form-label">Email</label>
-    <input class="form-control" type="email" name="email" required>
-  </div>
+<style>
+  /* Контейнер формы — центрируем, ограничиваем ширину */
+  .ya-form-wrap {
+    max-width: 880px;
+    margin: 12px auto 40px;
+    padding: 0;
+  }
 
-  <div class="mb-3">
-    <label class="form-label">Статус</label>
-    <select class="form-select" name="customer_type" required>
-      <option value="fiz">Физическое лицо</option>
-      <option value="ip">ИП</option>
-      <option value="ooo">ООО</option>
-    </select>
-  </div>
+  /* Сам iframe — адаптивная высота + стиль под сайт */
+  .ya-form-wrap iframe {
+    width: 100%;
+    min-height: 760px;          /* для длинных форм */
+    height: 85vh;               /* адаптивно к высоте экрана */
+    border: 1px solid #e8e8f0;
+    border-radius: 16px;
+    box-shadow: 0 8px 26px rgba(20,20,43,0.06);
+    background: #fff;
+  }
 
-  <!-- JSON корзины -->
-  <input type="hidden" name="cart_json" id="cart_json">
-
-  <!-- Нативный редирект (fallback). На Free-плане может игнорироваться, поэтому ниже ещё JS-редирект -->
-  <input type="hidden" name="_redirect" value="{{ site.url }}{{ site.thankyou_url | default: '/spasibo/' }}">
-
-  <div class="mb-3">
-    <label class="form-label">Комментарий</label>
-    <textarea class="form-control" name="comment" placeholder="Удобное время звонка, особенности доставки и т.д."></textarea>
-  </div>
-
-  <button type="submit" class="btn btn-gradient">Отправить заказ</button>
-</form>
-
-<script>
-(function () {
-  function initOrderForm() {
-    var form = document.getElementById('order-form');
-    if (!form) return;
-
-    // Проброс корзины
-    try {
-      var cartField = document.getElementById('cart_json');
-      var cart = JSON.parse(localStorage.getItem('cart') || '[]');
-      if (cartField) cartField.value = JSON.stringify(cart);
-    } catch (e) { /* no-op */ }
-
-    // Гарантированный редирект через JS (работает на любом тарифе)
-    function clearCart() {
-      try {
-        localStorage.removeItem('cart');
-        var countEl = document.getElementById('cart-count');
-        if (countEl) countEl.textContent = '0';
-        var cartLink = document.getElementById('open-cart');
-        cartLink = cartLink ? cartLink.closest('.cart-link') : document.querySelector('.cart-link');
-        if (cartLink) {
-          cartLink.classList.remove('has-items');
-          cartLink.classList.remove('bump');
-        }
-      } catch (err) { /* no-op */ }
+  /* На мобильных — чуть меньше минимальной высоты */
+  @media (max-width: 640px) {
+    .ya-form-wrap {
+      margin: 6px auto 28px;
+      padding: 0 8px;
     }
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var redirectTo = "{{ site.url }}{{ site.thankyou_url | default: '/spasibo/' }}";
-      fetch(form.action, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new FormData(form)
-      }).then(function () {
-        clearCart();
-        window.location.href = redirectTo;
-      }).catch(function () {
-        clearCart();
-        window.location.href = redirectTo;
-      });
-    }, { once: true });
+    .ya-form-wrap iframe {
+      min-height: 900px;
+      height: 92vh;
+      border-radius: 14px;
+    }
   }
-
-  // Инициализируем и до, и после загрузки DOM — чтобы не промахнуться по событию
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initOrderForm);
-  } else {
-    initOrderForm();
-  }
-})();
-</script>
+</style>
