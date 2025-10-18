@@ -7,23 +7,58 @@ permalink: /order/
 
 <h1>Оформление заказа</h1>
 
-<div class="ya-form-wrap">
-  <!-- Яндекс.Форма -->
+<p class="lead-muted">Оставьте контакты и список позиций — мы свяжемся, уточним детали и выставим счёт.</p>
+
+<div class="form-card">
   <script src="https://forms.yandex.ru/_static/embed.js"></script>
   <iframe
-    src="https://forms.yandex.ru/cloud/68f3c6a1d04688752518f4a0?iframe=1"
-    frameborder="0"
+    src="https://forms.yandex.ru/cloud/68f3c6a10d4688752518f4a0/?iframe=1"
     name="ya-form-68f3c6a10d4688752518f4a0"
-    width="100%"
-    height="750"
-    style="border-radius:12px; border:1px solid #ccc; box-shadow:0 4px 20px rgba(0,0,0,0.06);">
-  </iframe>
+    frameborder="0"
+    allow="clipboard-write; fullscreen"
+    title="Форма оформления заказа"
+  ></iframe>
 </div>
 
 <style>
-  .ya-form-wrap {
-    max-width: 880px;
-    margin: 20px auto 50px;
-    padding: 0 10px;
+  .lead-muted{
+    margin: 6px 0 18px;
+    color:#6b7280;
+    font-size:15px;
+  }
+
+  /* Карточка-обёртка под стиль сайта */
+  .form-card{
+    max-width: 900px;
+    margin: 0 auto 48px;
+    padding: 18px;
+    background: #fff;
+    border: 1px solid #e8e8f0;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(20,20,43,.06);
+  }
+
+  /* Сам iframe делаем адаптивным */
+  .form-card iframe{
+    display:block;
+    width: 100%;
+    min-height: 900px;     /* достаточно для длинной формы */
+    height: 85vh;          /* адаптивно к экрану */
+    border: 0;             /* граница есть у карточки, не у iframe */
+    border-radius: 14px;   /* мягко скругляем углы содержимого */
+    background: #fff;
+  }
+
+  @media (max-width: 640px){
+    .form-card{
+      padding: 12px;
+      border-radius: 16px;
+      margin-bottom: 36px;
+    }
+    .form-card iframe{
+      min-height: 1000px;
+      height: 92vh;
+      border-radius: 12px;
+    }
   }
 </style>
