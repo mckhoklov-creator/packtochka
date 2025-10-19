@@ -10,8 +10,7 @@ permalink: /order/
   <p class="lead-muted">Заполните форму — менеджер свяжется с вами в ближайшее время.</p>
 </div>
 
-<form action="https://formcarry.com/s/N7tSL3Gk8ZW" method="POST" class="formcarry-form" novalidate>
-  <!-- Редирект после успешной отправки -->
+<form action="https://formcarry.com/s/N7tSL3GkBZW" method="POST" class="formcarry-form" novalidate>
   <input type="hidden" name="_redirect" value="https://packtochka.ru/spasibo/">
 
   <label>Ваше имя *</label>
@@ -25,7 +24,6 @@ permalink: /order/
     placeholder="+7 (___) ___-__-__"
     inputmode="tel"
     autocomplete="tel"
-    pattern="\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}"
     required>
 
   <label>Email *</label>
@@ -44,44 +42,46 @@ permalink: /order/
   <button type="submit">Отправить заявку</button>
 </form>
 
-<!-- Маска телефона: vanilla Inputmask + JS-фолбэк -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.8/inputmask.min.js"></script>
+<!-- улучшенная мягкая маска телефона -->
 <script>
-  (function () {
-    var phoneInput = document.getElementById('phone');
-    if (!phoneInput) return;
+(function () {
+  const input = document.getElementById('phone');
+  if (!input) return;
 
-    // Основная маска (Inputmask без jQuery)
-    if (window.Inputmask) {
-      new Inputmask("+7 (999) 999-99-99").mask(phoneInput);
-    }
+  const pattern = '+7 (___) ___-__-__';
 
-    // Фолбэк, если CDN не загрузился
-    phoneInput.addEventListener('input', function () {
-      if (window.Inputmask) return; // маска уже есть
-      var v = this.value.replace(/\D/g, '');
+  // при вводе
+  input.addEventListener('input', onInput);
+  // при фокусе
+  input.addEventListener('focus', onInput);
+  // при потере фокуса очищаем, если короткий
+  input.addEventListener('blur', onBlur);
 
-      // Нормализуем под +7
-      if (v.startsWith('8')) v = '7' + v.slice(1);
-      if (!v.startsWith('7')) v = '7' + v;
-      v = v.slice(0, 11);
-
-      var out = '+7';
-      if (v.length > 1) out += ' (' + v.slice(1, 4);
-      if (v.length >= 4) out += ') ' + v.slice(4, 7);
-      if (v.length >= 7) out += '-' + v.slice(7, 9);
-      if (v.length >= 9) out += '-' + v.slice(9, 11);
-      this.value = out;
+  function onInput(e) {
+    const value = input.value.replace(/\D/g, '');
+    let i = 0;
+    input.value = pattern.replace(/[_\d]/g, function (a) {
+      return i < value.length ? value.charAt(i++) : a;
     });
+  }
 
-    // Валидация по паттерну (подсветка)
-    document.querySelector('.formcarry-form').addEventListener('submit', function (e) {
-      if (!phoneInput.checkValidity()) {
-        phoneInput.reportValidity();
+  function onBlur(e) {
+    const value = input.value.replace(/\D/g, '');
+    if (value.length < 11) input.value = '';
+  }
+
+  // позволяем стирать без зависания
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Backspace' && !/\d/.test(input.value[input.selectionStart - 1])) {
+      const pos = input.selectionStart;
+      while (pos > 0 && !/\d/.test(input.value[pos - 1])) {
+        input.setSelectionRange(pos - 1, pos - 1);
         e.preventDefault();
+        break;
       }
-    });
-  })();
+    }
+  });
+})();
 </script>
 
 <style>
@@ -131,7 +131,6 @@ permalink: /order/
     box-shadow: 0 0 0 2px rgba(123,97,255,0.15);
   }
 
-  /* Блок статуса */
   .status-group {
     border: none;
     margin-top: 8px;
@@ -157,10 +156,10 @@ permalink: /order/
   }
   .status-group input[type="radio"] {
     accent-color: #7B61FF;
-    width: 16px; height: 16px;
+    width: 16px;
+    height: 16px;
   }
 
-  /* Кнопка отправки */
   .formcarry-form button {
     margin-top: 10px;
     padding: 12px 16px;
@@ -174,9 +173,14 @@ permalink: /order/
     box-shadow: 0 4px 20px rgba(123,97,255,0.3);
     transition: opacity 0.2s;
   }
-  .formcarry-form button:hover { opacity: 0.9; }
+  .formcarry-form button:hover {
+    opacity: 0.9;
+  }
 
   @media (max-width: 640px) {
-    .formcarry-form { margin: 0 10px 40px; padding: 20px; }
+    .formcarry-form {
+      margin: 0 10px 40px;
+      padding: 20px;
+    }
   }
 </style>
