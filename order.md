@@ -10,10 +10,10 @@ permalink: /order/
   <p class="lead-muted">Заполните форму — менеджер свяжется с вами в ближайшее время.</p>
 </div>
 
-<form action="https://formcarry.com/s/N7tSL3Gk8ZW" method="POST" class="formcarry-form" novalidate>
-  <!-- ВАЖНО: редирект для Formcarry -->
-  <input type="hidden" name="_next" value="https://packtochka.ru/spasibo/">
+<!-- Невидимый iframe: в него уходит POST на Formcarry, чтобы не покидать страницу -->
+<iframe name="fc_iframe" style="display:none;"></iframe>
 
+<form action="https://formcarry.com/s/N7tSL3Gk8ZW" method="POST" class="formcarry-form" target="fc_iframe" novalidate>
   <label>Ваше имя *</label>
   <input type="text" name="name" placeholder="Введите ваше имя" required>
 
@@ -43,137 +43,135 @@ permalink: /order/
   <button type="submit">Отправить заявку</button>
 </form>
 
-<!-- Мягкая маска телефона с корректной работой Backspace/Delete и курсора -->
+<!-- Мягкая маска телефона + корректная работа Backspace/Delete и редирект после отправки -->
 <script>
 (function () {
+  // ====== Маска телефона ======
   const input = document.getElementById('phone');
-  if (!input) return;
+  if (input) {
+    const onlyDigits = (s) => (s.match(/\d/g) || []).join('');
+    const digitsCountIn = (s) => (s.match(/\d/g) || []).length;
 
-  // ——— вспомогательные функции ———
-  const onlyDigits = (s) => (s.match(/\d/g) || []).join('');
-  const digitsCountIn = (s) => (s.match(/\d/g) || []).length;
-
-  function normalizeDigits(d) {
-    // приводим к формату +7 и максимум 11 цифр
-    if (d.startsWith('8')) d = '7' + d.slice(1);
-    if (!d.startsWith('7')) d = '7' + d;
-    return d.slice(0, 11);
-  }
-
-  function formatByDigits(d) {
-    // d — строка цифр, где d[0] — '7'
-    if (!d) return '';
-    let out = '+7';
-    if (d.length > 1) out += ' (' + d.slice(1, 4);
-    if (d.length >= 4) out += ')';
-    if (d.length > 4) out += ' ' + d.slice(4, 7);
-    if (d.length > 7) out += '-' + d.slice(7, 9);
-    if (d.length > 9) out += '-' + d.slice(9, 11);
-    return out;
-  }
-
-  function caretPosForDigitIndex(formatted, digitIndex) {
-    // вернуть позицию курсора так, чтобы слева было digitIndex цифр
-    if (digitIndex <= 0) {
-      const idx7 = formatted.indexOf('7');
-      return idx7 >= 0 ? idx7 + 1 : 0;
+    function normalizeDigits(d) {
+      if (d.startsWith('8')) d = '7' + d.slice(1);
+      if (!d.startsWith('7')) d = '7' + d;
+      return d.slice(0, 11);
     }
-    let cnt = 0;
-    for (let i = 0; i < formatted.length; i++) {
-      if (/\d/.test(formatted[i])) {
-        cnt++;
-        if (cnt === digitIndex) return i + 1;
+    function formatByDigits(d) {
+      if (!d) return '';
+      let out = '+7';
+      if (d.length > 1) out += ' (' + d.slice(1, 4);
+      if (d.length >= 4) out += ')';
+      if (d.length > 4) out += ' ' + d.slice(4, 7);
+      if (d.length > 7) out += '-' + d.slice(7, 9);
+      if (d.length > 9) out += '-' + d.slice(9, 11);
+      return out;
+    }
+    function caretPosForDigitIndex(formatted, digitIndex) {
+      if (digitIndex <= 0) {
+        const idx7 = formatted.indexOf('7');
+        return idx7 >= 0 ? idx7 + 1 : 0;
       }
-    }
-    return formatted.length;
-  }
-
-  // инициализация значения при фокусе
-  input.addEventListener('focus', () => {
-    if (!onlyDigits(input.value)) {
-      input.value = '+7 ';
-      setTimeout(() => input.setSelectionRange(input.value.length, input.value.length), 0);
-    }
-  });
-
-  // ввод/редактирование: сохраняем позицию курсора «по числу цифр слева»
-  input.addEventListener('input', () => {
-    const sel = input.selectionStart || 0;
-    const before = input.value.slice(0, sel);
-    const digitIdx = digitsCountIn(before);
-
-    let d = normalizeDigits(onlyDigits(input.value));
-    const formatted = formatByDigits(d);
-    input.value = formatted;
-
-    const newPos = caretPosForDigitIndex(formatted, digitIdx);
-    input.setSelectionRange(newPos, newPos);
-  });
-
-  // Backspace/Delete — удаляем именно цифру слева/справа от курсора
-  input.addEventListener('keydown', (e) => {
-    const key = e.key;
-    if (key !== 'Backspace' && key !== 'Delete') return;
-
-    const selStart = input.selectionStart || 0;
-    const selEnd = input.selectionEnd || 0;
-
-    let d = normalizeDigits(onlyDigits(input.value));
-    let digitIdxLeft = digitsCountIn(input.value.slice(0, selStart)); // цифр слева от курсора
-
-    // если есть выделение — удаляем соответствующие цифры диапазона
-    if (selEnd > selStart) {
-      const leftDigits = digitsCountIn(input.value.slice(0, selStart));
-      const rightDigits = digitsCountIn(input.value.slice(0, selEnd));
-      let kept = '', idx = 0;
-      for (let ch of d) {
-        if (idx < leftDigits || idx >= rightDigits) kept += ch;
-        idx++;
+      let cnt = 0;
+      for (let i = 0; i < formatted.length; i++) {
+        if (/\d/.test(formatted[i])) {
+          cnt++;
+          if (cnt === digitIndex) return i + 1;
+        }
       }
-      d = kept;
+      return formatted.length;
+    }
+
+    input.addEventListener('focus', () => {
+      if (!onlyDigits(input.value)) {
+        input.value = '+7 ';
+        setTimeout(() => input.setSelectionRange(input.value.length, input.value.length), 0);
+      }
+    });
+
+    input.addEventListener('input', () => {
+      const sel = input.selectionStart || 0;
+      const before = input.value.slice(0, sel);
+      const digitIdx = digitsCountIn(before);
+      let d = normalizeDigits(onlyDigits(input.value));
       const formatted = formatByDigits(d);
       input.value = formatted;
-      const pos = caretPosForDigitIndex(formatted, leftDigits);
-      input.setSelectionRange(pos, pos);
-      e.preventDefault();
-      return;
-    }
+      const newPos = caretPosForDigitIndex(formatted, digitIdx);
+      input.setSelectionRange(newPos, newPos);
+    });
 
-    if (key === 'Backspace') {
-      if (digitIdxLeft > 0) {
-        let kept = '';
-        for (let i = 0; i < d.length; i++) if (i !== digitIdxLeft - 1) kept += d[i];
+    input.addEventListener('keydown', (e) => {
+      const key = e.key;
+      if (key !== 'Backspace' && key !== 'Delete') return;
+
+      const selStart = input.selectionStart || 0;
+      const selEnd = input.selectionEnd || 0;
+      let d = normalizeDigits(onlyDigits(input.value));
+      let digitIdxLeft = digitsCountIn(input.value.slice(0, selStart));
+
+      if (selEnd > selStart) {
+        const leftDigits = digitsCountIn(input.value.slice(0, selStart));
+        const rightDigits = digitsCountIn(input.value.slice(0, selEnd));
+        let kept = '', idx = 0;
+        for (let ch of d) {
+          if (idx < leftDigits || idx >= rightDigits) kept += ch;
+          idx++;
+        }
         d = kept;
         const formatted = formatByDigits(d);
         input.value = formatted;
-        const pos = caretPosForDigitIndex(formatted, digitIdxLeft - 1);
+        const pos = caretPosForDigitIndex(formatted, leftDigits);
         input.setSelectionRange(pos, pos);
         e.preventDefault();
-      } else {
-        const formatted = formatByDigits(d);
-        const pos = caretPosForDigitIndex(formatted, 1);
-        input.setSelectionRange(pos, pos);
-        e.preventDefault();
+        return;
       }
-    } else if (key === 'Delete') {
-      if (digitIdxLeft < d.length) {
-        let kept = '';
-        for (let i = 0; i < d.length; i++) if (i !== digitIdxLeft) kept += d[i];
-        d = kept;
-        const formatted = formatByDigits(d);
-        input.value = formatted;
-        const pos = caretPosForDigitIndex(formatted, digitIdxLeft);
-        input.setSelectionRange(pos, pos);
-        e.preventDefault();
-      }
-    }
-  });
 
-  // очистка при коротком вводе
-  input.addEventListener('blur', () => {
-    const d = onlyDigits(input.value);
-    if (d.length < 11) input.value = '';
-  });
+      if (key === 'Backspace') {
+        if (digitIdxLeft > 0) {
+          let kept = '';
+          for (let i = 0; i < d.length; i++) if (i !== digitIdxLeft - 1) kept += d[i];
+          d = kept;
+          const formatted = formatByDigits(d);
+          input.value = formatted;
+          const pos = caretPosForDigitIndex(formatted, digitIdxLeft - 1);
+          input.setSelectionRange(pos, pos);
+          e.preventDefault();
+        } else {
+          const formatted = formatByDigits(d);
+          const pos = caretPosForDigitIndex(formatted, 1);
+          input.setSelectionRange(pos, pos);
+          e.preventDefault();
+        }
+      } else if (key === 'Delete') {
+        if (digitIdxLeft < d.length) {
+          let kept = '';
+          for (let i = 0; i < d.length; i++) if (i !== digitIdxLeft) kept += d[i];
+          d = kept;
+          const formatted = formatByDigits(d);
+          input.value = formatted;
+          const pos = caretPosForDigitIndex(formatted, digitIdxLeft);
+          input.setSelectionRange(pos, pos);
+          e.preventDefault();
+        }
+      }
+    });
+
+    input.addEventListener('blur', () => {
+      const d = onlyDigits(input.value);
+      if (d.length < 11) input.value = '';
+    });
+  }
+
+  // ====== Редирект на свою «Спасибо» после отправки (Free-план Formcarry) ======
+  const form = document.querySelector('.formcarry-form');
+  if (form) {
+    form.addEventListener('submit', function () {
+      // Дадим запросу уйти в скрытый iframe и аккуратно переведём пользователя
+      setTimeout(function () {
+        window.location.href = 'https://packtochka.ru/spasibo/';
+      }, 600); // 0.6 сек обычно достаточно
+    });
+  }
 })();
 </script>
 
