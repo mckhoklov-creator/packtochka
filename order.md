@@ -10,9 +10,9 @@ permalink: /order/
   <p class="lead-muted">Заполните форму — менеджер свяжется с вами в ближайшее время.</p>
 </div>
 
-<form action="https://formcarry.com/s/N7tSL3GkBZW" method="POST" class="formcarry-form" novalidate>
-  <!-- редирект после успешной отправки -->
-  <input type="hidden" name="_redirect" value="https://packtochka.ru/spasibo/">
+<form action="https://formcarry.com/s/N7tSL3Gk8ZW" method="POST" class="formcarry-form" novalidate>
+  <!-- ВАЖНО: редирект для Formcarry -->
+  <input type="hidden" name="_next" value="https://packtochka.ru/spasibo/">
 
   <label>Ваше имя *</label>
   <input type="text" name="name" placeholder="Введите ваше имя" required>
@@ -49,7 +49,7 @@ permalink: /order/
   const input = document.getElementById('phone');
   if (!input) return;
 
-  // вспомогательные функции
+  // ——— вспомогательные функции ———
   const onlyDigits = (s) => (s.match(/\d/g) || []).join('');
   const digitsCountIn = (s) => (s.match(/\d/g) || []).length;
 
@@ -75,7 +75,6 @@ permalink: /order/
   function caretPosForDigitIndex(formatted, digitIndex) {
     // вернуть позицию курсора так, чтобы слева было digitIndex цифр
     if (digitIndex <= 0) {
-      // позиция сразу после "+7"
       const idx7 = formatted.indexOf('7');
       return idx7 >= 0 ? idx7 + 1 : 0;
     }
@@ -97,11 +96,11 @@ permalink: /order/
     }
   });
 
-  // ввод цифр и общее форматирование (каретка остаётся там же по количеству цифр слева)
+  // ввод/редактирование: сохраняем позицию курсора «по числу цифр слева»
   input.addEventListener('input', () => {
     const sel = input.selectionStart || 0;
     const before = input.value.slice(0, sel);
-    const digitIdx = digitsCountIn(before); // сколько цифр слева от каретки
+    const digitIdx = digitsCountIn(before);
 
     let d = normalizeDigits(onlyDigits(input.value));
     const formatted = formatByDigits(d);
@@ -111,7 +110,7 @@ permalink: /order/
     input.setSelectionRange(newPos, newPos);
   });
 
-  // удаление (Backspace/Delete) — удаляем цифру логически, а затем форматируем и ставим каретку корректно
+  // Backspace/Delete — удаляем именно цифру слева/справа от курсора
   input.addEventListener('keydown', (e) => {
     const key = e.key;
     if (key !== 'Backspace' && key !== 'Delete') return;
@@ -122,19 +121,16 @@ permalink: /order/
     let d = normalizeDigits(onlyDigits(input.value));
     let digitIdxLeft = digitsCountIn(input.value.slice(0, selStart)); // цифр слева от курсора
 
-    // если есть выделение — просто удалим соответствующие цифры диапазона
+    // если есть выделение — удаляем соответствующие цифры диапазона
     if (selEnd > selStart) {
       const leftDigits = digitsCountIn(input.value.slice(0, selStart));
       const rightDigits = digitsCountIn(input.value.slice(0, selEnd));
-      // удаляем цифры индексов [leftDigits, rightDigits)
-      let kept = '';
-      let idx = 0;
+      let kept = '', idx = 0;
       for (let ch of d) {
         if (idx < leftDigits || idx >= rightDigits) kept += ch;
         idx++;
       }
       d = kept;
-      // каретка в точке leftDigits
       const formatted = formatByDigits(d);
       input.value = formatted;
       const pos = caretPosForDigitIndex(formatted, leftDigits);
@@ -144,12 +140,9 @@ permalink: /order/
     }
 
     if (key === 'Backspace') {
-      // удаляем цифру слева от курсора (по индексу digitIdxLeft-1)
       if (digitIdxLeft > 0) {
         let kept = '';
-        for (let i = 0; i < d.length; i++) {
-          if (i !== digitIdxLeft - 1) kept += d[i];
-        }
+        for (let i = 0; i < d.length; i++) if (i !== digitIdxLeft - 1) kept += d[i];
         d = kept;
         const formatted = formatByDigits(d);
         input.value = formatted;
@@ -157,30 +150,26 @@ permalink: /order/
         input.setSelectionRange(pos, pos);
         e.preventDefault();
       } else {
-        // ничего слева — не даём стирать "+", просто ставим каретку после +7
         const formatted = formatByDigits(d);
         const pos = caretPosForDigitIndex(formatted, 1);
         input.setSelectionRange(pos, pos);
         e.preventDefault();
       }
     } else if (key === 'Delete') {
-      // удаляем цифру справа от курсора (по индексу digitIdxLeft)
       if (digitIdxLeft < d.length) {
         let kept = '';
-        for (let i = 0; i < d.length; i++) {
-          if (i !== digitIdxLeft) kept += d[i];
-        }
+        for (let i = 0; i < d.length; i++) if (i !== digitIdxLeft) kept += d[i];
         d = kept;
         const formatted = formatByDigits(d);
         input.value = formatted;
         const pos = caretPosForDigitIndex(formatted, digitIdxLeft);
         input.setSelectionRange(pos, pos);
         e.preventDefault();
-      } // иначе — нечего удалять
+      }
     }
   });
 
-  // очистка при “коротком” вводе
+  // очистка при коротком вводе
   input.addEventListener('blur', () => {
     const d = onlyDigits(input.value);
     if (d.length < 11) input.value = '';
