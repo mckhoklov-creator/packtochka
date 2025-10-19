@@ -10,15 +10,23 @@ permalink: /order/
   <p class="lead-muted">Заполните форму — менеджер свяжется с вами в ближайшее время.</p>
 </div>
 
-<form action="https://formcarry.com/s/N7tSL3GkBZW" method="POST" class="formcarry-form">
-  <!-- скрытое поле для редиректа -->
+<form action="https://formcarry.com/s/N7tSL3Gk8ZW" method="POST" class="formcarry-form" novalidate>
+  <!-- Редирект после успешной отправки -->
   <input type="hidden" name="_redirect" value="https://packtochka.ru/spasibo/">
 
   <label>Ваше имя *</label>
   <input type="text" name="name" placeholder="Введите ваше имя" required>
 
   <label>Телефон *</label>
-  <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+  <input
+    type="tel"
+    id="phone"
+    name="phone"
+    placeholder="+7 (___) ___-__-__"
+    inputmode="tel"
+    autocomplete="tel"
+    pattern="\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}"
+    required>
 
   <label>Email *</label>
   <input type="email" name="email" placeholder="example@mail.ru" required>
@@ -36,15 +44,44 @@ permalink: /order/
   <button type="submit">Отправить заявку</button>
 </form>
 
-<!-- Подключаем библиотеку для маски -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.8/jquery.inputmask.min.js"></script>
+<!-- Маска телефона: vanilla Inputmask + JS-фолбэк -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.8/inputmask.min.js"></script>
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const phoneInput = document.getElementById("phone");
-    if (phoneInput) {
-      Inputmask("+7 (999) 999-99-99").mask(phoneInput);
+  (function () {
+    var phoneInput = document.getElementById('phone');
+    if (!phoneInput) return;
+
+    // Основная маска (Inputmask без jQuery)
+    if (window.Inputmask) {
+      new Inputmask("+7 (999) 999-99-99").mask(phoneInput);
     }
-  });
+
+    // Фолбэк, если CDN не загрузился
+    phoneInput.addEventListener('input', function () {
+      if (window.Inputmask) return; // маска уже есть
+      var v = this.value.replace(/\D/g, '');
+
+      // Нормализуем под +7
+      if (v.startsWith('8')) v = '7' + v.slice(1);
+      if (!v.startsWith('7')) v = '7' + v;
+      v = v.slice(0, 11);
+
+      var out = '+7';
+      if (v.length > 1) out += ' (' + v.slice(1, 4);
+      if (v.length >= 4) out += ') ' + v.slice(4, 7);
+      if (v.length >= 7) out += '-' + v.slice(7, 9);
+      if (v.length >= 9) out += '-' + v.slice(9, 11);
+      this.value = out;
+    });
+
+    // Валидация по паттерну (подсветка)
+    document.querySelector('.formcarry-form').addEventListener('submit', function (e) {
+      if (!phoneInput.checkValidity()) {
+        phoneInput.reportValidity();
+        e.preventDefault();
+      }
+    });
+  })();
 </script>
 
 <style>
@@ -84,6 +121,8 @@ permalink: /order/
     font-size: 15px;
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .formcarry-form input:focus,
@@ -100,15 +139,14 @@ permalink: /order/
     display: flex;
     flex-direction: column;
     gap: 6px;
+    padding: 0;
   }
-
   .status-group legend {
     font-weight: 600;
     margin-bottom: 4px;
     color: #333;
     font-size: 14px;
   }
-
   .status-group label {
     font-weight: 400;
     font-size: 14px;
@@ -117,11 +155,9 @@ permalink: /order/
     align-items: center;
     gap: 6px;
   }
-
   .status-group input[type="radio"] {
     accent-color: #7B61FF;
-    width: 16px;
-    height: 16px;
+    width: 16px; height: 16px;
   }
 
   /* Кнопка отправки */
@@ -138,15 +174,9 @@ permalink: /order/
     box-shadow: 0 4px 20px rgba(123,97,255,0.3);
     transition: opacity 0.2s;
   }
-
-  .formcarry-form button:hover {
-    opacity: 0.9;
-  }
+  .formcarry-form button:hover { opacity: 0.9; }
 
   @media (max-width: 640px) {
-    .formcarry-form {
-      margin: 0 10px 40px;
-      padding: 20px;
-    }
+    .formcarry-form { margin: 0 10px 40px; padding: 20px; }
   }
 </style>
