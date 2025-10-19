@@ -10,7 +10,7 @@ permalink: /order/
   <p class="lead-muted">Заполните форму — менеджер свяжется с вами в ближайшее время.</p>
 </div>
 
-<form action="https://formcarry.com/s/N7tSL3Gk8ZW" method="POST" class="formcarry-form">
+<form action="https://formcarry.com/s/N7tSL3GkBZW" method="POST" class="formcarry-form">
   <!-- скрытое поле для редиректа -->
   <input type="hidden" name="_redirect" value="https://packtochka.ru/spasibo/">
 
@@ -18,7 +18,7 @@ permalink: /order/
   <input type="text" name="name" placeholder="Введите ваше имя" required>
 
   <label>Телефон *</label>
-  <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+  <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
 
   <label>Email *</label>
   <input type="email" name="email" placeholder="example@mail.ru" required>
@@ -35,6 +35,17 @@ permalink: /order/
 
   <button type="submit">Отправить заявку</button>
 </form>
+
+<!-- Подключаем библиотеку для маски -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.8/jquery.inputmask.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const phoneInput = document.getElementById("phone");
+    if (phoneInput) {
+      Inputmask("+7 (999) 999-99-99").mask(phoneInput);
+    }
+  });
+</script>
 
 <style>
   .order-header {
