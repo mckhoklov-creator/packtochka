@@ -178,3 +178,12 @@
   images:
   - /assets/img/pupirchataya-plenka-1-5x100m.png
   min_order: 1 рулон
+- name: Бумага крафтовая 840х150м
+  category: prochie
+  slug: bumaga-kraftovaya-840x150
+  price: '970'
+  unit: ₽/рулон
+  short: Крафтовая бумага в рулоне 840 мм × 150 м — прочная упаковочная бумага натурального цвета. Подходит для упаковки товаров, посылок и защиты продукции при перевозке.
+  images:
+  - /assets/img/bumaga-kraftovaya-840x150.png
+  min_order: 1 рулон
