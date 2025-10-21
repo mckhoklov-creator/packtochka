@@ -91,7 +91,7 @@
 - name: Пакет курьерский 240x320 мм
   category: pakety
   slug: paket-kurierski-240x320
-  price: '3.5'
+  price: '3.8'
   unit: ₽/шт
   short: Белый пакет с клеевым клапаном 40мм, толщина 40 мкм.
   images:
