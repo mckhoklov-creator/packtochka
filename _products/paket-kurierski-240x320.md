@@ -2,7 +2,7 @@
 layout: product
 title: "Пакет курьерский 240x320 мм"
 name: "Пакет курьерский 240x320 мм"
-price: 3.5
+price: 3.8
 unit: "₽/шт"
 min_qty: "100 шт"
 category: "pakety"
