@@ -8,6 +8,9 @@ collections:
   products:
     output: true
     permalink: /katalog/:categories/:slug/
+  posts:
+    output: true
+    permalink: /blog/:title/
 
 defaults:
   - scope:
