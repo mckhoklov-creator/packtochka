@@ -46,6 +46,10 @@
   <header class="site-header">
     <div class="header-row">
       <div class="logo"><a href="{{ site.baseurl }}/">ПакТочка</a></div>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+        <span class="menu-toggle__icon" aria-hidden="true">☰</span>
+        <span class="menu-toggle__label">Меню</span>
+      </button>
       <form id="site-search" class="search" role="search">
         <input id="q" type="search" placeholder="Найти товар (например, «коробка 300×200×200»)" aria-label="Поиск по товарам">
         <button type="submit">Искать</button>
@@ -55,7 +59,7 @@
         <a href="{{ site.baseurl }}/cart/" class="cart-link" id="open-cart" aria-label="Открыть корзину">🛒 <span id="cart-count">0</span></a>
       </div>
     </div>
-    <nav class="top-nav">
+    <nav class="top-nav" id="primary-nav" aria-hidden="true">
       <div class="nav-row">
         <a href="{{ site.baseurl }}/katalog/">Каталог</a>
         <a href="{{ site.baseurl }}/katalog/korobki/">Коробки</a>
@@ -105,5 +109,6 @@
   <script defer src="{{ site.baseurl }}/assets/js/search.js?v=1"></script>
   <script defer src="{{ site.baseurl }}/assets/js/cart.js"></script>
   <script defer src="{{ site.baseurl }}/assets/js/cat-images.js?v=1"></script>
+  <script defer src="{{ site.baseurl }}/assets/js/menu.js?v=1"></script>
 </body>
 </html>
