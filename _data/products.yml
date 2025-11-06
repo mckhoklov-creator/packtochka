@@ -77,9 +77,9 @@
   unit: ₽/шт
   short: Картонная коробка бурого цвета четырехклапанная.
   images:
-- /assets/img/korobka-250x230x70.png
+  - /assets/img/korobka-235x210x126.png
   min_order: 100 шт
-  - name: Коробка картонная 250х230х70 мм
+- name: Коробка картонная 250х230х70 мм
   category: korobki
   slug: korobka-250x230x70
   price: '18.5'
