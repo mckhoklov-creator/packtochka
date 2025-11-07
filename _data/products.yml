@@ -88,6 +88,24 @@
   images:
   - /assets/img/korobka-250x230x70.png
   min_order: 100 шт
+- name: Коробка картонная 253х210х126 мм
+  category: korobki
+  slug: korobka-253x210x126
+  price: '20'
+  unit: ₽/шт
+  short: Картонная коробка бурого цвета четырехклапанная.
+  images:
+  - /assets/img/korobka-253x210x126.png
+  min_order: 100 шт
+- name: Коробка картонная 260х250х125 мм
+  category: korobki
+  slug: korobka-260x250x125
+  price: '25'
+  unit: ₽/шт
+  short: Картонная коробка бурого цвета четырехклапанная.
+  images:
+  - /assets/img/korobka-260x250x125.png
+  min_order: 100 шт
 - name: Пакет курьерский 100x150 мм
   category: pakety
   slug: paket-kurierski-100x150
