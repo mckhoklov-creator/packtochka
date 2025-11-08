@@ -24,7 +24,7 @@
 
   function inject(){
     Object.keys(MAP).forEach(href => {
-      const selector = `.cats a[href$="${href}"], .cats a[href$="${withBase(href)}"]`;
+      const selector = `.home-section .cats a[href$="${href}"], .home-section .cats a[href$="${withBase(href)}"]`;
       const link = document.querySelector(selector);
       if (!link) return;
       const holder = link.querySelector('.cat__img') || link;
