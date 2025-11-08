@@ -56,9 +56,9 @@
   margin-bottom: 15px;
 }
 
-.cats .cat,
-.cats .cat:visited,
-.cats .cat:hover {
+.home-section .cats .cat,
+.home-section .cats .cat:visited,
+.home-section .cats .cat:hover {
     color:#fff;
     text-decoration:none;
 }
