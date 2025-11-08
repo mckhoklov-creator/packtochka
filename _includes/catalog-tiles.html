@@ -1,0 +1,15 @@
+{% assign categories = include.categories | default: site.data.catalog_categories %}
+<div class="{{ include.wrapper_class | default: 'cats' }}">
+  {% for cat in categories %}
+    <a class="cat cat--{{ cat.slug }}{% if include.tile_class %} {{ include.tile_class }}{% endif %}" href="{{ cat.url | relative_url }}">
+      <div class="cat__img">
+        {% if cat.image %}
+          <img src="{{ cat.image | relative_url }}" alt="{{ cat.title }}">
+        {% elsif cat.emoji %}
+          <span class="cat__emoji" aria-hidden="true">{{ cat.emoji }}</span>
+        {% endif %}
+      </div>
+      <div class="cat__cap">{{ cat.title }}</div>
+    </a>
+  {% endfor %}
+</div>
