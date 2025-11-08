@@ -19,6 +19,7 @@
 .nav-catalog{border:none;border-radius:999px;padding:8px 18px;background:linear-gradient(90deg,#6f83ff,#c19aff);color:#fff!important;cursor:pointer;transition:transform .12s ease,box-shadow .12s ease}
 .nav-catalog:focus{outline:2px solid rgba(111,131,255,.4);outline-offset:2px}
 .nav-catalog:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(111,131,255,.35)}
+.nav-catalog.is-active{transform:translateY(-1px);box-shadow:0 10px 24px rgba(111,131,255,.35)}
 .catalog-panel{position:absolute;top:100%;left:0;width:100%;padding:0 15px;display:none;z-index:30}
 .catalog-panel.is-open{display:block}
 .catalog-panel__inner{max-width:1200px;margin:0 auto;background:#fff;border:1px solid #e5e7f3;border-top:none;border-radius:0 0 18px 18px;box-shadow:0 16px 36px rgba(0,0,0,.12);padding:20px 24px 24px}

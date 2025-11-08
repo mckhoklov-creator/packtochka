@@ -16,27 +16,6 @@ layout: default
   {% endif %}
 {% endunless %}
 
-<nav aria-label="breadcrumb" style="margin:10px 0; font-size:.95rem;">
-  <a href="{{ '/' | relative_url }}">Главная</a> ›
-  <a href="{{ '/katalog/' | relative_url }}">Каталог</a> ›
-  <a href="{{ '/katalog/' | append: category | append: '/' | relative_url }}">
-    {% case category %}
-      {% when "korobki" %}Коробки
-      {% when "pakety" %}Пакеты
-      {% when "skotch" %}Скотч
-      {% when "plenka" %}Стрейч-плёнка
-      {% when "pupyrchataya-plenka" %}Пупырчатая плёнка
-      {% when "gofrorulony" %}Гофрорулоны
-      {% when "bopp-pakety" %}БОПП пакеты
-      {% when "etiketki" %}Этикетки
-      {% when "kraftovaya-bumaga" %}Крафтовая бумага
-      {% when "prochie" %}Прочее
-      {% else %}Категория
-    {% endcase %}
-  </a> ›
-  <span aria-current="page">{{ page.name }}</span>
-</nav>
-
 <article class="product" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
   <div>
     {% if photo_src %}
