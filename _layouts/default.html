@@ -61,12 +61,7 @@
     </div>
     <nav class="top-nav" id="primary-nav" aria-hidden="true">
       <div class="nav-row">
-        <a href="{{ site.baseurl }}/katalog/">Каталог</a>
-        <a href="{{ site.baseurl }}/katalog/korobki/">Коробки</a>
-        <a href="{{ site.baseurl }}/katalog/pakety/">Пакеты</a>
-        <a href="{{ site.baseurl }}/katalog/skotch/">Скотч</a>
-        <a href="{{ site.baseurl }}/katalog/plenka/">Стрейч‑пленка</a>
-        <a href="{{ site.baseurl }}/katalog/prochie/">Прочее</a>
+        <button class="nav-catalog" id="catalog-toggle" type="button" aria-expanded="false" aria-controls="catalog-panel">Каталог</button>
         <a href="{{ site.baseurl }}/uslugi/">Услуги</a>
         <a href="{{ site.baseurl }}/dostavka/">Доставка</a>
         <a href="{{ site.baseurl }}/oplata/">Оплата</a>
@@ -74,6 +69,18 @@
         <a href="{{ site.baseurl }}/contacts/">Контакты</a>
       </div>
     </nav>
+    <div class="catalog-panel" id="catalog-panel" role="region" aria-labelledby="catalog-panel-title" aria-hidden="true">
+      <div class="catalog-panel__inner">
+        <div class="catalog-panel__header">
+          <h3 class="catalog-panel__title" id="catalog-panel-title">Категории каталога</h3>
+          <div class="catalog-panel__actions">
+            <a class="catalog-panel__all" href="{{ site.baseurl }}/katalog/">Все товары</a>
+            <button class="catalog-panel__close" id="catalog-close" type="button" aria-label="Закрыть каталог">×</button>
+          </div>
+        </div>
+        {% include catalog-tiles.html wrapper_class="catalog-panel__grid cats" tile_class="catalog-panel__tile" %}
+      </div>
+    </div>
   </header>
 
   <main class="site-main">

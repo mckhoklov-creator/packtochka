@@ -1,0 +1,40 @@
+- title: Коробки
+  slug: korobki
+  url: /katalog/korobki/
+  image: /assets/img/cat-korobki.png
+- title: Пакеты
+  slug: pakety
+  url: /katalog/pakety/
+  image: /assets/img/paket.png
+- title: Скотч
+  slug: skotch
+  url: /katalog/skotch/
+  image: /assets/img/cat-skotch.png
+- title: Стрейч-плёнка
+  slug: plenka
+  url: /katalog/plenka/
+  image: /assets/img/cat-plenka.png
+- title: Пупырчатая плёнка
+  slug: pupyrchataya-plenka
+  url: /katalog/pupyrchataya-plenka/
+  image: /assets/img/pupirchataya-plenka-1-5x100m.png
+- title: Гофрорулоны
+  slug: gofrorulony
+  url: /katalog/gofrorulony/
+  image: /assets/img/gofrorulon-dvuhsloiny-1050mm-20m.png
+- title: БОПП пакеты
+  slug: bopp-pakety
+  url: /katalog/bopp-pakety/
+  image: /assets/img/paket-kurierski-190x240.png
+- title: Этикетки
+  slug: etiketki
+  url: /katalog/etiketki/
+  emoji: "🏷️"
+- title: Крафтовая бумага
+  slug: kraftovaya-bumaga
+  url: /katalog/kraftovaya-bumaga/
+  image: /assets/img/bumaga-kraftovaya-840x150.png
+- title: Прочее
+  slug: prochie
+  url: /katalog/prochie/
+  image: /assets/img/cat-prochie.png

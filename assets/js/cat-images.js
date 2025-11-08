@@ -6,20 +6,20 @@
   const path = location.pathname;
   const isHome = (path === withBase('/') || path === withBase('/index.html'));
   const isCatalog = path.startsWith(withBase('/katalog/'));
-  if (isCatalog) {
-    document.addEventListener('DOMContentLoaded', function(){
-      document.querySelectorAll('.cats .cat .cat__img img').forEach(el => el.remove());
-    });
+  if (isCatalog || !isHome) {
     return;
   }
-  if (!isHome) return;
 
   const MAP = {
     '/katalog/korobki/': 'cat-korobki.png', // ваша коробка
-    '/katalog/pakety/':  'paket.png',       // ваш пакет
-    '/katalog/skotch/':  'cat-skotch.png',
-    '/katalog/plenka/':  'cat-plenka.png',
-    '/katalog/prochie/': 'cat-prochie.png'
+    '/katalog/pakety/':           'paket.png',
+    '/katalog/skotch/':           'cat-skotch.png',
+    '/katalog/plenka/':           'cat-plenka.png',
+    '/katalog/pupyrchataya-plenka/': 'pupirchataya-plenka-1-5x100m.png',
+    '/katalog/gofrorulony/':      'gofrorulon-dvuhsloiny-1050mm-20m.png',
+    '/katalog/bopp-pakety/':      'paket-kurierski-190x240.png',
+    '/katalog/kraftovaya-bumaga/': 'bumaga-kraftovaya-840x150.png',
+    '/katalog/prochie/':          'cat-prochie.png'
   };
 
   function inject(){
