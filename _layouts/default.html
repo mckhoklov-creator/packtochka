@@ -61,7 +61,7 @@
     </div>
     <nav class="top-nav" id="primary-nav" aria-hidden="true">
       <div class="nav-row">
-        <button class="nav-catalog" id="catalog-toggle" type="button" aria-expanded="false" aria-controls="catalog-panel">Каталог</button>
+        <a class="nav-catalog" id="catalog-link" href="{{ site.baseurl }}/katalog/" aria-expanded="false" aria-haspopup="true" aria-controls="catalog-panel">Каталог</a>
         <a href="{{ site.baseurl }}/uslugi/">Услуги</a>
         <a href="{{ site.baseurl }}/dostavka/">Доставка</a>
         <a href="{{ site.baseurl }}/oplata/">Оплата</a>
@@ -85,6 +85,9 @@
 
   <main class="site-main">
     <div class="inner">
+      {% unless page.url == '/' or page.breadcrumbs == false %}
+        {% include breadcrumbs.html %}
+      {% endunless %}
       {{ content }}
     </div>
   </main>
