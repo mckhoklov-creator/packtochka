@@ -61,7 +61,7 @@
     </div>
     <nav class="top-nav" id="primary-nav" aria-hidden="true">
       <div class="nav-row">
-        <button class="nav-catalog" id="catalog-toggle" type="button" aria-expanded="false" aria-controls="catalog-panel">Каталог</button>
+        <a class="nav-catalog" id="catalog-link" href="{{ '/katalog/' | relative_url }}" aria-haspopup="true" aria-expanded="false" aria-controls="catalog-panel">Каталог</a>
         <a href="{{ site.baseurl }}/uslugi/">Услуги</a>
         <a href="{{ site.baseurl }}/dostavka/">Доставка</a>
         <a href="{{ site.baseurl }}/oplata/">Оплата</a>
@@ -78,13 +78,16 @@
             <button class="catalog-panel__close" id="catalog-close" type="button" aria-label="Закрыть каталог">×</button>
           </div>
         </div>
-        {% include catalog-tiles.html wrapper_class="catalog-panel__grid cats" tile_class="catalog-panel__tile" %}
+        {% include catalog-tiles.html wrapper_class="catalog-panel__grid cats" tile_class="catalog-panel__tile" display_style="simple" %}
       </div>
     </div>
   </header>
 
   <main class="site-main">
     <div class="inner">
+      {% if page.url != '/' and page.layout != 'product' %}
+        {% include breadcrumbs.html %}
+      {% endif %}
       {{ content }}
     </div>
   </main>

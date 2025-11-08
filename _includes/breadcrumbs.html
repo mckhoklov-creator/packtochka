@@ -1,0 +1,38 @@
+{% assign current_url = page.url | default: '' %}
+{% if current_url == '/' or page.breadcrumbs == false %}
+  {% comment %}No breadcrumbs on the homepage or when explicitly disabled.{% endcomment %}
+{% else %}
+  {% assign catalog_categories = site.data.catalog_categories | default: empty %}
+  {% assign segments = current_url | split: '/' %}
+  {% assign segments = segments | where_exp: 'segment', 'segment != ""' %}
+  <nav class="breadcrumbs" aria-label="Хлебные крошки">
+    <a href="{{ '/' | relative_url }}">Главная</a>
+    {% if current_url == '/katalog/' %}
+      <span class="breadcrumbs__sep" aria-hidden="true">›</span>
+      <span aria-current="page">Каталог</span>
+    {% elsif current_url contains '/katalog/' %}
+      <span class="breadcrumbs__sep" aria-hidden="true">›</span>
+      <a href="{{ '/katalog/' | relative_url }}">Каталог</a>
+      {% assign cat_slug = segments[1] | default: segments[0] %}
+      {% assign category = catalog_categories | where: 'slug', cat_slug | first %}
+      {% if category %}
+        <span class="breadcrumbs__sep" aria-hidden="true">›</span>
+        <span aria-current="page">{{ category.title }}</span>
+      {% else %}
+        <span class="breadcrumbs__sep" aria-hidden="true">›</span>
+        <span aria-current="page">{{ page.title | default: page.name }}</span>
+      {% endif %}
+    {% elsif current_url == '/blog/' %}
+      <span class="breadcrumbs__sep" aria-hidden="true">›</span>
+      <span aria-current="page">Блог</span>
+    {% elsif current_url contains '/blog/' %}
+      <span class="breadcrumbs__sep" aria-hidden="true">›</span>
+      <a href="{{ '/blog/' | relative_url }}">Блог</a>
+      <span class="breadcrumbs__sep" aria-hidden="true">›</span>
+      <span aria-current="page">{{ page.title | default: page.name }}</span>
+    {% else %}
+      <span class="breadcrumbs__sep" aria-hidden="true">›</span>
+      <span aria-current="page">{{ page.title | default: page.name }}</span>
+    {% endif %}
+  </nav>
+{% endif %}
