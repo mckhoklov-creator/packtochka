@@ -215,7 +215,7 @@
   - /assets/img/streych-plenka-prozrachnaya-1-7-kg.png
   min_order: 6 рулонов
 - name: Гофрорулон 2х-слойный 1050мм, 20м
-  category: prochie
+  category: gofrorulony
   slug: gofrorulon-dvuhsloiny-1050mm-20m
   price: '650'
   unit: ₽/рулон
@@ -224,7 +224,7 @@
   - /assets/img/gofrorulon-dvuhsloiny-1050mm-20m.png
   min_order: 1 рулон
 - name: Пленка пупырчатая 1,5х100м 2х-слойная
-  category: prochie
+  category: pupyrchataya-plenka
   slug: pupirchataya-plenka-1-5x100m
   price: '1700'
   unit: ₽/рулон
@@ -233,7 +233,7 @@
   - /assets/img/pupirchataya-plenka-1-5x100m.png
   min_order: 1 рулон
 - name: Бумага крафтовая 840х150м
-  category: prochie
+  category: kraftovaya-bumaga
   slug: bumaga-kraftovaya-840x150
   price: '970'
   unit: ₽/рулон
