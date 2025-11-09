@@ -5,7 +5,13 @@
   <ol class="breadcrumbs__list">
     {% if first_segment == 'katalog' %}
       {% assign catalog_url = '/katalog/' %}
-      {% assign is_catalog_root = page.url == catalog_url %}
+      {% assign segment_count = 0 %}
+      {% for segment in url_parts %}
+        {% unless segment == '' %}
+          {% assign segment_count = segment_count | plus: 1 %}
+        {% endunless %}
+      {% endfor %}
+      {% assign is_catalog_root = segment_count == 1 %}
 
       <li class="breadcrumbs__item"><a href="{{ '/' | relative_url }}">Главная</a></li>
 
