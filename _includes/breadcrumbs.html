@@ -1,19 +1,57 @@
 {% assign url_parts = page.url | split: '/' %}
-{% assign last_part = '' %}
-{% for part in url_parts %}
-  {% unless part == '' %}
-    {% assign last_part = part %}
-  {% endunless %}
-{% endfor %}
+{% assign first_segment = url_parts[1] %}
 
 <nav class="breadcrumbs" aria-label="Хлебные крошки">
   <ol class="breadcrumbs__list">
-    <li class="breadcrumbs__item"><a href="{{ '/' | relative_url }}">Главная</a></li>
-    {% if page.collection == 'posts' %}
+    {% if first_segment == 'katalog' %}
+      {% assign catalog_url = '/katalog/' %}
+      {% assign is_catalog_root = page.url == catalog_url %}
+      {% if is_catalog_root %}
+        <li class="breadcrumbs__item" aria-current="page">Каталог</li>
+      {% else %}
+        <li class="breadcrumbs__item"><a href="{{ catalog_url | relative_url }}">Каталог</a></li>
+      {% endif %}
+
+      {% assign category_slug = nil %}
+      {% if url_parts.size > 2 %}
+        {% assign potential_category = url_parts[2] %}
+        {% unless potential_category == '' %}
+          {% assign category_slug = potential_category %}
+        {% endunless %}
+      {% endif %}
+
+      {% if category_slug %}
+        {% assign category_record = site.data.catalog_categories | where: 'slug', category_slug | first %}
+        {% assign category_title = category_record.title | default: category_slug %}
+
+        {% assign product_slug = nil %}
+        {% if url_parts.size > 3 %}
+          {% assign potential_product = url_parts[3] %}
+          {% unless potential_product == '' %}
+            {% assign product_slug = potential_product %}
+          {% endunless %}
+        {% endif %}
+
+        {% if product_slug %}
+          <li class="breadcrumbs__item"><a href="{{ catalog_url | append: category_slug | append: '/' | relative_url }}">{{ category_title }}</a></li>
+          <li class="breadcrumbs__item" aria-current="page">{{ page.name | default: page.title }}</li>
+        {% else %}
+          <li class="breadcrumbs__item" aria-current="page">{{ category_title }}</li>
+        {% endif %}
+      {% endif %}
+    {% elsif page.collection == 'posts' %}
+      <li class="breadcrumbs__item"><a href="{{ '/' | relative_url }}">Главная</a></li>
       <li class="breadcrumbs__item"><a href="{{ '/blog/' | relative_url }}">Блог</a></li>
       <li class="breadcrumbs__item" aria-current="page">{{ page.title | default: page.name }}</li>
     {% else %}
+      <li class="breadcrumbs__item"><a href="{{ '/' | relative_url }}">Главная</a></li>
+      {% assign last_part = '' %}
       {% assign accumulated_path = '' %}
+      {% for part in url_parts %}
+        {% unless part == '' %}
+          {% assign last_part = part %}
+        {% endunless %}
+      {% endfor %}
       {% for part in url_parts %}
         {% unless part == '' %}
           {% assign accumulated_path = accumulated_path | append: '/' | append: part %}
@@ -30,12 +68,6 @@
             {% if page_match and page_match.title %}
               {% assign label = page_match.title %}
             {% endif %}
-            {% unless label %}
-              {% assign category = site.data.catalog_categories | where: "slug", part | first %}
-              {% if category %}
-                {% assign label = category.title %}
-              {% endif %}
-            {% endunless %}
             {% unless label %}
               {% assign label = part | replace: '-', ' ' %}
               {% assign label = label | replace: '  ', ' ' %}
