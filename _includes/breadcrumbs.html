@@ -15,11 +15,9 @@
 
       <li class="breadcrumbs__item"><a href="{{ '/' | relative_url }}">Главная</a></li>
 
-      {% if is_catalog_root %}
-        <li class="breadcrumbs__item" aria-current="page">Каталог</li>
-      {% else %}
-        <li class="breadcrumbs__item"><a href="{{ catalog_url | relative_url }}">Каталог</a></li>
-      {% endif %}
+      <li class="breadcrumbs__item">
+        <a href="{{ catalog_url | relative_url }}"{% if is_catalog_root %} aria-current="page"{% endif %}>Каталог</a>
+      </li>
 
       {% assign category_slug = nil %}
       {% if url_parts.size > 2 %}
