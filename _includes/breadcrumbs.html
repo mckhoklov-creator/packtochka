@@ -6,6 +6,9 @@
     {% if first_segment == 'katalog' %}
       {% assign catalog_url = '/katalog/' %}
       {% assign is_catalog_root = page.url == catalog_url %}
+
+      <li class="breadcrumbs__item"><a href="{{ '/' | relative_url }}">Главная</a></li>
+
       {% if is_catalog_root %}
         <li class="breadcrumbs__item" aria-current="page">Каталог</li>
       {% else %}
