@@ -75,6 +75,7 @@
     let hoverTimeout;
     const hoverMedia = window.matchMedia('(hover: hover) and (pointer: fine)');
     const shouldPreview = () => hoverMedia.matches && window.innerWidth > 900;
+    let suppressFocusOpen = false;
 
     const scheduleClose = () => {
       clearTimeout(hoverTimeout);
@@ -102,7 +103,10 @@
     catalogPanel.addEventListener('mouseenter', handlePointerEnter);
     catalogPanel.addEventListener('mouseleave', handlePointerLeave);
 
-    catalogLink.addEventListener('focus', () => openCatalog());
+    catalogLink.addEventListener('focus', () => {
+      if(suppressFocusOpen) return;
+      openCatalog();
+    });
     catalogPanel.addEventListener('focusin', () => openCatalog());
 
     const handleFocusOut = () => {
@@ -121,7 +125,13 @@
       catalogClose.addEventListener('click', (event) => {
         event.preventDefault();
         closeCatalog();
-        catalogLink.focus();
+        if(catalogLink){
+          suppressFocusOpen = true;
+          catalogLink.focus();
+          setTimeout(() => {
+            suppressFocusOpen = false;
+          }, 0);
+        }
       });
     }
 
