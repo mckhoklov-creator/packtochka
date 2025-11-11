@@ -241,3 +241,12 @@
   images:
   - /assets/img/bumaga-kraftovaya-840x150.png
   min_order: 1 рулон
+- name: Термоэтикетки ТОП 58х40
+  category: etiketki
+  slug: etiketki-58x40
+  price: '125'
+  unit: ₽/рулон
+  short: Термоэтикетки ТОП 58×40 мм, 700 шт. в рулоне — самоклеящиеся термоэтикетки для принтеров.
+  images:
+  - /assets/img/etiketki-58x40.png
+  min_order: 1 рулон
