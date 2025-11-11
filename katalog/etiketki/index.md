@@ -7,7 +7,27 @@ permalink: /katalog/etiketki/
 
 <h1>Этикетки</h1>
 
-<p>Категория в разработке. Оставьте заявку, и мы предложим самоклеящиеся этикетки нужного формата, материала и способа печати.</p>
+<div class="grid">
+  {% assign items = site.data.products | where: "category", "etiketki" %}
+  {% for p in items %}
+  <div class="card">
+    <a href="{{ '/katalog/etiketki/' | append: p.slug | append: '/' | relative_url }}">
+      <img src="{{ p.images | first | relative_url }}" alt="{{ p.name }}">
+      <h3>{{ p.name }}</h3>
+    </a>
+    <p class="price">{{ p.price }} {{ p.unit }}</p>
+    <p class="short">{{ p.short }}</p>
+    <button class="btn btn-gradient mt-2 add-to-cart"
+            data-sku="{{ p.slug }}"
+            data-name="{{ p.name }}"
+            data-price="{{ p.price }}">
+      В корзину
+    </button>
+  </div>
+  {% endfor %}
+</div>
+
+<p class="mt-4">Категория находится в наполнении. Оставьте заявку, и мы предложим самоклеящиеся этикетки нужного формата, материала и способа печати.</p>
 
 <section class="seo-text">
   <p><strong>Самоклеящиеся этикетки</strong> нужны для маркировки товаров, коробок, паллет и документов. Печать возможна на термоленте и термотрансферной бумаге, а также на синтетических материалах, стойких к влаге.</p>
