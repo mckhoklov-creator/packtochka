@@ -106,6 +106,15 @@
   images:
   - /assets/img/korobka-260x250x125.png
   min_order: 100 шт
+- name: Коробка картонная 600х400х400 мм
+  category: korobki
+  slug: korobka-600x400x400
+  price: '90'
+  unit: ₽/шт
+  short: Картонная коробка бурого цвета четырехклапанная.
+  images:
+  - /assets/img/korobka-600x400x400.png
+  min_order: 20 шт
 - name: Пакет курьерский 100x150 мм
   category: pakety
   slug: paket-kurierski-100x150
